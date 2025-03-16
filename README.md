@@ -2,27 +2,16 @@
 
 ![Based.meme](Based.meme.png)
 
-## Features
-
-## Usage
-
 ## Dependencies
 
 - [Google Fonts](https://fonts.google.com)
 
 ## Inspiration
 
-## Bugs
-
-- 🔴
-- 🟡
-- 🟢
-
-## TODOs
-
-- 🔴
-- 🟡
-- 🟢
+- [4chan](https://www.4chan.org)
+- [Instagram](https://www.instagram.com)
+- [Reddit](https://www.reddit.com)
+- [X](https://x.com)
 
 ## License
 
