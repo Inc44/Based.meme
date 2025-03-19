@@ -483,7 +483,7 @@ nav
 
 .about-card:hover
 {
-	transform: translateY(-5px);
+	transform: translateY(-0.3125rem);
 	box-shadow: 0 0.5rem 1rem rgba(138, 43, 226, 0.2);
 }
 
@@ -522,6 +522,11 @@ nav
 	color: var(--accent);
 }
 
+.about-card.team-card
+{
+	grid-column: 1 / -1;
+}
+
 .team-member
 {
 	text-align: center;
@@ -557,6 +562,14 @@ nav
 	height: 100%;
 }
 
+.team-container
+{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+
 .contact-section
 {
 	max-width: 75rem;
@@ -583,7 +596,7 @@ nav
 
 .contact-card:hover
 {
-	transform: translateY(-5px);
+	transform: translateY(-0.3125rem);
 	box-shadow: 0 0.5rem 1rem rgba(138, 43, 226, 0.2);
 }
 
@@ -690,7 +703,7 @@ nav
 .policy-card:hover,
 .terms-card:hover
 {
-	transform: translateY(-5px);
+	transform: translateY(-0.3125rem);
 	box-shadow: 0 0.5rem 1rem rgba(138, 43, 226, 0.2);
 }
 
@@ -825,7 +838,7 @@ body.light-theme .captcha-container
 
 	50%
 	{
-		transform: translateY(-10px);
+		transform: translateY(-0.625rem);
 	}
 }
 
@@ -847,5 +860,18 @@ body.light-theme .captcha-container
 	.team-member
 	{
 		margin-bottom: 2rem;
+	}
+
+	.team-container
+	{
+		grid-template-columns: 1fr;
+	}
+}
+
+@media screen and (min-width: 48rem) and (max-width: 67.5rem)
+{
+	.team-container
+	{
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
