@@ -5,19 +5,107 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="styles.css">
 	<link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
-	<title></title>
+	<title>Contact - Based.meme</title>
+	<script src="theme.js"></script>
 </head>
 
-<body>
+<body id="top">
 	<header>
+		<div class="logo">
+			<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+		</div>
 		<nav>
+			<button id="themeToggle">🌙</button>
+			<a href="login.php" class="btn btn-login">Login</a>
+			<a href="signup.php" class="btn btn-signup">Sign Up</a>
 		</nav>
 	</header>
 	<main>
-		<section>
+		<section class="contact-section">
+			<h2 class="tagline">Reach Out and Touch Someone</h2>
+			<p class="subtitle">But not in a weird way, please.</p>
+			<div class="contact-content">
+				<div class="contact-card">
+					<h3>Direct Message</h3>
+					<p>Our carrier pigeons are standing by. Response times may vary based on how many energy drinks our team has consumed today.</p>
+					<form class="contact-form" action="contact.php" method="POST">
+						<div class="form-group">
+							<label for="name">Your Internet Alias</label>
+							<input type="text" id="name" name="name" placeholder="Cristian">
+						</div>
+						<div class="form-group">
+							<label for="email">Email (we promise not to sell it)</label>
+							<input type="email" id="email" name="email" placeholder="not_example@example.com">
+						</div>
+						<div class="form-group">
+							<label for="category">What's your damage?</label>
+							<select id="category" name="category">
+								<option value="bug">Something's Broken</option>
+								<option value="report">Someone's Being Mean</option>
+								<option value="suggestion">I Have Big Brain Ideas</option>
+								<option value="collab">Let's Make Content Together</option>
+								<option value="other">Other Incoherent Ramblings</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="message">Spill the Tea</label>
+							<textarea id="message" name="message" rows="5" placeholder="Be as verbose as you like. We're not actually going to read this."></textarea>
+						</div>
+						<div class="form-group">
+							<label for="captcha" class="captcha-label">Prove you're not a normie</label>
+							<div class="captcha-container">
+								<p class="captcha-question">Complete the meme: "Sir, this is a _____ __ ____."</p>
+							</div>
+							<input type="text" id="captcha" name="captcha" placeholder="The answer is obvious">
+						</div>
+						<button type="submit" class="btn btn-cta">Send It</button>
+					</form>
+				</div>
+				<div class="contact-card alt-contact">
+					<h3>Alternative Contact Methods</h3>
+					<div class="contact-method">
+						<h4>Smoke Signals</h4>
+						<p>Light a fire and hope for the best.</p>
+					</div>
+					<div class="contact-method">
+						<h4>Telepathy</h4>
+						<p>We're thinking about your message right now.</p>
+					</div>
+					<div class="contact-method">
+						<h4>Carrier Shrimp</h4>
+						<p>Slower than pigeons, but much more amusing.</p>
+					</div>
+					<div class="contact-method">
+						<h4>Find Us IRL</h4>
+						<p>We're the people avoiding eye contact at your local coffee shop.</p>
+					</div>
+					<div class="contact-method">
+						<h4>Social Media</h4>
+						<p>Just kidding, we're not on that corporate garbage.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="cta">
+			<div class="cta-content">
+				<h3>Don't be a stranger.</h3>
+				<p>Unless you're actually strange, in which case, please continue.</p>
+				<a href="signup.php" class="btn btn-cta">Join Us</a>
+				<p class="fine-print">Warning: We may respond with memes instead of actual help.</p>
+			</div>
 		</section>
 	</main>
 	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed.</p>
+			<a href="#top" id="scrollToTop">🔝</a>
+		</div>
 	</footer>
 </body>
 
