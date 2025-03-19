@@ -115,14 +115,14 @@ header
 	justify-content: space-between;
 	align-items: center;
 	padding: 1.5rem 5%;
-	border-bottom: 1px solid var(--border-color);
+	border-bottom: 0.0625rem solid var(--border-color);
 }
 
 .logo h1
 {
 	font-family: "VT323", monospace;
 	color: var(--secondary);
-	text-shadow: 3px 3px 0 var(--accent);
+	text-shadow: 0.1875rem 0.1875rem 0 var(--accent);
 	font-size: 2.5rem;
 }
 
@@ -144,17 +144,17 @@ header
 
 .glitch::before
 {
-	left: 2px;
-	text-shadow: -2px 0 var(--accent);
-	clip: rect(24px, 550px, 90px, 0);
+	left: 0.125rem;
+	text-shadow: -0.125rem 0 var(--accent);
+	clip: rect(1.5rem, 34.375rem, 5.625rem, 0);
 	animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
 .glitch::after
 {
-	left: -2px;
-	text-shadow: -2px 0 var(--secondary);
-	clip: rect(85px, 550px, 140px, 0);
+	left: -0.125rem;
+	text-shadow: -0.125rem 0 var(--secondary);
+	clip: rect(5.3125rem, 34.375rem, 8.75rem, 0);
 	animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
 
@@ -162,17 +162,17 @@ header
 {
 	0%
 	{
-		clip: rect(24px, 550px, 90px, 0);
+		clip: rect(1.5rem, 34.375rem, 5.625rem, 0);
 	}
 
 	50%
 	{
-		clip: rect(58px, 550px, 14px, 0);
+		clip: rect(3.625rem, 34.375rem, 0.875rem, 0);
 	}
 
 	100%
 	{
-		clip: rect(12px, 550px, 54px, 0);
+		clip: rect(0.75rem, 34.375rem, 3.375rem, 0);
 	}
 }
 
@@ -180,17 +180,17 @@ header
 {
 	0%
 	{
-		clip: rect(85px, 550px, 140px, 0);
+		clip: rect(5.3125rem, 34.375rem, 8.75rem, 0);
 	}
 
 	50%
 	{
-		clip: rect(32px, 550px, 58px, 0);
+		clip: rect(2rem, 34.375rem, 3.625rem, 0);
 	}
 
 	100%
 	{
-		clip: rect(95px, 550px, 32px, 0);
+		clip: rect(5.9375rem, 34.375rem, 2rem, 0);
 	}
 }
 
@@ -204,23 +204,23 @@ nav
 {
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 	text-decoration: none;
 	font-weight: 700;
 	transition: all 0.3s ease;
-	border: 2px solid transparent;
+	border: 0.125rem solid transparent;
 }
 
 .btn-login
 {
 	color: var(--secondary);
-	border: 2px solid var(--secondary);
+	border: 0.125rem solid var(--secondary);
 }
 
 .btn-login:hover
 {
 	background-color: rgba(0, 255, 255, 0.1);
-	transform: translateY(-2px);
+	transform: translateY(-0.125rem);
 }
 
 .btn-signup
@@ -232,8 +232,8 @@ nav
 .btn-signup:hover
 {
 	background-color: var(--primary-dark);
-	transform: translateY(-2px);
-	box-shadow: 0 4px 8px rgba(138, 43, 226, 0.3);
+	transform: translateY(-0.125rem);
+	box-shadow: 0 0.25rem 0.5rem rgba(138, 43, 226, 0.3);
 }
 
 main
@@ -245,7 +245,7 @@ main
 {
 	text-align: center;
 	padding: 4rem 1rem;
-	max-width: 800px;
+	max-width: 50rem;
 	margin: 0 auto;
 }
 
@@ -261,7 +261,7 @@ main
 {
 	font-size: 1.2rem;
 	color: var(--text-secondary);
-	max-width: 600px;
+	max-width: 37.5rem;
 	margin: 0 auto;
 }
 
@@ -281,23 +281,23 @@ main
 .meme-grid
 {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
 	gap: 2rem;
-	max-width: 1200px;
+	max-width: 75rem;
 	margin: 0 auto;
 }
 
 .meme-card
 {
 	background-color: var(--card-bg);
-	border-radius: 8px;
+	border-radius: 0.5rem;
 	overflow: hidden;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .meme-card:hover
 {
-	transform: translateY(-5px);
+	transform: translateY(-0.3125rem);
 	box-shadow: var(--card-shadow);
 }
 
@@ -351,7 +351,7 @@ main
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	backdrop-filter: blur(5px);
+	backdrop-filter: blur(0.3125rem);
 }
 
 .locked-text
@@ -387,9 +387,9 @@ main
 	padding: 4rem 1rem;
 	text-align: center;
 	background-color: var(--placeholder-bg);
-	border-radius: 8px;
+	border-radius: 0.5rem;
 	margin: 2rem auto;
-	max-width: 1200px;
+	max-width: 75rem;
 	position: relative;
 }
 
@@ -412,7 +412,7 @@ main
 
 .cta-content
 {
-	max-width: 600px;
+	max-width: 37.5rem;
 	margin: 0 auto;
 	position: relative;
 }
@@ -441,8 +441,8 @@ main
 .btn-cta:hover
 {
 	background-color: #d400d4;
-	transform: translateY(-2px);
-	box-shadow: 0 4px 12px rgba(255, 0, 255, 0.4);
+	transform: translateY(-0.125rem);
+	box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 255, 0.4);
 }
 
 .fine-print
@@ -457,12 +457,12 @@ footer
 	background-color: var(--header-bg);
 	padding: 2rem 5%;
 	margin-top: 3rem;
-	border-top: 1px solid var(--border-color);
+	border-top: 0.0625rem solid var(--border-color);
 }
 
 .footer-content
 {
-	max-width: 1200px;
+	max-width: 75rem;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -494,7 +494,7 @@ footer
 	font-size: 0.9rem;
 }
 
-@media screen and (max-width: 1080px)
+@media screen and (max-width: 67.5rem)
 {
 	.meme-grid
 	{
