@@ -317,6 +317,7 @@ main
 	color: var(--placeholder-text);
 	font-size: 2.4rem;
 	font-weight: bold;
+	background-color: var(--placeholder-bg);
 }
 
 .placeholder-image::before
@@ -370,18 +371,35 @@ main
 {
 	padding: 4rem 1rem;
 	text-align: center;
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("https://placehold.co/1200x400/252525/FFFFFF/png?text=Join+The+Cult") no-repeat center;
-	background-size: cover;
+	background-color: var(--placeholder-bg);
 	border-radius: 8px;
 	margin: 2rem auto;
 	max-width: 1200px;
+	position: relative;
+}
+
+.cta::before
+{
+	content: 'Join The Cult';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--placeholder-bg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 7rem;
+	font-weight: bold;
+	color: var(--text-muted);
 }
 
 .cta-content
 {
 	max-width: 600px;
 	margin: 0 auto;
+	position: relative;
 }
 
 .cta h3
