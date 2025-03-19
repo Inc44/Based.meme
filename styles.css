@@ -21,6 +21,7 @@ body
 {
 	font-family: "Roboto", sans-serif;
 	background: linear-gradient(135deg, var(--dark), var(--darker));
+	background-color: var(--darker);
 	background-size: 400% 400%;
 	color: var(--light);
 	line-height: 1.6;
@@ -53,6 +54,7 @@ h4
 
 header
 {
+	background-color: var(--darker);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
