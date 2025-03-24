@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+	<title>Sign Up - Based.meme</title>
+	<script src="theme.js"></script>
+</head>
+
+<body id="top">
+	<header>
+		<div class="logo">
+			<a href="index.html">
+				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+			</a>
+		</div>
+		<nav>
+			<button id="themeToggle">🌙</button>
+			<a href="login.html" class="btn btn-login">Login</a>
+			<a href="signup.html" class="btn btn-signup">Sign Up</a>
+		</nav>
+	</header>
+	<main>
+		<section class="auth-section">
+			<h2 class="tagline">Join The Last Circle of Internet Hell</h2>
+			<p class="subtitle">Enter your credentials, if you dare.</p>
+			<div class="auth-container">
+				<div class="auth-card">
+					<h3>Create Your Digital Identity</h3>
+					<form class="auth-form" action="signup.php" method="POST">
+						<div class="form-group">
+							<label for="username">Username <span class="required">*</span></label>
+							<input type="text" id="username" name="username" required placeholder="Something we'll judge you for">
+							<span class="error-msg" id="username-error"></span>
+						</div>
+						<div class="form-group">
+							<label for="email">Email <span class="required">*</span></label>
+							<input type="email" id="email" name="email" required placeholder="not_example@example.com">
+							<span class="error-msg" id="email-error"></span>
+						</div>
+						<div class="form-group">
+							<label for="password">Password <span class="required">*</span></label>
+							<input type="password" id="password" name="password" required placeholder="Not 'password123' please">
+							<span class="error-msg password-feedback" id="password-error">Really? Is that the best you can do?</span>
+						</div>
+						<div class="form-group">
+							<label for="confirm-password">Confirm Password <span class="required">*</span></label>
+							<input type="password" id="confirm-password" name="confirm-password" required placeholder="Type it again, we don't trust you">
+							<span class="error-msg" id="confirm-password-error"></span>
+						</div>
+						<div class="form-group">
+							<label for="secret-question">Secret Question <span class="required">*</span></label>
+							<select id="secret-question" name="secret-question" required>
+								<option value="" disabled selected>Choose a question for password recovery</option>
+								<option value="first-pet">What was the name of your first pet?</option>
+								<option value="mother-maiden">What is your mother's maiden name?</option>
+								<option value="birth-city">In which city were you born?</option>
+								<option value="first-school">What was the name of your first school?</option>
+								<option value="dinosaur">Which dinosaur would win in a fight against you?</option>
+								<option value="potato">If you were a potato, how would you prefer to be cooked?</option>
+								<option value="superpower">What useless superpower do you wish you had?</option>
+								<option value="anime">What anime character best represents your emotional state?</option>
+								<option value="cringe">What's the cringiest thing you've ever done that keeps you up at night?</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="secret-answer">Secret Answer <span class="required">*</span></label>
+							<input type="text" id="secret-answer" name="secret-answer" required placeholder="Something you'll definitely forget">
+							<span class="error-msg" id="secret-answer-error"></span>
+						</div>
+						<div class="form-group">
+							<label for="birthday">Birthday (we need to calculate your meme age)</label>
+							<div class="date-inputs">
+								<select id="birthday-day" name="birthday-day">
+									<option value="" disabled selected>Day</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+									<option value="32">32</option>
+								</select>
+								<select id="birthday-month" name="birthday-month">
+									<option value="" disabled selected>Month</option>
+									<option value="1">January</option>
+									<option value="2">February</option>
+									<option value="3">March</option>
+									<option value="4">April</option>
+									<option value="5">May</option>
+									<option value="6">June</option>
+									<option value="7">July</option>
+									<option value="8">August</option>
+									<option value="9">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+									<option value="13">No Nut November</option>
+								</select>
+								<select id="birthday-year" name="birthday-year">
+									<option value="" disabled selected>Year</option>
+									<option value="2077">2077</option>
+									<option value="2033">2033</option>
+									<option value="2025">2025</option>
+									<option value="2024">2024</option>
+									<option value="2023">2023</option>
+									<option value="2022">2022</option>
+									<option value="2021">2021</option>
+									<option value="2020">2020</option>
+									<option value="2019">2019</option>
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+									<option value="2015">2015</option>
+									<option value="2014">2014</option>
+									<option value="2013">2013</option>
+									<option value="2012">2012</option>
+									<option value="2011">2011</option>
+									<option value="2010">2010</option>
+									<option value="2009">2009</option>
+									<option value="2008">2008</option>
+									<option value="2007">2007</option>
+									<option value="2006">2006</option>
+									<option value="2005">2005</option>
+									<option value="2004">2004</option>
+									<option value="2003">2003</option>
+									<option value="2002">2002</option>
+									<option value="2001">2001</option>
+									<option value="2000">2000</option>
+									<option value="1999">1999</option>
+									<option value="1998">1998</option>
+									<option value="1997">1997</option>
+									<option value="1996">1996</option>
+									<option value="1995">1995</option>
+									<option value="1994">1994</option>
+									<option value="1993">1993</option>
+									<option value="1992">1992</option>
+									<option value="1991">1991</option>
+									<option value="1990">1990</option>
+									<option value="1989">1989</option>
+									<option value="1988">1988</option>
+									<option value="1987">1987</option>
+									<option value="1986">1986</option>
+									<option value="1985">1985</option>
+									<option value="1984">1984</option>
+									<option value="1983">1983</option>
+									<option value="1982">1982</option>
+									<option value="1981">1981</option>
+									<option value="1980">1980</option>
+									<option value="1979">1979</option>
+									<option value="1978">1978</option>
+									<option value="1977">1977</option>
+									<option value="1976">1976</option>
+									<option value="1975">1975</option>
+									<option value="1974">1974</option>
+									<option value="1973">1973</option>
+									<option value="1972">1972</option>
+									<option value="1971">1971</option>
+									<option value="1970">1970</option>
+									<option value="1337">1337</option>
+									<option value="666">666</option>
+									<option value="420">420</option>
+									<option value="404">404</option>
+									<option value="86">86</option>
+									<option value="69">69</option>
+									<option value="42">42</option>
+									<option value="3.14">3.14</option>
+									<option value="0">0 (Jason Bourne, that's Jesus Christ)</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="sex">Sex?</label>
+							<select id="sex" name="sex">
+								<option value="" disabled selected>Choose wisely</option>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+								<option value="prefer-not">Prefer not to say</option>
+								<option value="other">Other</option>
+								<option value="yes">Yes, please</option>
+								<option value="no">No, thanks</option>
+								<option value="error">Sex not found</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="orientation">Orientation</label>
+							<select id="orientation" name="orientation">
+								<option value="" disabled selected>Select your character</option>
+								<option value="straight">Straight</option>
+								<option value="gay">Gay</option>
+								<option value="lesbian">Lesbian</option>
+								<option value="bisexual">Bisexual</option>
+								<option value="asexual">Asexual</option>
+								<option value="pansexual">Pansexual</option>
+								<option value="attack">Attack helicopter</option>
+								<option value="portrait">Portrait mode</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="pronouns">Preferred pronouns</label>
+							<select id="pronouns" name="pronouns">
+								<option value="" disabled selected>Your labels</option>
+								<option value="he-him">he/him</option>
+								<option value="she-her">she/her</option>
+								<option value="they-them">they/them</option>
+								<option value="ze-zir">ze/zir</option>
+								<option value="any">any pronouns</option>
+								<option value="burger">burger/king</option>
+								<option value="sigma">sigma/male</option>
+								<option value="cringe">cringe/based</option>
+								<option value="copy">copy/paste</option>
+								<option value="who">who/asked</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="touch-grass">When did you last touch grass?</label>
+							<select id="touch-grass" name="touch-grass">
+								<option value="" disabled selected>Be honest</option>
+								<option value="today">Today</option>
+								<option value="week">This week</option>
+								<option value="month">This month</option>
+								<option value="year">This year</option>
+								<option value="never">What's grass?</option>
+								<option value="yesterday">Yesterday (lying)</option>
+								<option value="decade">Decades ago</option>
+								<option value="1000">I haven't heard of it in 1,000 years</option>
+								<option value="10000">I haven't seen it for 10,000 years</option>
+								<option value="minecraft">In Minecraft</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="meme-knowledge">Prove your worth: What does "Based" mean?</label>
+							<textarea id="meme-knowledge" name="meme-knowledge" rows="2" maxlength="50" placeholder="This is a test. There are no right answers—except there are."></textarea>
+						</div>
+						<div class="form-group checkbox-group">
+							<input type="checkbox" id="oath" name="oath" required>
+							<label for="oath">I solemnly swear never to post Minion memes or Facebook content <span class="required">*</span></label>
+						</div>
+						<div class="form-group checkbox-group">
+							<input type="checkbox" id="terms" name="terms" required>
+							<label for="terms">I accept the <a href="terms_of_service.html">Terms of Service</a> without reading them <span class="required">*</span></label>
+						</div>
+						<button type="submit" class="btn btn-cta">Become Based</button>
+					</form>
+					<div class="auth-alt">
+						<p>Already one of us? <a href="login.html">Login</a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed</p>
+			<a href="#top" id="scrollToTop">🔝</a>
+		</div>
+	</footer>
+</body>
+
+</html>
