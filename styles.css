@@ -848,6 +848,11 @@ body.light-theme .captcha-container
 		font-size: 200%;
 	}
 
+	input[type=checkbox]
+	{
+		transform: scale(2);
+	}
+
 	.meme-grid
 	{
 		grid-template-columns: 1fr;
@@ -869,6 +874,12 @@ body.light-theme .captcha-container
 	.team-container
 	{
 		grid-template-columns: 1fr;
+	}
+
+	input,
+	select
+	{
+		font-size: 100%;
 	}
 }
 
@@ -1181,4 +1192,17 @@ body.light-theme .captcha-container
 	{
 		align-items: flex-start;
 	}
+}
+
+select option
+{
+	background-color: var(--dark);
+	color: var(--text-primary);
+	padding: 0.5rem;
+}
+
+body.light-theme select option
+{
+	background-color: var(--dark);
+	color: var(--text-primary);
 }
