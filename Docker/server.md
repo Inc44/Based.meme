@@ -15,8 +15,8 @@ rm -rf /var/lib/apt/lists/*
 ```
 
 ```bash
-docker run -d -p 80:80 -p 443:443 kotleta4/based-dot-meme:alpha-alpine (~90M)
-docker run -d -p 80:80 -p 443:443 kotleta4/based-dot-meme:alpha-debian (~100M)
+docker run -d -p 80:80 -p 443:443 --name alpha-alpine kotleta4/based-dot-meme:alpha-alpine (~90M)
+docker run -d -p 80:80 -p 443:443 --name alpha-debian kotleta4/based-dot-meme:alpha-debian (~100M)
 ```
 
 ```bash
