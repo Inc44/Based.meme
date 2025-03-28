@@ -45,7 +45,6 @@ RUN apk update && \
 	php82-xmlreader \
 	php82-zip \
 	phpmyadmin && \
-	rm -rf /var/cache/apk/* && \
 	echo 'ServerTokens Prod' > /etc/apache2/conf.d/security.conf && \
 	echo 'ServerSignature Off' >> /etc/apache2/conf.d/security.conf && \
 	mkdir -p /usr/share/webapps/phpmyadmin/tmp && \
@@ -53,7 +52,8 @@ RUN apk update && \
 	rm -rf /var/www/localhost/htdocs && \
 	git clone https://github.com/Inc44/Based.meme.git /var/www/localhost/htdocs && \
 	dos2unix /start.sh && \
-	chmod +x /start.sh
+	chmod +x /start.sh && \
+	rm -rf /var/cache/apk/*
 
 EXPOSE 80 443
 

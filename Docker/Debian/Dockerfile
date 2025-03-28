@@ -7,7 +7,7 @@ COPY start.sh /start.sh
 
 RUN apt update && \
 	apt full-upgrade -y && \
-	apt install -y \
+	apt install -y --no-install-recommends \
 	apache2 \
 	build-essential \
 	cron \
@@ -34,13 +34,11 @@ RUN apt update && \
 	php8.2-tidy \
 	php8.2-xml \
 	php8.2-xmlrpc \
-	php8.2-zip
-
-RUN echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections && \
+	php8.2-zip && \
+	echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections && \
 	echo "phpmyadmin phpmyadmin/dbconfig-install boolean false" | debconf-set-selections && \
-	apt install -y phpmyadmin
-
-RUN apt clean && \
+	apt install -y --no-install-recommends phpmyadmin && \
+	apt clean && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i 's/^ServerTokens OS/ServerTokens Prod/' /etc/apache2/conf-available/security.conf && \
 	sed -i 's/^ServerSignature On/ServerSignature Off/' /etc/apache2/conf-available/security.conf && \
