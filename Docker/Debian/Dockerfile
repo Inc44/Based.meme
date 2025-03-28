@@ -38,13 +38,13 @@ RUN apt update && \
 	echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections && \
 	echo "phpmyadmin phpmyadmin/dbconfig-install boolean false" | debconf-set-selections && \
 	apt install -y --no-install-recommends phpmyadmin && \
-	apt clean && \
-	rm -rf /var/lib/apt/lists/* && \
 	sed -i 's/^ServerTokens OS/ServerTokens Prod/' /etc/apache2/conf-available/security.conf && \
 	sed -i 's/^ServerSignature On/ServerSignature Off/' /etc/apache2/conf-available/security.conf && \
 	rm -rf /var/www/html && \
 	git clone https://github.com/Inc44/Based.meme.git /var/www/html && \
-	chmod +x /start.sh
+	chmod +x /start.sh && \
+    apt clean && \
+	rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80 443
 
