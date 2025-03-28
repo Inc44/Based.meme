@@ -5,22 +5,22 @@ mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
-    mysql_install_db --user=mysql --datadir=/var/lib/mysql
+	mysql_install_db --user=mysql --datadir=/var/lib/mysql
 fi
 
 mysqld --user=mysql --datadir=/var/lib/mysql --skip-networking &
 
 MYSQL_READY=0
 for i in $(seq 30); do
-    if mysqladmin ping -u root --silent; then
-        MYSQL_READY=1
-        break
-    fi
-    sleep 1
+	if mysqladmin ping -u root --silent; then
+		MYSQL_READY=1
+		break
+	fi
+	sleep 1
 done
 
 if [ "$MYSQL_READY" -eq 0 ]; then
-    exit 1
+	exit 1
 fi
 
 mysql --user=root <<EOSQL
