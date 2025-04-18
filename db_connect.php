@@ -2,7 +2,7 @@
 define("DB_HOST", "localhost");
 define("DB_NAME", "basedmeme");
 define("DB_USER", "root");
-define("DB_PASS", getenv("ADMIN_PASSWORD") ?: "");
+define("DB_PASS", getenv("ADMIN_PASSWORD"));
 define("DB_CHARSET", "utf8mb4");
 $options = [
 	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
