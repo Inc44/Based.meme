@@ -2,7 +2,7 @@
 define("DB_HOST", "localhost");
 define("DB_NAME", "basedmeme");
 define("DB_USER", "root");
-define("DB_PASS", "");
+define("DB_PASS", getenv("ADMIN_PASSWORD") ?: "");
 define("DB_CHARSET", "utf8mb4");
 $options = [
 	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -11,7 +11,7 @@ $options = [
 ];
 $dsn =
 	"mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
-function getDbConnection(): PDO
+function getDbConnection(): ?PDO
 {
 	global $dsn, $options;
 	static $pdo = null;
@@ -19,10 +19,9 @@ function getDbConnection(): PDO
 		try {
 			$pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 		} catch (\PDOException $e) {
-			error_log("Database Connection Error: " . $e->getMessage());
-			die(
-				"Sorry, we don't have any data. Our database is probably nuked. Please try to survive without us."
-			);
+			throw $e;
+		} catch (\Exception $e) {
+			throw $e;
 		}
 	}
 	return $pdo;
