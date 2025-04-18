@@ -256,3 +256,37 @@ CREATE TABLE user_sessions(
 	INDEX idx_session_user(user_id),
 	INDEX idx_session_expires(expires_at)
 );
+ALTER TABLE
+	users
+ADD
+	COLUMN birthday DATE NULL DEFAULT NULL
+AFTER
+	avatar,
+ADD
+	COLUMN sex VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	birthday,
+ADD
+	COLUMN orientation VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	sex,
+ADD
+	COLUMN pronouns VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	orientation,
+ADD
+	COLUMN touch_grass VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	pronouns,
+ADD
+	COLUMN meme_knowledge TEXT NULL DEFAULT NULL
+AFTER
+	touch_grass,
+ADD
+	COLUMN secret_question VARCHAR(255) NOT NULL
+AFTER
+	meme_knowledge,
+ADD
+	COLUMN secret_answer_hash VARCHAR(64) NOT NULL
+AFTER
+	secret_question;
