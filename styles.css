@@ -31,9 +31,14 @@
 
 body.light-theme
 {
+	--accent-dark: #cc005f;
+	--accent: #ff0077;
 	--dark: #f0f0f0;
 	--darker: #e9e9e9;
 	--light: #121212;
+	--primary-dark: #195ab5;
+	--primary: #2b77e2;
+	--secondary: #2be2be;
 	--card-bg: rgba(245, 245, 255, 0.9);
 	--text-primary: var(--light);
 	--text-secondary: rgba(0, 0, 0, 0.7);
