@@ -41,6 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 	if (empty($password)) {
 		$errors["password"] = "Password. You forgot the password. Seriously?";
+	} elseif ($password === "password123") {
+		$errors["password"] = "Really? Is that the best you can do?";
 	} elseif (strlen($password) < 8) {
 		$errors["password"] = "8 characters minimum. Don't be lazy.";
 	}
