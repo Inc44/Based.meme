@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+	<title>Status - Based.meme</title>
+	<script src="theme.js"></script>
+</head>
+
+<body id="top">
+	<header>
+		<div class="logo">
+			<a href="index.html">
+				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+			</a>
+		</div>
+		<nav>
+			<button id="themeToggle">🌙</button>
+			<a href="login.html" class="btn btn-login">Login</a>
+			<a href="signup.html" class="btn btn-signup">Sign Up</a>
+		</nav>
+	</header>
+	<main>
+		<section class="db-section">
+			<h2 class="tagline"><?php echo $taglineIcon; ?> <?php echo htmlspecialchars($taglineText); ?></h2>
+			<p class="subtitle"><?php echo htmlspecialchars($subtitleText); ?></p>
+			<div class="db-container status-container">
+				<div class="<?php echo $cardClass; ?>"><?php echo $detailsHtml; // This content comes from status.php ?></div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed</p>
+			<a href="#top" id="scrollToTop">🔝</a>
+		</div>
+	</footer>
+</body>
+
+</html>
