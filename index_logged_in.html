@@ -35,23 +35,7 @@
 				<a href="create.php" class="btn btn-small btn-post">Post Meme</a>
 			</div>
 		</div>
-		<form method="get" action="index.php" class="categories"><?php
-$categories = [
-	"🔥 For You",
-	"🎭 Dank",
-	"💀 Cursed",
-	"🤡 Shitpost",
-	"🧠 Big Brain",
-	"👽 Surreal",
-	"🖥️ Tech",
-	"🎮 Gaming",
-	"📱 Social Media",
-	"🗿 Classic",
-];
-foreach ($categories as $category):
-	$isActive = $category === $activeCategory ? "active" : "";
-	$categoryValue = urlencode($category);
-?><button type="submit" name="category" value="<?php echo $categoryValue;?>" class="category-pill <?php echo $isActive;?>"> <?php echo $category;?></button><?php endforeach;?></form>
+		<form method="get" action="index.php" class="categories"><?php foreach($categories as $category):?><button type="submit" name="category" value="<?php echo htmlspecialchars($category['slug']);?>" class="category-pill <?php echo $category['isActive']?'active':'';?>"><?php echo $category['icon'];?> <?php echo htmlspecialchars($category['name']);?></button><?php endforeach;?></form>
 		<section class="trending">
 			<div class="section-header">
 				<h3>Fresh from the void</h3>

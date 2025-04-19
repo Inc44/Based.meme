@@ -185,9 +185,31 @@ if (empty($trendingMemes)) {
 		],
 	];
 }
-$activeCategory = "🔥 For You";
+$categoryMappings = [
+	"for-you" => ["name" => "For You", "icon" => "🔥"],
+	"dank" => ["name" => "Dank", "icon" => "🎭"],
+	"cursed" => ["name" => "Cursed", "icon" => "💀"],
+	"shitpost" => ["name" => "Shitpost", "icon" => "🤡"],
+	"big-brain" => ["name" => "Big Brain", "icon" => "🧠"],
+	"surreal" => ["name" => "Surreal", "icon" => "👽"],
+	"tech" => ["name" => "Tech", "icon" => "🖥️"],
+	"gaming" => ["name" => "Gaming", "icon" => "🎮"],
+	"social-media" => ["name" => "Social Media", "icon" => "📱"],
+	"classic" => ["name" => "Classic", "icon" => "🗿"],
+];
+$activeSlug = "for-you";
 if (isset($_GET["category"])) {
-	$activeCategory = $_GET["category"];
+	$requestedSlug = $_GET["category"];
+	if (array_key_exists($requestedSlug, $categoryMappings)) {
+		$activeSlug = $requestedSlug;
+	}
+}
+$categories = [];
+foreach ($categoryMappings as $slug => $details) {
+	$category = $details;
+	$category["slug"] = $slug;
+	$category["isActive"] = $slug === $activeSlug;
+	$categories[] = $category;
 }
 include "index_logged_in.html";
 ?>
