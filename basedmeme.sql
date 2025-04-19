@@ -316,6 +316,60 @@ VALUES
 UPDATE
 	usage_count = usage_count + 1;
 INSERT INTO
+	`users` (
+		`user_id`,
+		`handle`,
+		`email`,
+		`password_hash`,
+		`display_name`,
+		`bio`,
+		`avatar`,
+		`birthday`,
+		`sex`,
+		`orientation`,
+		`pronouns`,
+		`touch_grass`,
+		`meme_knowledge`,
+		`secret_question`,
+		`secret_answer_hash`,
+		`location`,
+		`joined_at`,
+		`updated_at`,
+		`last_login`,
+		`is_verified`,
+		`is_private`,
+		`is_admin`,
+		`is_banned`,
+		`is_active`
+	)
+VALUES
+	(
+		'1',
+		'test',
+		'test@example.com',
+		'$2y$10$gUh6tSwvezFvg3NPANFU7.Vy3WMu8VjXPZ/UZDzFoakBhR2SzdqkS',
+		'Test User',
+		'Test bio',
+		NULL,
+		'1970-01-01',
+		'male',
+		'straight',
+		'he-him',
+		'today',
+		'test',
+		'first-pet',
+		'$2y$10$O2pBjoVDEbQeEI3kCJeMl.CYzgZCPDtnsk6ZUG7eN3U2nPg4OP1du',
+		NULL,
+		'1970-01-01 01:00:01',
+		'1970-01-01 01:00:01',
+		'1970-01-01 01:00:01',
+		'1',
+		'0',
+		'0',
+		'0',
+		'1'
+	);
+INSERT INTO
 	memes (
 		meme_id,
 		slug,
@@ -330,59 +384,44 @@ INSERT INTO
 VALUES
 	(
 		'abcdef12345',
-		'lorem-picsum-1',
+		'lorem-picsum',
 		1,
-		'Lorem Picsum 1',
+		'Lorem Picsum',
 		'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		'https://picsum.photos/400',
 		'published',
 		'public',
 		CURRENT_TIMESTAMP
-	);
-INSERT INTO
-	memes (
-		meme_id,
-		slug,
-		user_id,
-		title,
-		content,
-		media_url,
-		status,
-		visibility,
-		published_at
-	)
-VALUES
+	),
 	(
-		'abcdef12321',
-		'lorem-picsum-2',
+		'r5MR7_INQwg',
+		'republic-vs-monarchy',
 		1,
-		'Lorem Picsum 2',
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		'https://picsum.photos/400',
+		'Republic vs Monarchy',
+		'A Satirical Take on Government Systems',
+		'https://images3.memedroid.com/images/UPLOADED587/5fea88b9716eb.jpeg',
 		'published',
 		'public',
 		CURRENT_TIMESTAMP
-	);
-INSERT INTO
-	memes (
-		meme_id,
-		slug,
-		user_id,
-		title,
-		content,
-		media_url,
-		status,
-		visibility,
-		published_at
-	)
-VALUES
+	),
 	(
-		'abccba12321',
-		'lorem-picsum-3',
+		'MBJFPq2Llps',
+		'mass-insanity',
 		1,
-		'Lorem Picsum 3',
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		'https://picsum.photos/400',
+		'Mass Insanity',
+		'Current situation in the USA',
+		'https://images7.memedroid.com/images/UPLOADED250/68030d08f108d.jpeg',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	),
+	(
+		'nbqMIBYJlvk',
+		'liquid-trees',
+		1,
+		'Liquid Trees',
+		"What's wrong with trees?",
+		'https://images7.memedroid.com/images/UPLOADED915/6802ea339e30b.jpeg',
 		'published',
 		'public',
 		CURRENT_TIMESTAMP
@@ -395,47 +434,34 @@ SELECT
 FROM
 	tags
 WHERE
-	slug IN ('dank', 'cursed', 'pov', 'no-cap-fr-fr');
-UPDATE
-	tags
-SET
-	usage_count = (
-		SELECT
-			COUNT(*)
-		FROM
-			meme_tags
-		WHERE
-			meme_tags.tag_id = tags.tag_id
-	);
+	slug IN ('sus');
 INSERT INTO
 	meme_tags (meme_id, tag_id)
 SELECT
-	'abcdef12321',
+	'r5MR7_INQwg',
 	tag_id
 FROM
 	tags
 WHERE
-	slug IN ('dank', 'cursed', 'rizz', 'sigma');
-UPDATE
-	tags
-SET
-	usage_count = (
-		SELECT
-			COUNT(*)
-		FROM
-			meme_tags
-		WHERE
-			meme_tags.tag_id = tags.tag_id
-	);
+	slug IN ('shitpost', 'relatable', 'mid');
 INSERT INTO
 	meme_tags (meme_id, tag_id)
 SELECT
-	'abccba12321',
+	'MBJFPq2Llps',
 	tag_id
 FROM
 	tags
 WHERE
-	slug IN ('skibidi', 'skull', 'rizz', 'sigma');
+	slug IN ('cursed', 'shitpost', 'relatable', 'adgy');
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'nbqMIBYJlvk',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('shitpost', 'goofy-ahh', 'mid');
 UPDATE
 	tags
 SET
