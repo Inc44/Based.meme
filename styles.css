@@ -157,6 +157,13 @@ nav
 	box-shadow: 0 0.25rem 0.5rem rgba(138, 43, 226, 0.3);
 }
 
+.btn-login:hover,
+.btn-signup:hover
+{
+	animation: btn-glitch 0.3s cubic-bezier(.25, .50, .50, 1.00) both;
+	text-shadow: 0 0 0.3125rem var(--accent);
+}
+
 .btn-small
 {
 	font-size: 0.9rem;
@@ -896,6 +903,39 @@ body.light-theme .captcha-container
 	}
 }
 
+@keyframes btn-glitch
+{
+	0%
+	{
+		transform: translate(0);
+	}
+
+	20%
+	{
+		transform: translate(-0.125rem, 0.125rem);
+	}
+
+	40%
+	{
+		transform: translate(-0.125rem, -0.125rem);
+	}
+
+	60%
+	{
+		transform: translate(0.125rem, 0.125rem);
+	}
+
+	80%
+	{
+		transform: translate(0.125rem, -0.125rem);
+	}
+
+	100%
+	{
+		transform: translate(0);
+	}
+}
+
 .auth-section,
 .db-section
 {
@@ -944,7 +984,7 @@ body.light-theme .captcha-container
 .db-card
 {
 	text-align: left;
-	border-left: 6px solid transparent;
+	border-left: 0.375rem solid transparent;
 }
 
 .db-card.db-success-card
@@ -974,7 +1014,7 @@ body.light-theme .captcha-container
 {
 	margin-top: 1rem;
 	padding: 1.5rem;
-	border: 1px solid var(--details-border);
+	border: 0.0625rem solid var(--details-border);
 	background-color: var(--details-bg);
 	border-radius: 0.5rem;
 }
@@ -994,7 +1034,7 @@ body.light-theme .captcha-container
 	background-color: var(--details-pre-bg);
 	padding: 1rem;
 	border-radius: 0.5rem;
-	border: 1px dashed var(--details-border);
+	border: 0.0625rem dashed var(--details-border);
 	margin-bottom: 1.5rem;
 }
 
