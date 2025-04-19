@@ -340,7 +340,8 @@ nav
 	left: 0;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
+	background-color: var(--placeholder-bg);
 }
 
 .placeholder-image
@@ -413,7 +414,7 @@ nav
 {
 	position: absolute;
 	bottom: 0.5rem;
-	left: 0.5rem;
+	right: 0.5rem;
 	padding: 0.3rem 0.5rem;
 	border-radius: 0.5rem;
 	font-size: 0.8rem;
@@ -1435,6 +1436,11 @@ body.light-theme .captcha-container
 .category-pill.active
 {
 	box-shadow: 0 0.25rem 0.5rem rgba(138, 43, 226, 0.3);
+}
+
+body.light-theme .category-pill.active
+{
+	color: white;
 }
 
 .empty-state
