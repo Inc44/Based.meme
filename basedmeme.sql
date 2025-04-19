@@ -290,3 +290,160 @@ ADD
 	COLUMN secret_answer_hash VARCHAR(64) NOT NULL
 AFTER
 	secret_question;
+INSERT INTO
+	tags (name, slug)
+VALUES
+	('dank', 'dank'),
+	('cursed', 'cursed'),
+	('pov', 'pov'),
+	('no cap fr fr', 'no-cap-fr-fr'),
+	('riz z', 'rizz'),
+	('sigma', 'sigma'),
+	('goofy-ahh', 'goofy-ahh'),
+	('touch grass', 'touch-grass'),
+	('gyatt', 'gyatt'),
+	('sus', 'sus'),
+	('mid', 'mid'),
+	('relatable', 'relatable'),
+	('cringe', 'cringe'),
+	('shitpost', 'shitpost'),
+	('adgy', 'adgy'),
+	('deep-fried', 'deep-fried'),
+	('npc', 'npc'),
+	('💀', 'skull'),
+	('skidibi', 'skibidi'),
+	('toilet', 'toilet') ON DUPLICATE KEY
+UPDATE
+	usage_count = usage_count + 1;
+INSERT INTO
+	memes (
+		meme_id,
+		slug,
+		user_id,
+		title,
+		content,
+		media_url,
+		status,
+		visibility,
+		published_at
+	)
+VALUES
+	(
+		'abcdef12345',
+		'lorem-picsum-1',
+		1,
+		'Lorem Picsum 1',
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		'https://picsum.photos/400',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	);
+INSERT INTO
+	memes (
+		meme_id,
+		slug,
+		user_id,
+		title,
+		content,
+		media_url,
+		status,
+		visibility,
+		published_at
+	)
+VALUES
+	(
+		'abcdef12321',
+		'lorem-picsum-2',
+		1,
+		'Lorem Picsum 2',
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		'https://picsum.photos/400',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	);
+INSERT INTO
+	memes (
+		meme_id,
+		slug,
+		user_id,
+		title,
+		content,
+		media_url,
+		status,
+		visibility,
+		published_at
+	)
+VALUES
+	(
+		'abccba12321',
+		'lorem-picsum-3',
+		1,
+		'Lorem Picsum 3',
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		'https://picsum.photos/400',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	);
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'abcdef12345',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('dank', 'cursed', 'pov', 'no-cap-fr-fr');
+UPDATE
+	tags
+SET
+	usage_count = (
+		SELECT
+			COUNT(*)
+		FROM
+			meme_tags
+		WHERE
+			meme_tags.tag_id = tags.tag_id
+	);
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'abcdef12321',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('dank', 'cursed', 'rizz', 'sigma');
+UPDATE
+	tags
+SET
+	usage_count = (
+		SELECT
+			COUNT(*)
+		FROM
+			meme_tags
+		WHERE
+			meme_tags.tag_id = tags.tag_id
+	);
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'abccba12321',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('skibidi', 'skull', 'rizz', 'sigma');
+UPDATE
+	tags
+SET
+	usage_count = (
+		SELECT
+			COUNT(*)
+		FROM
+			meme_tags
+		WHERE
+			meme_tags.tag_id = tags.tag_id
+	);
