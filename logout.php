@@ -8,9 +8,9 @@ if (isset($_COOKIE["remember_token"])) {
 		$pdo = getDbConnection();
 		$stmt = $pdo->prepare("DELETE FROM user_sessions WHERE session_id = ?");
 		$stmt->execute([$_COOKIE["remember_token"]]);
-	} catch (PDOException $e) {
+	} catch (\PDOException $e) {
 		throw $e;
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 		throw $e;
 	}
 	setcookie("remember_token", "", time() - 3600, "/");
