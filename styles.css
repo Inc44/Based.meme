@@ -1122,11 +1122,6 @@ body.light-theme .captcha-container
 	margin-top: 0.5rem;
 }
 
-.error-msg.visible
-{
-	display: block;
-}
-
 .password-feedback
 {
 	display: none;
@@ -1141,11 +1136,6 @@ body.light-theme .captcha-container
 	margin-bottom: 1.5rem;
 	font-weight: bold;
 	display: none;
-}
-
-.error-banner.visible
-{
-	display: block;
 }
 
 .auth-alt
