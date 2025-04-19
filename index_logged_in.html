@@ -59,7 +59,8 @@ foreach ($categories as $category):
 			</div>
 			<div class="meme-grid"> <?php foreach($trendingMemes as $index=>$meme):?><a href="meme.php?id=<?php echo htmlspecialchars($meme['meme_id']);?>" class="meme-card-link">
 					<div class="meme-card">
-						<div class="meme-image"> <?php if(!empty($meme["media_url"])):?><img src="<?php echo htmlspecialchars($meme["media_url"]);?>" alt="<?php echo htmlspecialchars($meme["title"]);?>"><?php else:?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif;?></div>
+						<div class="meme-image"> <?php if(!empty($meme["media_url"])):?><img src="<?php echo htmlspecialchars($meme["media_url"]);?>" alt="<?php echo htmlspecialchars($meme["title"]);?>"><?php else:?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif;?><div class="creator-badge">@<?php echo htmlspecialchars($meme["creator"]); ?></div>
+						</div>
 						<div class="meme-info">
 							<h4><?php echo htmlspecialchars($meme["title"]);?></h4>
 							<div class="tag-list"><?php foreach(array_slice($meme["tags"]??[],0,4) as $tag):?><span class="tag"><?php echo htmlspecialchars($tag);?></span><?php endforeach;?></div>
@@ -78,7 +79,8 @@ foreach ($categories as $category):
 			</div>
 			<div class="meme-grid"><?php if(!empty($recommendedMemes)):?><?php foreach($recommendedMemes as $meme):?><a href="meme.php?id=<?php echo htmlspecialchars($meme['meme_id']);?>" class="meme-card-link">
 					<div class="meme-card">
-						<div class="meme-image"><?php if(!empty($meme["media_url"])):?><img src="<?php echo htmlspecialchars($meme["media_url"]);?>" alt="<?php echo htmlspecialchars($meme["title"]);?>"><?php else:?><div class="placeholder-image" data-text="Cursed Content"></div><?php endif;?></div>
+						<div class="meme-image"><?php if(!empty($meme["media_url"])):?><img src="<?php echo htmlspecialchars($meme["media_url"]);?>" alt="<?php echo htmlspecialchars($meme["title"]);?>"><?php else:?><div class="placeholder-image" data-text="Cursed Content"></div><?php endif;?><div class="creator-badge">@<?php echo htmlspecialchars($meme["creator"]); ?></div>
+						</div>
 						<div class="meme-info">
 							<h4><?php echo htmlspecialchars($meme["title"]);?></h4>
 							<div class="tag-list"><?php foreach(array_slice($meme["tags"]??[],0,4) as $tag):?><span class="tag"><?php echo htmlspecialchars($tag);?></span><?php endforeach;?></div>

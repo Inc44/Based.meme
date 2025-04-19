@@ -125,7 +125,7 @@ nav
 {
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	text-decoration: none;
 	font-weight: 700;
 	transition: var(--transition-standard);
@@ -402,6 +402,18 @@ nav
 	font-size: 0.9rem;
 }
 
+.creator-badge
+{
+	position: absolute;
+	bottom: 0.5rem;
+	left: 0.5rem;
+	padding: 0.3rem 0.5rem;
+	border-radius: 0.5rem;
+	font-size: 0.8rem;
+	background-color: var(--card-bg);
+	color: var(--accent);
+}
+
 .cta
 {
 	padding: 4rem 1rem;
@@ -667,7 +679,7 @@ nav
 {
 	width: 100%;
 	padding: 0.75rem;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	border: 0.0625rem solid var(--border-color);
 	background-color: rgba(255, 255, 255, 0.1);
 	color: var(--text-primary);
@@ -687,7 +699,7 @@ nav
 {
 	background-color: rgba(255, 255, 255, 0.1);
 	padding: 1rem;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	margin-bottom: 0.5rem;
 }
 
@@ -1060,7 +1072,7 @@ body.light-theme .captcha-container
 {
 	width: 100%;
 	padding: 0.75rem;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	border: 0.0625rem solid var(--border-color);
 	background-color: rgba(255, 255, 255, 0.1);
 	color: var(--text-primary);
@@ -1132,7 +1144,7 @@ body.light-theme .captcha-container
 	background-color: rgba(255, 0, 0, 0.2);
 	color: var(--accent);
 	padding: 0.75rem;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	margin-bottom: 1.5rem;
 	font-weight: bold;
 	display: none;
@@ -1220,7 +1232,7 @@ body.light-theme .captcha-container
 {
 	background-color: rgba(255, 255, 255, 0.1);
 	padding: 1rem;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	margin-bottom: 1rem;
 	border: 0.0625rem dashed var(--border-color);
 }
