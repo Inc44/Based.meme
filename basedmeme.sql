@@ -473,3 +473,9 @@ SET
 		WHERE
 			meme_tags.tag_id = tags.tag_id
 	);
+ALTER TABLE
+	memes
+ADD
+	COLUMN spicyness DECIMAL(3, 2) UNSIGNED NOT NULL DEFAULT 0.00
+AFTER
+	visibility;
