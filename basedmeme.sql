@@ -256,3 +256,226 @@ CREATE TABLE user_sessions(
 	INDEX idx_session_user(user_id),
 	INDEX idx_session_expires(expires_at)
 );
+ALTER TABLE
+	users
+ADD
+	COLUMN birthday DATE NULL DEFAULT NULL
+AFTER
+	avatar,
+ADD
+	COLUMN sex VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	birthday,
+ADD
+	COLUMN orientation VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	sex,
+ADD
+	COLUMN pronouns VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	orientation,
+ADD
+	COLUMN touch_grass VARCHAR(32) NULL DEFAULT NULL
+AFTER
+	pronouns,
+ADD
+	COLUMN meme_knowledge TEXT NULL DEFAULT NULL
+AFTER
+	touch_grass,
+ADD
+	COLUMN secret_question VARCHAR(255) NOT NULL
+AFTER
+	meme_knowledge,
+ADD
+	COLUMN secret_answer_hash VARCHAR(64) NOT NULL
+AFTER
+	secret_question;
+INSERT INTO
+	tags (name, slug)
+VALUES
+	('dank', 'dank'),
+	('cursed', 'cursed'),
+	('pov', 'pov'),
+	('no cap fr fr', 'no-cap-fr-fr'),
+	('riz z', 'rizz'),
+	('sigma', 'sigma'),
+	('goofy-ahh', 'goofy-ahh'),
+	('touch grass', 'touch-grass'),
+	('gyatt', 'gyatt'),
+	('sus', 'sus'),
+	('mid', 'mid'),
+	('relatable', 'relatable'),
+	('cringe', 'cringe'),
+	('shitpost', 'shitpost'),
+	('adgy', 'adgy'),
+	('deep-fried', 'deep-fried'),
+	('npc', 'npc'),
+	('💀', 'skull'),
+	('skidibi', 'skibidi'),
+	('toilet', 'toilet') ON DUPLICATE KEY
+UPDATE
+	usage_count = usage_count + 1;
+INSERT INTO
+	`users` (
+		`user_id`,
+		`handle`,
+		`email`,
+		`password_hash`,
+		`display_name`,
+		`bio`,
+		`avatar`,
+		`birthday`,
+		`sex`,
+		`orientation`,
+		`pronouns`,
+		`touch_grass`,
+		`meme_knowledge`,
+		`secret_question`,
+		`secret_answer_hash`,
+		`location`,
+		`joined_at`,
+		`updated_at`,
+		`last_login`,
+		`is_verified`,
+		`is_private`,
+		`is_admin`,
+		`is_banned`,
+		`is_active`
+	)
+VALUES
+	(
+		'1',
+		'test',
+		'test@example.com',
+		'$2y$10$gUh6tSwvezFvg3NPANFU7.Vy3WMu8VjXPZ/UZDzFoakBhR2SzdqkS',
+		'Test User',
+		'Test bio',
+		NULL,
+		'1970-01-01',
+		'male',
+		'straight',
+		'he-him',
+		'today',
+		'test',
+		'first-pet',
+		'$2y$10$O2pBjoVDEbQeEI3kCJeMl.CYzgZCPDtnsk6ZUG7eN3U2nPg4OP1du',
+		NULL,
+		'1970-01-01 01:00:01',
+		'1970-01-01 01:00:01',
+		'1970-01-01 01:00:01',
+		'1',
+		'0',
+		'0',
+		'0',
+		'1'
+	);
+INSERT INTO
+	memes (
+		meme_id,
+		slug,
+		user_id,
+		title,
+		content,
+		media_url,
+		status,
+		visibility,
+		published_at
+	)
+VALUES
+	(
+		'abcdef12345',
+		'lorem-picsum',
+		1,
+		'Lorem Picsum',
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		'https://picsum.photos/400',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	),
+	(
+		'r5MR7_INQwg',
+		'republic-vs-monarchy',
+		1,
+		'Republic vs Monarchy',
+		'A Satirical Take on Government Systems',
+		'https://images3.memedroid.com/images/UPLOADED587/5fea88b9716eb.jpeg',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	),
+	(
+		'MBJFPq2Llps',
+		'mass-insanity',
+		1,
+		'Mass Insanity',
+		'Current situation in the USA',
+		'https://images7.memedroid.com/images/UPLOADED250/68030d08f108d.jpeg',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	),
+	(
+		'nbqMIBYJlvk',
+		'liquid-trees',
+		1,
+		'Liquid Trees',
+		"What's wrong with trees?",
+		'https://images7.memedroid.com/images/UPLOADED915/6802ea339e30b.jpeg',
+		'published',
+		'public',
+		CURRENT_TIMESTAMP
+	);
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'abcdef12345',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('sus');
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'r5MR7_INQwg',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('shitpost', 'relatable', 'mid');
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'MBJFPq2Llps',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('cursed', 'shitpost', 'relatable', 'adgy');
+INSERT INTO
+	meme_tags (meme_id, tag_id)
+SELECT
+	'nbqMIBYJlvk',
+	tag_id
+FROM
+	tags
+WHERE
+	slug IN ('shitpost', 'goofy-ahh', 'mid');
+UPDATE
+	tags
+SET
+	usage_count = (
+		SELECT
+			COUNT(*)
+		FROM
+			meme_tags
+		WHERE
+			meme_tags.tag_id = tags.tag_id
+	);
+ALTER TABLE
+	memes
+ADD
+	COLUMN spicyness DECIMAL(3, 2) UNSIGNED NOT NULL DEFAULT 0.00
+AFTER
+	visibility;

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+	<title>Settings - Based.meme</title>
+	<script src="theme.js"></script>
+	<script src="settings.js"></script>
+</head>
+
+<body id="top">
+	<header>
+		<div class="logo">
+			<a href="index.html">
+				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+			</a>
+		</div>
+		<nav>
+			<button id="themeToggle">🌙</button>
+			<a href="profile.php?handle=<?=htmlspecialchars($user['handle'])?>" class="btn btn-login">Profile</a>
+			<a href="logout.php" class="btn btn-signup">Logout</a>
+		</nav>
+	</header>
+	<main>
+		<section class="auth-section">
+			<h2 class="tagline">Change everything you don't like about yourself</h2>
+			<p class="subtitle">Still, nobody cares</p>
+			<div class="auth-container">
+				<div class="auth-card">
+					<h3>Edit your profile</h3>
+					<form class="auth-form" action="settings.php" method="POST" enctype="multipart/form-data">
+						<div class="avatar-section">
+							<div class="avatar-drop" id="avatarDrop">
+								<img id="avatarPreview" src="<?=htmlspecialchars($user['avatar']?:'')?>" alt="">
+								<span class="avatar-drop-text">Drag & Drop</span>
+							</div>
+							<div class="avatar-actions">
+								<button type="button" class="btn btn-small" onclick="document.getElementById('avatarInput').click()">Upload file</button>
+								<input id="avatarInput" type="file" accept="image/*" name="avatar_file" hidden>
+								<input type="url" id="avatarUrlInput" name="avatar_url" maxlength="260" placeholder="Or paste image URL">
+							</div>
+						</div>
+						<input type="hidden" name="avatar_mode" id="avatarMode" value="keep">
+						<div class="form-group">
+							<label for="display_name">Display name</label>
+							<input type="text" id="display_name" name="display_name" maxlength="1024" value="<?=htmlspecialchars($user['display_name'])?>">
+						</div>
+						<div class="form-group">
+							<label for="bio">Bio <span id="bioCount">0/69</span></label>
+							<textarea id="bio" name="bio"><?=htmlspecialchars($user['bio'])?></textarea>
+						</div>
+						<div class="form-group">
+							<label for="location">Location</label>
+							<input type="text" id="location" name="location" maxlength="128" value="<?=htmlspecialchars($user['location'])?>">
+						</div>
+						<div class="form-group">
+							<label for="username">Username <span class="required">*</span></label>
+							<input type="text" id="username" name="username" required maxlength="32" value="<?=htmlspecialchars($user['handle'])?>">
+						</div>
+						<div class="form-group">
+							<label for="email">Email <span class="required">*</span></label>
+							<input type="email" id="email" name="email" required maxlength="254" value="<?=htmlspecialchars($user['email'])?>">
+						</div>
+						<div class="form-group">
+							<label for="password">Password (leave blank to keep)</label>
+							<input type="password" id="password" name="password" autocomplete="password123">
+						</div><?php
+						$birthday = $user["birthday"] ? strtotime($user["birthday"]) : null;
+						$birthdayDay = $birthday ? date("j", $birthday) : "";
+						$birthdayMonth = $birthday ? date("n", $birthday) : "";
+						$birthdayYear = $birthday ? date("Y", $birthday) : "";
+						?><div class="form-group"><label>Birthday</label>
+							<div class="date-inputs">
+								<select name="birthday_day">
+									<option value="" disabled>Day</option><?php for($day=1;$day<=31;$day++):?> <option value="<?=$day?>" <?=$birthdayDay==$day?'selected':''?>><?=$day?></option><?php endfor;?>
+								</select>
+								<select name="birthday_month">
+									<option value="" disabled>Month</option><?php for($month=1;$month<=12;$month++):?> <option value="<?=$month?>" <?=$birthdayMonth==$month?'selected':''?>><?=date('F',mktime(0,0,0,$month))?></option><?php endfor;?>
+								</select>
+								<select name="birthday_year">
+									<option value="" disabled>Year</option><?php for($year=date('Y');$year>=1970;$year--):?> <option value="<?=$year?>" <?=$birthdayYear==$year?'selected':''?>><?=$year?></option><?php endfor;?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group"><label for="sex">Sex?</label>
+							<select id="sex" name="sex">
+								<option value="" disabled <?=$user['sex']===''?'selected':''?>>Choose wisely</option><?php foreach($sexOptions as $slug=>$label):?><option value="<?=htmlspecialchars($slug)?>" <?=$user['sex']===$slug?'selected':''?>><?=htmlspecialchars($label)?></option><?php endforeach;?>
+							</select>
+						</div>
+						<div class="form-group"><label for="orientation">Orientation</label>
+							<select id="orientation" name="orientation">
+								<option value="" disabled <?=$user['orientation']===''?'selected':''?>>Select your character</option><?php foreach($orientationOptions as $slug=>$label):?><option value="<?=htmlspecialchars($slug)?>" <?=$user['orientation']===$slug?'selected':''?>><?=htmlspecialchars($label)?></option><?php endforeach;?>
+							</select>
+						</div>
+						<div class="form-group"><label for="pronouns">Preferred pronouns</label>
+							<select id="pronouns" name="pronouns">
+								<option value="" disabled <?=$user['pronouns']===''?'selected':''?>>Your labels</option><?php foreach($pronounsOptions as $slug=>$label):?><option value="<?=htmlspecialchars($slug)?>" <?=$user['pronouns']===$slug?'selected':''?>><?=htmlspecialchars($label)?></option><?php endforeach;?>
+							</select>
+						</div>
+						<div class="form-group"><label for="touch-grass">When did you last touch grass?</label>
+							<select id="touch-grass" name="touch-grass">
+								<option value="" disabled <?=$user['touch_grass']===''?'selected':''?>>Be honest</option><?php foreach($grassOptions as $slug=>$label):?><option value="<?=htmlspecialchars($slug)?>" <?=$user['touch_grass']===$slug?'selected':''?>><?=htmlspecialchars($label)?></option><?php endforeach;?>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-cta">Save changes</button>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed</p>
+			<a href="#top" id="scrollToTop">🔝</a>
+		</div>
+	</footer>
+</body>
+
+</html>
