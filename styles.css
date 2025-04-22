@@ -165,7 +165,7 @@ nav
 .btn-login:hover,
 .btn-signup:hover
 {
-	animation: btn-glitch 0.3s cubic-bezier(.25, .50, .50, 1.00) both;
+	animation: btn-glitch 0.3s cubic-bezier(0.25, 0.50, 0.50, 1.00) both;
 	text-shadow: 0 0 0.3125rem var(--accent);
 }
 
@@ -843,109 +843,10 @@ body.light-theme .captcha-container
 	background-color: rgba(0, 0, 0, 0.05);
 }
 
-@keyframes gradient
-{
-
-	0%,
-	100%
-	{
-		background-position: 0% 50%;
-	}
-
-	50%
-	{
-		background-position: 100% 50%;
-	}
-}
-
-@keyframes glitch-anim-1
-{
-	0%
-	{
-		clip: rect(1.5rem, 34.375rem, 5.625rem, 0);
-	}
-
-	50%
-	{
-		clip: rect(3.625rem, 34.375rem, 0.875rem, 0);
-	}
-
-	100%
-	{
-		clip: rect(0.75rem, 34.375rem, 3.375rem, 0);
-	}
-}
-
-@keyframes glitch-anim-2
-{
-	0%
-	{
-		clip: rect(5.3125rem, 34.375rem, 8.75rem, 0);
-	}
-
-	50%
-	{
-		clip: rect(2rem, 34.375rem, 3.625rem, 0);
-	}
-
-	100%
-	{
-		clip: rect(5.9375rem, 34.375rem, 2rem, 0);
-	}
-}
-
-@keyframes float
-{
-
-	0%,
-	100%
-	{
-		transform: translateY(0);
-	}
-
-	50%
-	{
-		transform: translateY(-0.625rem);
-	}
-}
-
-@keyframes btn-glitch
-{
-	0%
-	{
-		transform: translate(0);
-	}
-
-	20%
-	{
-		transform: translate(-0.125rem, 0.125rem);
-	}
-
-	40%
-	{
-		transform: translate(-0.125rem, -0.125rem);
-	}
-
-	60%
-	{
-		transform: translate(0.125rem, 0.125rem);
-	}
-
-	80%
-	{
-		transform: translate(0.125rem, -0.125rem);
-	}
-
-	100%
-	{
-		transform: translate(0);
-	}
-}
-
 .auth-section,
 .db-section
 {
-	max-width: 75rem;
+	max-width: 35rem;
 	margin: 0 auto;
 	padding: 2rem 0;
 	text-align: center;
@@ -1480,6 +1381,181 @@ body.light-theme .category-pill.active
 	display: inline-block;
 }
 
+.avatar-section
+{
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.avatar-drop
+{
+	align-items: center;
+	border-radius: 50%;
+	border: 0.125rem dashed var(--border-color);
+	display: flex;
+	height: 10rem;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	width: 10rem;
+}
+
+.avatar-drop.dragging
+{
+	border-color: var(--accent);
+}
+
+.avatar-drop img
+{
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.avatar-drop-text
+{
+	color: var(--text-primary);
+	position: absolute;
+}
+
+.avatar-actions
+{
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 0.5rem;
+}
+
+.avatar-actions input[type="url"]
+{
+	padding: 0.5rem;
+}
+
+#bioCount
+{
+	color: var(--text-muted);
+	float: right;
+	font-size: 0.9rem;
+}
+
+#bioCount.over
+{
+	color: var(--accent);
+}
+
+select option
+{
+	background-color: var(--dark);
+	color: var(--text-primary);
+	padding: 0.5rem;
+}
+
+body.light-theme select option
+{
+	background-color: var(--dark);
+	color: var(--text-primary);
+}
+
+@keyframes gradient
+{
+
+	0%,
+	100%
+	{
+		background-position: 0% 50%;
+	}
+
+	50%
+	{
+		background-position: 100% 50%;
+	}
+}
+
+@keyframes glitch-anim-1
+{
+	0%
+	{
+		clip: rect(1.5rem, 34.375rem, 5.625rem, 0);
+	}
+
+	50%
+	{
+		clip: rect(3.625rem, 34.375rem, 0.875rem, 0);
+	}
+
+	100%
+	{
+		clip: rect(0.75rem, 34.375rem, 3.375rem, 0);
+	}
+}
+
+@keyframes glitch-anim-2
+{
+	0%
+	{
+		clip: rect(5.3125rem, 34.375rem, 8.75rem, 0);
+	}
+
+	50%
+	{
+		clip: rect(2rem, 34.375rem, 3.625rem, 0);
+	}
+
+	100%
+	{
+		clip: rect(5.9375rem, 34.375rem, 2rem, 0);
+	}
+}
+
+@keyframes float
+{
+
+	0%,
+	100%
+	{
+		transform: translateY(0);
+	}
+
+	50%
+	{
+		transform: translateY(-0.625rem);
+	}
+}
+
+@keyframes btn-glitch
+{
+	0%
+	{
+		transform: translate(0);
+	}
+
+	20%
+	{
+		transform: translate(-0.125rem, 0.125rem);
+	}
+
+	40%
+	{
+		transform: translate(-0.125rem, -0.125rem);
+	}
+
+	60%
+	{
+		transform: translate(0.125rem, 0.125rem);
+	}
+
+	80%
+	{
+		transform: translate(0.125rem, -0.125rem);
+	}
+
+	100%
+	{
+		transform: translate(0);
+	}
+}
+
 @media screen and (max-width: 67.5rem)
 {
 	html
@@ -1554,17 +1630,4 @@ body.light-theme .category-pill.active
 	{
 		align-items: flex-start;
 	}
-}
-
-select option
-{
-	background-color: var(--dark);
-	color: var(--text-primary);
-	padding: 0.5rem;
-}
-
-body.light-theme select option
-{
-	background-color: var(--dark);
-	color: var(--text-primary);
 }
