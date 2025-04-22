@@ -68,12 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	} elseif (strlen($email) > 254) {
 		$errors["email"] = "Email is too long. Shorten it.";
 	}
-	if (empty($password)) {
-		$errors["password"] = "Password. You forgot the password. Seriously?";
-	} elseif ($password === "password123") {
-		$errors["password"] = "Really? Is that the best you can do?";
-	} elseif (strlen($password) < 8) {
-		$errors["password"] = "8 characters minimum. Don't be lazy.";
+	if ($password !== "") {
+		if ($password === "password123") {
+			$errors["password"] = "Really? Is that the best you can do?";
+		} elseif (strlen($password) < 8) {
+			$errors["password"] = "8 characters minimum. Don't be lazy.";
+		}
 	}
 	if (empty($errors["username"]) && empty($errors["email"])) {
 		$stmt = $pdo->prepare("
