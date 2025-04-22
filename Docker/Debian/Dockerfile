@@ -43,7 +43,7 @@ RUN apt update && \
 	rm -rf /var/www/html && \
 	git clone https://github.com/Inc44/Based.meme.git /var/www/html && \
 	chmod +x /start.sh && \
-    apt clean && \
+	apt clean && \
 	rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80 443

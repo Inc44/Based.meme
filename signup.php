@@ -64,12 +64,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (empty($errors["username"]) && empty($errors["email"])) {
 		try {
 			$pdo = getDbConnection();
-			$stmt = $pdo->prepare("SELECT user_id FROM users WHERE handle = ?");
+			$stmt = $pdo->prepare("
+SELECT
+	user_id
+FROM
+	users
+WHERE
+	handle = ?
+			");
 			$stmt->execute([$username]);
 			if ($stmt->fetch()) {
 				$errors["username"] = "Username taken. Be more original.";
 			}
-			$stmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
+			$stmt = $pdo->prepare("
+SELECT
+	user_id
+FROM
+	users
+WHERE
+	email = ?
+			");
 			$stmt->execute([$email]);
 			if ($stmt->fetch()) {
 				$errors["email"] = "Email already in use. Nice try.";
@@ -93,11 +107,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				);
 			}
 		}
-		$sql = "INSERT INTO users (
-                    handle, email, password_hash, birthday, sex, orientation,
-                    pronouns, touch_grass, meme_knowledge,
-                    secret_question, secret_answer_hash
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$sql = "
+INSERT INTO
+	users (
+		handle,
+		email,
+		password_hash,
+		birthday,
+		sex,
+		orientation,
+		pronouns,
+		touch_grass,
+		meme_knowledge,
+		secret_question,
+		secret_answer_hash
+	)
+VALUES
+	(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		";
 		try {
 			$pdo = getDbConnection();
 			$stmt = $pdo->prepare($sql);

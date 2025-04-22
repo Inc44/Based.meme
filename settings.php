@@ -76,16 +76,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$errors["password"] = "8 characters minimum. Don't be lazy.";
 	}
 	if (empty($errors["username"]) && empty($errors["email"])) {
-		$stmt = $pdo->prepare(
-			"SELECT user_id FROM users WHERE handle=? AND user_id<>?"
-		);
+		$stmt = $pdo->prepare("
+SELECT
+	user_id
+FROM
+	users
+WHERE
+	handle =?
+	AND user_id <>?
+		");
 		$stmt->execute([$username, $user_id]);
 		if ($stmt->fetch()) {
 			$errors["username"] = "Username taken. Be more original.";
 		}
-		$stmt = $pdo->prepare(
-			"SELECT user_id FROM users WHERE email=? AND user_id<>?"
-		);
+		$stmt = $pdo->prepare("
+SELECT
+	user_id
+FROM
+	users
+WHERE
+	email =?
+	AND user_id <>?
+		");
 		$stmt->execute([$email, $user_id]);
 		if ($stmt->fetch()) {
 			$errors["email"] = "Email already in use. Nice try.";
@@ -115,7 +127,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$parameters[] = password_hash($password, PASSWORD_BCRYPT);
 		}
 		$parameters[] = $user_id;
-		$stmt = $pdo->prepare("UPDATE users SET $set WHERE user_id=?");
+		$stmt = $pdo->prepare("
+UPDATE
+	users
+SET
+	$set
+WHERE
+	user_id =?
+		");
 		$stmt->execute($parameters);
 		$_SESSION["handle"] = $username;
 		header("Location: profile.php?handle={$username}");
@@ -126,7 +145,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	header("Location: settings.php");
 	exit();
 }
-$stmt = $pdo->prepare("SELECT * FROM users WHERE user_id=?");
+$stmt = $pdo->prepare("
+SELECT
+	*
+FROM
+	users
+WHERE
+	user_id =?
+");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch();
 $sexOptions = [
