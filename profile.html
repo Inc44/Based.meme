@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+	<title>Profile - Based.meme</title>
+	<script src="theme.js"></script>
+	<script defer src="profile.js"></script>
+</head>
+
+<body id="top">
+	<header>
+		<div class="logo">
+			<a href="index.php">
+				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+			</a>
+		</div>
+		<nav>
+			<button id="themeToggle">🌙</button>
+			<a href="profile.php?handle=<?= htmlspecialchars($user['handle']) ?>" class="btn btn-login">Profile</a>
+			<a href="logout.php" class="btn btn-signup">Logout</a>
+		</nav>
+	</header>
+	<main class="profile-page">
+		<section class="profile-header">
+			<div class="profile-user">
+				<div class="user-avatar user-avatar-lg"><?php if (!empty($user['avatar'])): ?><img src="<?= htmlspecialchars($user['avatar']) ?>" alt="<?= htmlspecialchars($user['display_name'] ?: $user['handle']) ?>"><?php else: ?><?= strtoupper($user['handle'][0]) ?><?php endif; ?></div>
+				<div>
+					<h2><?= htmlspecialchars($user['display_name'] ?: $user['handle']) ?></h2>
+					<p class="handle">@<?= htmlspecialchars($user['handle']) ?></p><?php if ($fullBio): ?><p class="bio-text" data-full="<?= htmlspecialchars($fullBio) ?>"><?= htmlspecialchars($shortBio) ?></p><?php if ($needsToggle): ?><button class="bio-toggle btn-small">Show more</button><?php endif; ?><?php endif; ?>
+				</div>
+			</div><?php if ($isOwner): ?><a class="btn btn-post" href="settings.php">Edit Profile</a><?php endif; ?>
+		</section>
+		<section class="profile-stats">
+			<div class="stat"><span class="stat-num"><?= $stats['meme_count'] ?></span> memes</div>
+			<div class="stat"><span class="stat-num"><?= $stats['likes'] ?></span> likes</div>
+			<div class="stat"><span class="stat-num"><?= $stats['comments'] ?></span> comments</div>
+			<div class="stat"><span class="stat-num"><?= $avgSpiciness ?></span> avg 🌶️</div>
+		</section><?php if ($badges): ?><section class="profile-badges"><?php foreach ($badges as $badge): ?><span class="pill" title="<?= htmlspecialchars($badge['label']) ?>"><?= $badge['icon'] ?> <?= htmlspecialchars($badge['label']) ?></span><?php endforeach; ?></section><?php endif; ?><?php if (!$isPrivate): ?><section class="profile-info">
+			<h3>About</h3>
+			<dl class="info-list">
+				<dd>Joined: <?= prettyDate($user['joined_at']) ?></dd><?php if ($user['birthday']) echo '<dd>Birthday: ' . prettyDate($user['birthday']) . '</dd>'; ?><?php if ($sexLabel) echo '<dd>Sex: ' . htmlspecialchars($sexLabel) . '</dd>'; ?><?php if ($orientationLabel) echo '<dd>Orientation: ' . htmlspecialchars($orientationLabel) . '</dd>'; ?><?php if ($pronounsLabel) echo '<dd>Pronouns: ' . htmlspecialchars($pronounsLabel) . '</dd>'; ?><?php if ($grassLabel) echo '<dd>Last touched grass: ' . htmlspecialchars($grassLabel) . '</dd>'; ?><?php if ($user['location']) echo '<dd>Location: ' . htmlspecialchars($user['location']) . '</dd>'; ?><dd>Last login: <?= lastLogin($user['last_login']) ?></dd>
+			</dl>
+		</section><?php endif; ?><section class="profile-memes">
+			<h3>Memes</h3>
+			<div class="meme-grid"><?php foreach ($memes as $meme): ?><a href="meme.php?id=<?= htmlspecialchars($meme['slug']) ?>" class="meme-card-link">
+					<div class="meme-card">
+						<div class="meme-image"><?php if ($meme['media_url']): ?><img src="<?= htmlspecialchars($meme['media_url']) ?>" alt="<?= htmlspecialchars($meme['title']) ?>"><?php else: ?><div class="placeholder-image" data-text="Image was lost somehow"></div><?php endif; ?><div class="creator-badge">@<?= htmlspecialchars($user['handle']) ?></div>
+						</div>
+						<div class="meme-info">
+							<h4><?= htmlspecialchars($meme['title']) ?></h4>
+							<div class="tag-list"><?php foreach (array_slice($meme['tags'] ?? [], 0, 4) as $tg): ?><span class="tag"><?= htmlspecialchars($tg) ?></span><?php endforeach; ?></div>
+							<div class="meme-stats">
+								<span>❤️ <?= number_format($meme['like_count']) ?></span>
+								<span>💬 <?= number_format($meme['comment_count']) ?></span>
+								<span>🌶️ <?= number_format($meme['spicyness'], 2) ?></span>
+							</div>
+						</div>
+					</div>
+				</a><?php endforeach; ?><?php if (!$memes): ?><div class="empty-state">No memes yet.</div><?php endif; ?></div>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed</p>
+			<a href="#top" id="scrollToTop">⬆️</a>
+		</div>
+	</footer>
+</body>
+
+</html>

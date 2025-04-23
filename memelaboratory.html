@@ -5,109 +5,103 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="styles.css">
 	<link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
-	<title>Based.meme - Meme Laboratory</title>
+	<title>Meme Laboratory - Based.meme</title>
 	<script src="theme.js"></script>
 </head>
-
 
 <body id="top">
 	<header>
 		<div class="logo">
-			<a href="index.html">
+			<a href="index.php">
 				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
 			</a>
 		</div>
 		<nav>
 			<button id="themeToggle">🌙</button>
 			<a href="memelaboratory.html" class="btn btn-login">Profile</a>
+			<a href="logout.php" class="btn btn-signup">Logout</a>
 		</nav>
 	</header>
-
-</header>
-<main>
-    <section class="hero">
-        <h2 class="tagline">Meme Laboratory</h2>
-        <p class="subtitle">The meme laboratory allows you to contributes to BASEDMEME by making your own</p>
-    </section>
-    <form id="memeupload" action="upload.php" method="POST" enctype="multipart/form-data">
-    
-        <div class="upload-grid">
-
-            <div class="upload-card-info ">
-                <br>
-                <h1>TAGS</h1>
-                <div class="tag-container">
-                    <input type="checkbox" id="tag-dank"><label for="tag-dank">dank</label>
-                    <input type="checkbox" id="tag-cursed"><label for="tag-cursed">cursed</label>
-                    <input type="checkbox" id="tag-pov"><label for="tag-pov">pov</label>
-                    <input type="checkbox" id="tag-nocap"><label for="tag-nocap">no cap fr fr</label>
-                    <input type="checkbox" id="tag-rizz"><label for="tag-rizz">rizz</label>
-                    <input type="checkbox" id="tag-sigma"><label for="tag-sigma">sigma</label>
-                    <input type="checkbox" id="tag-goofy-ahh"><label for="tag-goofy-ahh">goofy-ahh</label>
-                    <input type="checkbox" id="tag-touchgrass"><label for="tag-touchgrass">touch grass</label>
-                    <input type="checkbox" id="tag-gyatt"><label for="tag-gyatt">gyatt</label>
-                    <input type="checkbox" id="tag-sus"><label for="tag-sus">sus</label>
-                    <input type="checkbox" id="tag-mid"><label for="tag-mid">mid</label>
-                    <input type="checkbox" id="tag-relatable"><label for="tag-relatable">relatable</label>
-                    <input type="checkbox" id="tag-cringe"><label for="tag-cringe">cringe</label>
-                    <input type="checkbox" id="tag-shitpost"><label for="tag-shitpost">shitpost</label>
-                    <input type="checkbox" id="tag-edgy"><label for="tag-edgy">edgy</label>
-                    <input type="checkbox" id="tag-deep-fried"><label for="tag-deep-fried">deep-fried</label>
-                    <input type="checkbox" id="tag-npc"><label for="tag-npc">npc</label>
-                    <input type="checkbox" id="tag-dead"><label for="tag-dead">💀</label>
-                    <input type="checkbox" id="tag-skibidi"><label for="tag-skibidi">skibidi</label>
-                    <input type="checkbox" id="tag-toilet"><label for="tag-toilet">toilet</label>
-                  </div>
-                  
-
-            </div>
-    
-            <div class="upload-card locked" id="dropZone">
-                <div class="upload-image">
-                    <div class="placeholder-image-desc" data-text="Drop your masterpiece here (or your mediocre content, we don't judge... much)"></div>
-                    <div class="locked-overlay">
-                        <span class="locked-text-desc">Drop your masterpiece here (or your mediocre content, we don't judge... much)</span>
-
-                    </div>
-                </div>
-                <div class="upload-buttons">
-                    <input type="file" name="image" id="upload-image-fichier" style="display: none;">
-                    <label for="upload-image-fichier" class="btn btn-cta">📁 Browse Files</label>
-                  </div>
-                <div class="meme-info">
-                    <div class="uploadesc">
-
-                        <input type="text" id="description" name="description" required placeholder="Something clever goes here" maxlength="100">
-                    </div>
-                    <div class="meme-stats">
-                        <span>⬆️ 0</span>
-                        <span>💬 0</span>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="upload-spiciness">
-  
-
-                <div class="upload-spiciness-vertical">
-                    <div class="upload-spiciness-vertical2">
-                        <input type="range" id="upload-spiciness" name="spiciness" text="Spicccccccccccciiiiiiiiiiness">
-                    </div>
-                </div>
-                <div class="spicy-text">
-                    <h4>🌶️Spiciness🌶️</h4>
-                </div>
-            </div>
-        </div>
-
-          
-        <button type="submit" class="publish">🚀 Yeat</button>
-    </form>
-
-    
-        
+	<main>
+		<section class="hero">
+			<h2 class="tagline">Meme Laboratory</h2>
+			<p class="subtitle">The meme laboratory allows you to contributes to BASEDMEME by making your own</p>
+		</section>
+		<form id="memeupload" action="upload.php" method="POST" enctype="multipart/form-data">
+			<div class="upload-grid">
+				<div class="upload-card-info ">
+					<br>
+					<h1>TAGS</h1>
+					<div class="tag-container">
+						<input type="checkbox" id="tag-dank"><label for="tag-dank">dank</label>
+						<input type="checkbox" id="tag-cursed"><label for="tag-cursed">cursed</label>
+						<input type="checkbox" id="tag-pov"><label for="tag-pov">pov</label>
+						<input type="checkbox" id="tag-nocap"><label for="tag-nocap">no cap fr fr</label>
+						<input type="checkbox" id="tag-rizz"><label for="tag-rizz">rizz</label>
+						<input type="checkbox" id="tag-sigma"><label for="tag-sigma">sigma</label>
+						<input type="checkbox" id="tag-goofy-ahh"><label for="tag-goofy-ahh">goofy-ahh</label>
+						<input type="checkbox" id="tag-touchgrass"><label for="tag-touchgrass">touch grass</label>
+						<input type="checkbox" id="tag-gyatt"><label for="tag-gyatt">gyatt</label>
+						<input type="checkbox" id="tag-sus"><label for="tag-sus">sus</label>
+						<input type="checkbox" id="tag-mid"><label for="tag-mid">mid</label>
+						<input type="checkbox" id="tag-relatable"><label for="tag-relatable">relatable</label>
+						<input type="checkbox" id="tag-cringe"><label for="tag-cringe">cringe</label>
+						<input type="checkbox" id="tag-shitpost"><label for="tag-shitpost">shitpost</label>
+						<input type="checkbox" id="tag-edgy"><label for="tag-edgy">edgy</label>
+						<input type="checkbox" id="tag-deep-fried"><label for="tag-deep-fried">deep-fried</label>
+						<input type="checkbox" id="tag-npc"><label for="tag-npc">npc</label>
+						<input type="checkbox" id="tag-dead"><label for="tag-dead">💀</label>
+						<input type="checkbox" id="tag-skibidi"><label for="tag-skibidi">skibidi</label>
+						<input type="checkbox" id="tag-toilet"><label for="tag-toilet">toilet</label>
+					</div>
+				</div>
+				<div class="upload-card locked" id="dropZone">
+					<div class="upload-image">
+						<div class="placeholder-image-desc" data-text="Drop your masterpiece here (or your mediocre content, we don't judge... much)"></div>
+						<div class="locked-overlay">
+							<span class="locked-text-desc">Drop your masterpiece here (or your mediocre content, we don't judge... much)</span>
+						</div>
+					</div>
+					<div class="upload-buttons">
+						<input type="file" name="image" id="upload-image-fichier" style="display: none;">
+						<label for="upload-image-fichier" class="btn btn-cta">📁 Browse Files</label>
+					</div>
+					<div class="meme-info">
+						<div class="uploadesc">
+							<input type="text" id="description" name="description" required placeholder="Something clever goes here" maxlength="100">
+						</div>
+						<div class="meme-stats">
+							<span>❤️ 0</span>
+							<span>💬 0</span>
+						</div>
+					</div>
+				</div>
+				<div class="upload-spiciness">
+					<div class="upload-spiciness-vertical">
+						<div class="upload-spiciness-vertical2">
+							<input type="range" id="upload-spiciness" name="spiciness" text="Spicccccccccccciiiiiiiiiiness">
+						</div>
+					</div>
+					<div class="spicy-text">
+						<h4>🌶️Spiciness🌶️</h4>
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="publish">🚀 Yeat</button>
+		</form>
+	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed</p>
+			<a href="#top" id="scrollToTop">⬆️</a>
+		</div>
+	</footer>
 </body>
 
 </html>

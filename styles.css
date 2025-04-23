@@ -80,7 +80,7 @@ h2,
 h3,
 h4
 {
-	font-weight: 700;
+	font-weight: bold;
 	line-height: 1.2;
 }
 
@@ -132,7 +132,7 @@ nav
 	padding: 0.6rem 1.2rem;
 	border-radius: 0.5rem;
 	text-decoration: none;
-	font-weight: 700;
+	font-weight: bold;
 	transition: var(--transition-standard);
 	border: 0.125rem solid transparent;
 }
@@ -349,7 +349,8 @@ nav
 	background-color: var(--placeholder-bg);
 }
 
-.upload-grid {
+.upload-grid
+{
 	display: grid;
 	grid-template-columns: 1fr 3fr 1fr;
 	gap: 2rem;
@@ -357,6 +358,7 @@ nav
 	margin: 0 auto;
 	align-items: start;
 }
+
 .upload-card
 {
 	background-color: var(--card-bg);
@@ -365,26 +367,28 @@ nav
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.upload-card-info{
-	overflow:hidden;
+.upload-card-info
+{
+	overflow: hidden;
 	background-color: var(--card-bg);
 	border-radius: 0.5rem;
 	overflow: hidden;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	height:850px;
+	height: 53.125rem;
 }
 
-.upload-card-info h1{
+.upload-card-info h1
+{
 	text-align: center;
 }
 
-.upload-tag{
-	text-align:center; 
+.upload-tag
+{
+	text-align: center;
 	margin-top: 1rem;
-	width:20px;
-	padding:5px;
+	width: 1.25rem;
+	padding: 0.3125rem;
 }
-
 
 .upload-card:hover
 {
@@ -409,172 +413,181 @@ nav
 	height: 100%;
 	object-fit: cover;
 }
-.upload-buttons{
-	text-align:center; 
+
+.upload-buttons
+{
+	text-align: center;
 	margin-top: 1rem;
-	gap:3px;
-
-}
-.uploadesc input{
-width: 100%;
-padding: 1rem;
-border-radius: 0.25rem;
-
-border: 0.0625rem solid var(--border-color);
-background-color: rgba(255, 255, 255, 0.1);
-color: var(--text-primary);
-font-family: inherit;
-transition: border-color 0.3s ease, box-shadow 0.3s ease;
+	gap: 0.1875rem;
 }
 
-.upload-spiciness {
+.uploadesc input
+{
+	width: 100%;
+	padding: 1rem;
+	border-radius: 0.25rem;
+	border: 0.0625rem solid var(--border-color);
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--text-primary);
+	font-family: inherit;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upload-spiciness
+{
 	background-color: var(--card-bg);
 	border-radius: 0.5rem;
 	overflow: hidden;
-
 	display: grid;
 	grid-template-columns: 1fr 3fr 1fr;
-	height: 850px;
-  }
+	height: 53.125rem;
+}
 
-
-.upload-spiciness-vertical{
+.upload-spiciness-vertical
+{
 	display: flex;
 	justify-content: flex-start;
 	align-items: flex-end;
-	padding: 35px;
-  }
+	padding: 2.1875rem;
+}
 
-  .spicy-text h4 {
-	height: 850px;
-	width: 70px;
-	font-size: 62px;
+.spicy-text h4
+{
+	height: 53.125rem;
+	width: 4.375rem;
+	font-size: 3.875rem;
 	text-align: center;
 	background: var(--card-shadow);
 	color: red;
 	writing-mode: vertical-rl;
-	text-orientation:sideways ;
-
+	text-orientation: sideways;
 }
 
-.upload-spiciness-vertical2 input{
-	width: 800px; 
-	height: 20px;
-	bottom:20px;
-	left:20px;
-	-webkit-appearance: none;
+.upload-spiciness-vertical2 input
+{
+	appearance: none;
+	width: 50rem;
+	height: 1.25rem;
+	bottom: 1.25rem;
+	left: 1.25rem;
 	background: linear-gradient(to left, red, yellow, green);
-	border-radius: 10px;
-	
+	border-radius: 0.625rem;
+}
 
-  }
-.upload-spiciness-vertical2{
+.upload-spiciness-vertical2
+{
 	transform: rotate(-90deg);
 	transform-origin: bottom left;
-	width:20px;
+	width: 1.25rem;
 }
-.upload-spiciness input::-webkit-slider-thumb {
-	-webkit-appearance: none;
+
+.upload-spiciness input::-webkit-slider-thumb
+{
 	appearance: none;
-	width: 30px;
-	height: 30px;
-	bottom:20px;
-	left:20px;
+	width: 1.875rem;
+	height: 1.875rem;
+	bottom: 1.25rem;
+	left: 1.25rem;
 	border-radius: 50%;
-	border: 7px solid var(--light);
+	border: 0.4375rem solid var(--light);
 	cursor: pointer;
 	transition: background-color 0.3s ease;
-  }
-.upload-spiciness label{
+}
+
+.upload-spiciness label
+{
 	display: block;
 	margin-bottom: 0.5rem;
 	color: var(--text-secondary);
-	font-weight: 500;
 }
-.tag-container {
+
+.tag-container
+{
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
 	padding: 1rem;
-  }
-  
-  .tag-container input[type="checkbox"]{
+}
+
+.tag-container input[type="checkbox"]
+{
 	display: none;
-  }
-  
-  .tag-container label{
+}
+
+.tag-container label
+{
 	padding: 0.4rem 0.8rem;
-	border: 1px solid var(--border-color);
+	border: 0.0625rem solid var(--border-color);
 	color: var(--accent);
-	border-radius: 500px;
+	border-radius: 31.25rem;
 	cursor: pointer;
 	font-size: 0.9rem;
 	transition: 0.6s;
-  }
-  
-  /* État sélectionné (checkbox cochée) */
-  .tag-container input[type="checkbox"]:checked + label {
+}
+
+/* État sélectionné (checkbox cochée) */
+.tag-container input[type="checkbox"]:checked+label
+{
 	background-color: rgba(158, 62, 146, 0.785);
 	color: var(--accent);
-  }
-  
-  .tag-container label:hover{
-	
+}
+
+.tag-container label:hover
+{
 	background-color: rgba(158, 62, 146, 0.785);
 	transform: translateY(-0.125rem);
 	box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 255, 0.4);
+}
 
-  }
+.placeholder-image-desc
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--placeholder-text);
+	font-size: 2.4rem;
+	font-weight: bold;
+	background-color: var(--placeholder-bg);
+	text-align: center;
+}
 
-  .placeholder-image-desc
-  {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 100%;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  color: var(--placeholder-text);
-	  font-size: 2.4rem;
-	  font-weight: bold;
-	  background-color: var(--placeholder-bg);
-	  text-align: center;
-  }
-  .placeholder-image-desc::before
-  {
-	  content: attr(data-text);
-  }
+.placeholder-image-desc::before
+{
+	content: attr(data-text);
+}
 
-
-.publish{
+.publish
+{
 	background-color: red;
 	color: white;
 	font-family: 'VT323', monospace;
-	font-size: 30px;
+	font-size: 1.875rem;
 	border: none;
-	border-radius: 10px;
-	padding: 15px;
+	border-radius: 0.625rem;
+	padding: 0.9375rem;
 	cursor: pointer;
-	margin-top: 30px;
+	margin-top: 1.875rem;
 	text-align: center;
 	transition: 0.6s;
-	
-	box-shadow: 0px 0px 10px red;
-	width:1000px;
+	box-shadow: 0 0 0.625rem red;
+	width: 62.5rem;
 	display: block;
-	margin-left:auto;
+	margin-left: auto;
 	margin-right: auto;
-}	
-.publish:hover{
-	
+}
+
+.publish:hover
+{
 	background-color: rgba(158, 62, 146, 0.785);
 	transform: translateY(-0.125rem);
 	box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 255, 0.4);
-	
-	  
 }
+
 .placeholder-image
 {
 	position: absolute;
@@ -617,6 +630,7 @@ transition: border-color 0.3s ease, box-shadow 0.3s ease;
 	font-size: 2rem;
 	text-transform: uppercase;
 }
+
 .locked-text-desc
 {
 	color: var(--accent);
@@ -624,8 +638,9 @@ transition: border-color 0.3s ease, box-shadow 0.3s ease;
 	font-size: 2rem;
 	text-transform: uppercase;
 	text-justify: center;
-	text-align:center;
+	text-align: center;
 }
+
 .meme-info
 {
 	display: flex;
@@ -1244,7 +1259,6 @@ body.light-theme .captcha-container
 	display: block;
 	margin-bottom: 0.5rem;
 	color: var(--text-secondary);
-	font-weight: 500;
 }
 
 .auth-form input,
@@ -1274,7 +1288,9 @@ body.light-theme .captcha-container
 {
 	display: flex;
 	gap: 0.5rem;
-}.auth-container
+}
+
+.auth-container
 {
 	max-width: 35rem;
 	margin: 2rem auto;
@@ -1493,7 +1509,8 @@ body.light-theme .captcha-container
 	gap: 1rem;
 }
 
-.user-avatar
+.user-avatar,
+.user-avatar-lg
 {
 	width: 3rem;
 	height: 3rem;
@@ -1600,7 +1617,6 @@ body.light-theme .category-pill.active
 {
 	text-align: center;
 	padding: 2rem;
-	margin: 2rem 0;
 	background-color: var(--card-bg);
 	border-radius: 0.5rem;
 }
@@ -1689,6 +1705,101 @@ body.light-theme .category-pill.active
 #bioCount.over
 {
 	color: var(--accent);
+}
+
+.profile-page
+{
+	margin: 0 auto;
+	max-width: 75rem;
+}
+
+.profile-header
+{
+	align-items: flex-start;
+	display: flex;
+	justify-content: space-between;
+}
+
+.profile-user
+{
+	display: flex;
+	gap: 2rem;
+}
+
+.user-avatar-lg
+{
+	font-size: 5rem;
+	height: 10rem;
+	width: 10rem;
+}
+
+.handle
+{
+	color: var(--text-muted);
+}
+
+.bio-text
+{
+	color: var(--text-secondary);
+	max-width: 35rem;
+	white-space: pre-wrap;
+}
+
+.bio-toggle
+{
+	background: none;
+	border: none;
+	color: var(--accent);
+	cursor: pointer;
+	padding: 0;
+}
+
+.profile-stats
+{
+	display: flex;
+	gap: 0.5rem;
+	margin: 1rem 0;
+}
+
+.stat
+{
+	background: var(--card-bg);
+	border-radius: 0.5rem;
+	font-size: 0.9rem;
+	padding: 0.5rem 1rem;
+}
+
+.stat-num
+{
+	color: var(--secondary);
+	font-weight: bold;
+}
+
+.pill
+{
+	background: var(--primary);
+	color: var(--text-primary);
+	display: inline-block;
+	font-weight: bold;
+	transition: all 0.3s ease;
+	white-space: nowrap;
+	border-radius: 1.5rem;
+	border: var(--primary-dark) solid 0.125rem;
+	font-size: 0.9rem;
+	margin-right: 0.5rem;
+	padding: 0.5rem 1rem;
+}
+
+.profile-info dd
+{
+	margin-bottom: 0.25rem;
+}
+
+.profile-info h3,
+.profile-memes h3
+{
+	color: var(--secondary);
+	margin: 0.75rem 0;
 }
 
 select option
