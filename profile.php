@@ -100,7 +100,9 @@ try {
 	$stmt = $pdo->prepare("
 SELECT
 	*,
-	TIMESTAMPDIFF(YEAR, joined_at, NOW()) AS years_registered
+	TIMESTAMPDIFF(YEAR, joined_at, NOW()) AS years_registered,
+	TIMESTAMPDIFF(DAY, joined_at, NOW()) AS days_registered,
+	TIMESTAMPDIFF(HOUR, joined_at, NOW()) AS hours_registered
 FROM
 	users
 WHERE
@@ -119,7 +121,9 @@ WHERE
 SELECT
 	COUNT(*) AS meme_count,
 	COALESCE(SUM(like_count), 0) AS likes,
-	COALESCE(SUM(comment_count), 0) AS comments
+	COALESCE(SUM(comment_count), 0) AS comments,
+	COALESCE(SUM(upvote_count), 0) AS based_count,
+	COALESCE(SUM(dislike_count), 0) AS cringe_count
 FROM
 	memes
 WHERE
@@ -173,15 +177,116 @@ WHERE
 		$memes[$i]["tags"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
 	}
 	$badges = [];
-	$user["is_admin"] && ($badges[] = ["icon" => "👑", "label" => "Admin"]);
-	$user["is_verified"] &&
-		($badges[] = ["icon" => "✔️", "label" => "Verified"]);
-	if ($user["years_registered"] >= 1) {
-		$badges[] = [
-			"icon" => "📅",
-			"label" => $user["years_registered"] . "y Veteran",
-		];
+	date("md", strtotime($user["birthday"])) === date("md") &&
+		($badges[] = ["icon" => "🎉", "label" => "Happy Birthday!"]);
+	$user["orientation"] === "attack" &&
+		($badges[] = ["icon" => "♊", "label" => "Call 911"]);
+	switch (true) {
+		case $user["pronouns"] == "burger":
+			$badges[] = [
+				"icon" => "🍔",
+				"label" => "Kotleta inside", // Hamburger; I got the burgers in the back
+			];
+			break;
+		case $user["pronouns"] == "sigma":
+			$badges[] = [
+				"icon" => "🐺",
+				"label" => "Auf",
+			];
+			break;
+
+		case $user["pronouns"] == "cringe":
+			$badges[] = [
+				"icon" => "🤡",
+				"label" => "Clown",
+			];
+			break;
+		case $user["pronouns"] == "who":
+			$badges[] = [
+				"icon" => "🤔",
+				"label" => "Who cares?",
+			];
+			break;
 	}
+	switch (true) {
+		case in_array(
+			$user["touch_grass"],
+			["never", "1000", "10000", "minecraft"],
+			true
+		):
+			$badges[] = [
+				"icon" => "🌚",
+				"label" => "Needs Vitamin D",
+			];
+			break;
+		case in_array(
+			$user["touch_grass"],
+			["week", "month", "year", "decade"],
+			true
+		):
+			$badges[] = [
+				"icon" => "🌱",
+				"label" => "Touch Grass Reminder",
+				"description" => "Seriously, go outside once in a while",
+			];
+			break;
+	}
+	$user["location"] &&
+		($badges[] = ["icon" => "📍", "label" => "Geoguessed"]);
+	$user["is_verified"] &&
+		($badges[] = ["icon" => "✅", "label" => "Verified"]);
+	switch (true) {
+		case $user["is_private"]:
+			$badges[] = [
+				"icon" => "🔒",
+				"label" => "Private",
+				"description" =>
+					"This profile is locked. Only memes are public.",
+			];
+			break;
+		default:
+			$badges[] = ["icon" => "🌐", "label" => "Public"];
+			break;
+	}
+	$user["is_admin"] && ($badges[] = ["icon" => "🛡️", "label" => "Admin"]);
+	$user["is_banned"] && ($badges[] = ["icon" => "🚫", "label" => "Banned"]);
+	switch (true) {
+		case date("md", strtotime($user["joined_at"])) === date("md"):
+			$badges[] = [
+				"icon" => "🎂",
+				"label" => "Today is special",
+			];
+			break;
+		case $user["years_registered"] > 1:
+			$badges[] = [
+				"icon" => "🎖️",
+				"label" => $user["years_registered"] . "y Veteran",
+			];
+			break;
+		case $user["days_registered"] >= 90:
+			$badges[] = [
+				"icon" => "📜",
+				"label" => "Internet Historian",
+				"description" => "Remembers memes from 3 whole months ago",
+			];
+			break;
+		case $user["days_registered"] >= 9:
+			$badges[] = ["icon" => "📅", "label" => "As time goes by"];
+			break;
+		case $user["hours_registered"] >= 1000:
+			$badges[] = [
+				"icon" => "⏱️",
+				"label" => "1000h Wasted",
+				"description" => "Spent way too much time scrolling dank memes",
+			];
+			break;
+	}
+	$stats["cringe_count"] >= 228 &&
+		($badges[] = [
+			"icon" => "💩",
+			"label" => "Professional Shitposter",
+			"description" => "Quality? Who needs that when you have quantity",
+		]);
 	switch (true) {
 		case $stats["likes"] >= 100000:
 			$badges[] = [
@@ -327,7 +432,46 @@ WHERE
 			$badges[] = ["icon" => "👋", "label" => "Welcome!"];
 			break;
 	}
-	if ($avgSpiciness >= 0.8) {
+	switch (true) {
+		case $stats["based_count"] >= 9000:
+			$badges[] = [
+				"icon" => "💪",
+				"label" => "It's over 9000",
+			];
+			break;
+		case $stats["based_count"] >= 1337:
+			$badges[] = [
+				"icon" => "👑",
+				"label" => "Based Lord",
+				"description" =>
+					"Your content has been deemed acceptably based",
+			];
+			break;
+		case $stats["based_count"] >= 420:
+			$badges[] = [
+				"icon" => "😶‍🌫️",
+				"label" => "Certified Based",
+			];
+			break;
+		case $stats["based_count"] >= 100:
+			$badges[] = [
+				"icon" => "💯",
+				"label" => "Century Poster",
+			];
+			break;
+		default:
+			$badges[] = ["icon" => "🌱", "label" => "Sprout"];
+			break;
+	}
+	if ($stats["based_count"] >= 42 && $stats["cringe_count"] >= 42) {
+		$badges[] = [
+			"icon" => "🔥",
+			"label" => "Controversial Creator",
+			"description" =>
+				"You either love them or hate them, there is no in-between",
+		];
+	}
+	if ($avgSpiciness >= 0.84) {
 		$badges[] = ["icon" => "🌶️", "label" => "Spice Lord"];
 	}
 	$fullBio = $user["bio"] ?? "";
