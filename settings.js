@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () =>
 	avatarUrlInput.addEventListener('input', () =>
 	{
 		avatarMode.value = 'url';
-		preview(avatarUrlInput.value);
+		preview(avatarUrlInput.value.trim());
 	});
 	const update = () =>
 	{

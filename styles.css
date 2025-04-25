@@ -1809,6 +1809,11 @@ body.light-theme .category-pill.active
 	margin: 0.75rem 0;
 }
 
+#dropZone.dragging
+{
+	border: 0.125rem dashed var(--accent);
+}
+
 select option
 {
 	background-color: var(--dark);
