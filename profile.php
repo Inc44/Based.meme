@@ -248,7 +248,7 @@ WHERE
 			true
 		):
 			$badges[] = [
-				"icon" => "🌱",
+				"icon" => "🍀",
 				"label" => "Touch Grass Reminder",
 				"description" => "Seriously, go outside once in a while",
 			];
@@ -304,12 +304,6 @@ WHERE
 			];
 			break;
 	}
-	$stats["cringe_count"] >= 228 &&
-		($badges[] = [
-			"icon" => "💩",
-			"label" => "Professional Shitposter",
-			"description" => "Quality? Who needs that when you have quantity",
-		]);
 	switch (true) {
 		case $stats["followers"] >= 1000:
 			$badges[] = [
@@ -320,57 +314,10 @@ WHERE
 			break;
 		case $stats["followers"] >= 1:
 			$badges[] = [
-				"icon" => "💪",
+				"icon" => "☠️",
 				"label" => "Welcome to the club",
 				"description" => "Got your first follower!",
 			];
-			break;
-	}
-	switch (true) {
-		case $stats["likes"] >= 100000:
-			$badges[] = [
-				"icon" => "💎",
-				"label" => "Maximum Rizz - 100K+ Likes",
-			];
-			break;
-		case $stats["likes"] >= 50000:
-			$badges[] = ["icon" => "🤴", "label" => "Gigachad"];
-			break;
-		case $stats["likes"] >= 25000:
-			$badges[] = ["icon" => "🌟", "label" => "Celebrity"];
-			break;
-		case $stats["likes"] >= 10000:
-			$badges[] = ["icon" => "🔥", "label" => "Adorable"];
-			break;
-		case $stats["likes"] >= 5000:
-			$badges[] = [
-				"icon" => "👍",
-				"label" => "Almost Famous",
-			];
-			break;
-		case $stats["likes"] >= 1000:
-			$badges[] = ["icon" => "⭐", "label" => "Rising Star"];
-			break;
-		case $stats["likes"] >= 500:
-			$badges[] = [
-				"icon" => "😊",
-				"label" => "Friendly Face",
-			];
-			break;
-		case $stats["likes"] >= 100:
-			$badges[] = [
-				"icon" => "💯",
-				"label" => "A Bit Noticed",
-			];
-			break;
-		case $stats["likes"] >= 50:
-			$badges[] = [
-				"icon" => "😉",
-				"label" => "Barely Buzzing",
-			];
-			break;
-		case $stats["likes"] >= 10:
-			$badges[] = ["icon" => "👶", "label" => "Just Started"];
 			break;
 	}
 	switch (true) {
@@ -381,7 +328,7 @@ WHERE
 			];
 			break;
 		case $stats["meme_count"] >= 7500:
-			$badges[] = ["icon" => "👑", "label" => "Legend"];
+			$badges[] = ["icon" => "🐐", "label" => "Legend"];
 			break;
 		case $stats["meme_count"] >= 5000:
 			$badges[] = [
@@ -409,7 +356,7 @@ WHERE
 			break;
 		case $stats["meme_count"] >= 1000:
 			$badges[] = [
-				"icon" => "🚫",
+				"icon" => "🫵",
 				"label" => "Point of No Return",
 			];
 			break;
@@ -421,7 +368,7 @@ WHERE
 			break;
 		case $stats["meme_count"] >= 750:
 			$badges[] = [
-				"icon" => "💪",
+				"icon" => "🦾",
 				"label" => "Not Even My Final Form",
 			];
 			break;
@@ -457,7 +404,7 @@ WHERE
 			break;
 		case $stats["meme_count"] >= 100:
 			$badges[] = [
-				"icon" => "💪",
+				"icon" => "🏋",
 				"label" => "My Powers Grow",
 			];
 			break;
@@ -472,9 +419,62 @@ WHERE
 			break;
 	}
 	switch (true) {
+		case $stats["likes"] >= 100000:
+			$badges[] = [
+				"icon" => "💎",
+				"label" => "Maximum Rizz - 100K+ Likes",
+			];
+			break;
+		case $stats["likes"] >= 50000:
+			$badges[] = ["icon" => "🤴", "label" => "Gigachad"];
+			break;
+		case $stats["likes"] >= 25000:
+			$badges[] = ["icon" => "🌟", "label" => "Celebrity"];
+			break;
+		case $stats["likes"] >= 10000:
+			$badges[] = ["icon" => "🤑", "label" => "Adorable"];
+			break;
+		case $stats["likes"] >= 5000:
+			$badges[] = [
+				"icon" => "👍",
+				"label" => "Almost Famous",
+			];
+			break;
+		case $stats["likes"] >= 1000:
+			$badges[] = ["icon" => "⭐", "label" => "Rising Star"];
+			break;
+		case $stats["likes"] >= 500:
+			$badges[] = [
+				"icon" => "😊",
+				"label" => "Friendly Face",
+			];
+			break;
+		case $stats["likes"] >= 100:
+			$badges[] = [
+				"icon" => "📎",
+				"label" => "A Bit Noticed",
+			];
+			break;
+		case $stats["likes"] >= 50:
+			$badges[] = [
+				"icon" => "😉",
+				"label" => "Barely Buzzing",
+			];
+			break;
+		case $stats["likes"] >= 10:
+			$badges[] = ["icon" => "👶", "label" => "Just Started"];
+			break;
+	}
+	$stats["cringe_count"] >= 228 &&
+		($badges[] = [
+			"icon" => "💩",
+			"label" => "Professional Shitposter",
+			"description" => "Quality? Who needs that when you have quantity",
+		]);
+	switch (true) {
 		case $stats["based_count"] >= 9000:
 			$badges[] = [
-				"icon" => "💪",
+				"icon" => "🥇",
 				"label" => "It's over 9000",
 			];
 			break;
@@ -509,6 +509,21 @@ WHERE
 			"description" =>
 				"You either love them or hate them, there is no in-between",
 		];
+	}
+	switch (true) {
+		case $stats["comments"] >= 50000:
+			$badges[] = [
+				"icon" => "💵",
+				"label" => "You bought them",
+			];
+			break;
+		case $stats["comments"] >= 500:
+			$badges[] = [
+				"icon" => "🫰",
+				"label" => "Social Squeezer",
+				"description" => "Pinching out those top‐tier replies!",
+			];
+			break;
 	}
 	if ($avgSpiciness >= 0.84) {
 		$badges[] = ["icon" => "🌶️", "label" => "Spice Lord"];
