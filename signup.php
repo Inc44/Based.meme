@@ -88,9 +88,9 @@ WHERE
 			if ($stmt->fetch()) {
 				$errors["email"] = "Email already in use. Nice try.";
 			}
-		} catch (PDOException $e) {
-			error_log("Signup Check Error: " . $e->getMessage());
+		} catch (\PDOException $e) {
 			$errors["db"] = "Validation broke. Blame the server. Try again.";
+		} catch (\Exception $e) {
 		}
 	}
 	if (empty($errors)) {
@@ -143,10 +143,12 @@ VALUES
 			]);
 			header("Location: login.html?signup=success");
 			exit();
-		} catch (PDOException $e) {
-			error_log("Signup Insert Error: " . $e->getMessage());
+		} catch (\PDOException $e) {
 			$_SESSION["signup_error"] =
 				"Registration failed. Server's drunk. Retry.";
+			header("Location: signup.html");
+			exit();
+		} catch (\Exception $e) {
 			header("Location: signup.html");
 			exit();
 		}

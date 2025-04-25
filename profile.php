@@ -121,17 +121,40 @@ WHERE
 SELECT
 	COUNT(*) AS meme_count,
 	COALESCE(SUM(like_count), 0) AS likes,
-	COALESCE(SUM(comment_count), 0) AS comments,
+	COALESCE(SUM(dislike_count), 0) AS cringe_count,
 	COALESCE(SUM(upvote_count), 0) AS based_count,
-	COALESCE(SUM(dislike_count), 0) AS cringe_count
+	COALESCE(SUM(comment_count), 0) AS comments,
+	(
+		SELECT
+			COUNT(*)
+		FROM
+			follows
+		WHERE
+			following_id = ?
+	) AS followers
 FROM
 	memes
 WHERE
 	user_id = ?
 	AND status = 'published'
 	");
-	$stmt->execute([$user["user_id"]]);
+	$stmt->execute([$user["user_id"], $user["user_id"]]);
 	$stats = $stmt->fetch();
+	if ($viewerId) {
+		$stmt = $pdo->prepare("
+SELECT
+	COUNT(*)
+FROM
+	follows
+WHERE
+	follower_id = ?
+	AND following_id = ?
+		");
+		$stmt->execute([$viewerId, $user["user_id"]]);
+		$isFollowing = $stmt->fetchColumn() > 0;
+	} else {
+		$isFollowing = false;
+	}
 	$visibilityFilter = $isOwner ? "" : " AND visibility='public'";
 	$stmt = $pdo->prepare("
 SELECT
@@ -287,6 +310,22 @@ WHERE
 			"label" => "Professional Shitposter",
 			"description" => "Quality? Who needs that when you have quantity",
 		]);
+	switch (true) {
+		case $stats["followers"] >= 1000:
+			$badges[] = [
+				"icon" => "💪",
+				"label" => "Dungeon Master",
+				"description" => "You must be doing something right",
+			];
+			break;
+		case $stats["followers"] >= 1:
+			$badges[] = [
+				"icon" => "💪",
+				"label" => "Welcome to the club",
+				"description" => "Got your first follower!",
+			];
+			break;
+	}
 	switch (true) {
 		case $stats["likes"] >= 100000:
 			$badges[] = [
@@ -482,6 +521,9 @@ WHERE
 	$pronounsLabel = resolveLabel($user["pronouns"], $pronounsOptions);
 	$grassLabel = resolveLabel($user["touch_grass"], $grassOptions);
 } catch (\PDOException $e) {
+	throw $e;
+	exit();
+} catch (\Exception $e) {
 	throw $e;
 	exit();
 }

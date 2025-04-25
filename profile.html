@@ -31,13 +31,19 @@
 					<h2><?= htmlspecialchars($user['display_name'] ?: $user['handle']) ?></h2>
 					<p class="handle">@<?= htmlspecialchars($user['handle']) ?></p><?php if ($fullBio): ?><p class="bio-text" data-full="<?= htmlspecialchars($fullBio) ?>"><?= htmlspecialchars($shortBio) ?></p><?php if ($needsToggle): ?><button class="bio-toggle btn-small">Show more</button><?php endif; ?><?php endif; ?>
 				</div>
-			</div><?php if ($isOwner): ?><a class="btn btn-post" href="settings.php">Edit Profile</a><?php endif; ?>
+			</div><?php if (!$isOwner): ?><form action="follow.php" method="POST" class="follow-form">
+				<input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
+				<button type="submit" class="btn <?= $isFollowing ? 'btn-unfollow' : 'btn-follow' ?>"><?= $isFollowing ? 'Unfollow' : 'Follow' ?></button>
+			</form><?php endif; ?><?php if ($isOwner): ?><a class="btn btn-post" href="settings.php">Edit Profile</a><?php endif; ?>
 		</section>
 		<section class="profile-stats">
+			<div class="stat"><span class="stat-num"><?= $stats['followers'] ?></span> stalkers</div>
 			<div class="stat"><span class="stat-num"><?= $stats['meme_count'] ?></span> memes</div>
 			<div class="stat"><span class="stat-num"><?= $stats['likes'] ?></span> likes</div>
+			<div class="stat"><span class="stat-num"><?= $stats['based_count'] ?></span> popularity</div>
 			<div class="stat"><span class="stat-num"><?= $stats['comments'] ?></span> comments</div>
-			<div class="stat"><span class="stat-num"><?= $avgSpiciness ?></span> avg 🌶️</div>
+			<div class="stat"><span class="stat-num"><?= $stats['cringe_count'] ?></span> cringes 💩</div>
+			<div class="stat"><span class="stat-num"><?= $avgSpiciness ?></span> avg 🌶️</div>
 		</section><?php if ($badges): ?><section class="profile-badges"><?php foreach ($badges as $badge): ?><span class="pill" title="<?= htmlspecialchars($badge['label']) ?>"><?= $badge['icon'] ?> <?= htmlspecialchars($badge['label']) ?></span><?php endforeach; ?></section><?php endif; ?><?php if (!$isPrivate): ?><section class="profile-info">
 			<h3>About</h3>
 			<dl class="info-list">

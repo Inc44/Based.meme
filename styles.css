@@ -175,7 +175,9 @@ nav
 	padding: 0.4rem 0.8rem;
 }
 
-.btn-post
+.btn-post,
+.btn-follow,
+.btn-unfollow
 {
 	background-color: var(--accent);
 	color: white;
@@ -184,6 +186,11 @@ nav
 .btn-post:hover
 {
 	background-color: var(--accent-dark);
+}
+
+.btn-unfollow
+{
+	background-color: var(--warning);
 }
 
 #themeToggle,
