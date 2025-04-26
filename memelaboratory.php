@@ -1,6 +1,18 @@
 <?php
 require_once "db_connect.php";
 session_start();
+function yid(int $size = 11): string
+{
+	return implode(
+		"",
+		array_map(
+			fn() => "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"[
+				random_int(0, 63)
+			],
+			range(1, $size)
+		)
+	);
+}
 if (!isset($_SESSION["user_id"])) {
 	header("Location: login.html");
 	exit();
@@ -44,18 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["upload_errors"] = $errors;
 		header("Location: memelaboratory.php");
 		exit();
-	}
-	function yid(int $size = 11): string
-	{
-		return substr(
-			str_replace(
-				["=", "+", "/"],
-				"",
-				base64_encode(random_bytes($size))
-			),
-			0,
-			$size
-		);
 	}
 	$memeId = yid();
 	$uploadId = yid();

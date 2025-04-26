@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once "db_connect.php";
+session_start();
 function addOrdinalSuffix(int $day): string
 {
 	$remainder = $day % 100;

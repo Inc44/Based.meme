@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="meme.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+	<title>Meme - Based.meme</title>
+	<script src="theme.js"></script>
+	<script src="meme.js"></script>
+</head>
+
+<body id="top">
+	<header>
+		<div class="logo">
+			<a href="index.php">
+				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+			</a>
+		</div>
+		<nav>
+			<button id="themeToggle">🌙</button><?php if (isset($_SESSION["user_id"])): ?><a href="profile.php" class="btn btn-login">Profile</a>
+			<a href="logout.php" class="btn btn-signup">Logout</a><?php else: ?><a href="login.html" class="btn btn-login">Login</a>
+			<a href="signup.html" class="btn btn-signup">Sign Up</a><?php endif; ?>
+		</nav>
+	</header>
+	<main class="meme-page">
+		<article class="meme-full">
+			<div class="meme-full-image"><?php if (!empty($meme["media_url"])): ?><img src="<?= htmlspecialchars($meme['media_url']) ?>" alt="<?= htmlspecialchars($meme['title']) ?>"><?php else: ?><div class="placeholder-image" data-text="Meme Not Found"></div><?php endif; ?></div>
+			<section class="meme-meta">
+				<h2><?= htmlspecialchars($meme['title']) ?></h2>
+				<div class="user-greeting">
+					<div class="user-avatar"><?php if (!empty($meme["avatar"])): ?><img src="<?= htmlspecialchars($meme["avatar"]) ?>" alt="<?= htmlspecialchars($meme["display_name"] ?: $meme["handle"]) ?>"> <?php else: ?> <?= htmlspecialchars(substr($meme["handle"], 0, 1)) ?><?php endif; ?></div>
+					<div class="user-welcome">
+						<h3><a href="profile.php?handle=<?= urlencode($meme['handle']) ?>">@<?= htmlspecialchars($meme['handle']) ?></a></h3>
+						<p>Member since <?= htmlspecialchars($joinDateFormatted) ?> • Level: Basic Degenerate</p>
+					</div>
+				</div><?php if (!empty($tags)): ?><ul class="tag-list"><?php foreach ($tags as $tag): ?><li class="tag"><?= htmlspecialchars($tag['name']) ?></li><?php endforeach; ?></ul><?php endif; ?><?php if (isset($_SESSION["user_id"])): ?><form method="post" class="action-bar">
+					<input type="hidden" name="action" value="">
+					<button type="submit" class="pill <?= $flags['liked'] ? 'active' : '' ?>" onclick="this.form.action.value='liked'">❤️ Like (<?= $meme['like_count'] ?>)</button>
+					<button type="submit" class="pill <?= $flags['cringe'] ? 'active' : '' ?>" onclick="this.form.action.value='cringe'">👎 Cringe (<?= $meme['dislike_count'] ?>)</button>
+					<button type="submit" class="pill <?= $flags['based'] ? 'active' : '' ?>" onclick="this.form.action.value='based'">👍 Based (<?= $meme['upvote_count'] ?>)</button>
+					<button type="submit" class="pill <?= $flags['steal'] ? 'active' : '' ?>" onclick="this.form.action.value='steal'">💾 Steal (<?= $meme['saved_count'] ?>)</button>
+				</form><?php else: ?><div class="action-bar">
+					<a href="login.html" class="pill">❤️ Like (<?= $meme['like_count'] ?>)</a>
+					<a href="login.html" class="pill">👎 Cringe (<?= $meme['dislike_count'] ?>)</a>
+					<a href="login.html" class="pill">👍 Based (<?= $meme['upvote_count'] ?>)</a>
+					<a href="login.html" class="pill">💾 Steal (<?= $meme['saved_count'] ?>)</a>
+				</div><?php endif; ?><div class="extra-actions">
+					<button class="pill share-btn" onclick="copyLink()">📋 Copy link</button>
+					<a class="pill warn" href="contact.html?category=report&content_type=meme&id=<?= $memeId ?>">🚩 Report</a><?php if ($isOwner): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete this meme forever?');">
+						<input type="hidden" name="action" value="delete_meme">
+						<button type="submit" class="pill danger">🗑️ Delete</button>
+					</form> <?php endif; ?>
+				</div>
+			</section>
+		</article>
+		<section class="comments">
+			<h3>Comments (<?= $meme['comment_count'] ?>)</h3><?php if (isset($_SESSION['user_id'])): ?><form class="comment-form" method="post">
+				<input type="hidden" name="action" value="comment">
+				<textarea name="comment" required placeholder="Drop your wisdom"></textarea>
+				<button type="submit" class="btn btn-small btn-cta">💬 Comment</button>
+			</form><?php else: ?><p class="comment-login"><a href="login.html">Login</a> to participate.</p><?php endif; ?><div class="comment-tree"><?php $renderComments = function ($nodes, $depth = 0) use (&$renderComments) { foreach ($nodes as $comment): ?><div class="comment node-depth-<?= $depth ?>">
+					<div class="comment-author">
+						<strong>
+							<a href="profile.php?handle=<?= urlencode($comment['handle']) ?>">@<?= htmlspecialchars($comment['handle']) ?></a>
+						</strong>
+						<span class="time"><?= date('Y-m-d H:i', strtotime($comment['created_at'])) ?></span>
+					</div>
+					<p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+					<div class="small-actions"> <?php if (isset($_SESSION['user_id'])): ?> <button type="button" class="btn btn-small" onclick="toggleReply('reply-<?= $comment['comment_id'] ?>')">↩️ Reply</button><?php if ((int)$_SESSION['user_id'] === (int)$comment['user_id']): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete comment?');">
+							<input type="hidden" name="action" value="delete_comment">
+							<input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
+							<button type="submit" class="btn btn-small danger">🗑️ Delete</button>
+						</form><?php endif; ?><?php endif; ?></div><?php if (isset($_SESSION['user_id'])): ?><form id="reply-<?= $comment['comment_id'] ?>" class="reply-form hidden" method="post">
+						<input type="hidden" name="action" value="comment">
+						<input type="hidden" name="parent_id" value="<?= $comment['comment_id'] ?>">
+						<textarea name="comment" required placeholder="Reply…"></textarea>
+						<button type="submit" class="btn btn-small">Post Reply</button>
+					</form><?php endif; ?><?php $renderComments($comment['children'], $depth + 1); ?>
+				</div><?php endforeach; }; $renderComments($tree); ?></div>
+		</section>
+		<section class="similar">
+			<div class="section-header">
+				<h3>Similar Brainrot</h3>
+				<a href="trending.php" class="section-link">See more</a>
+			</div>
+			<div class="meme-grid"><?php foreach ($similarMemes as $similarMeme): ?><a href="meme.php?id=<?= htmlspecialchars($similarMeme['meme_id']) ?>" class="meme-card-link">
+					<div class="meme-card">
+						<div class="meme-image"><?php if (!empty($similarMeme["media_url"])): ?><img src="<?= htmlspecialchars($similarMeme["media_url"]) ?>" alt="<?= htmlspecialchars($similarMeme["title"]) ?>"><?php else: ?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif; ?><div class="creator-badge">@<?= htmlspecialchars($similarMeme["creator"]) ?></div>
+						</div>
+						<div class="meme-info">
+							<h4><?= htmlspecialchars($similarMeme["title"]) ?></h4>
+							<div class="tag-list"><?php foreach (array_slice($similarMeme["tags"] ?? [], 0, 4) as $tag): ?><span class="tag"><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
+							<div class="meme-stats">
+								<span>❤️ <?= number_format($similarMeme["like_count"] ?? 0) ?></span>
+								<span>💬 <?= number_format($similarMeme["comment_count"] ?? 0) ?></span>
+							</div>
+						</div>
+					</div>
+				</a><?php endforeach; ?></div>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed</p>
+			<a href="#top" id="scrollToTop">⬆️</a>
+		</div>
+	</footer>
+</body>
+
+</html>
