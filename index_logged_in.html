@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="user-actions">
-				<a href="create.php" class="btn btn-small btn-post">Post Meme</a>
+				<a href="create.php" class="btn btn-small accent-bg">Post Meme</a>
 			</div>
 		</div>
 		<form method="get" action="index.php" class="categories"><?php foreach($categories as $category):?><button type="submit" name="category" value="<?php echo htmlspecialchars($category['slug']);?>" class="category-pill <?php echo $category['isActive']?'active':'';?>"><?php echo $category['icon'];?> <?php echo htmlspecialchars($category['name']);?></button><?php endforeach;?></form>

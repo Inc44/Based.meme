@@ -53,6 +53,36 @@ body.light-theme
 	--details-pre-bg: rgba(0, 0, 0, 0.05);
 }
 
+.accent-bg
+{
+	background-color: var(--accent);
+}
+
+.accent-bg:hover
+{
+	background-color: var(--accent-dark);
+}
+
+.primary-bg
+{
+	background-color: var(--primary);
+}
+
+.primary-bg:hover
+{
+	background-color: var(--primary-dark);
+}
+
+.secondary-bg
+{
+	background-color: var(--secondary);
+}
+
+.warning-bg
+{
+	background-color: var(--warning);
+}
+
 *
 {
 	margin: 0;
@@ -173,24 +203,7 @@ nav
 {
 	font-size: 0.9rem;
 	padding: 0.4rem 0.8rem;
-}
-
-.btn-post,
-.btn-follow,
-.btn-unfollow
-{
-	background-color: var(--accent);
 	color: white;
-}
-
-.btn-post:hover
-{
-	background-color: var(--accent-dark);
-}
-
-.btn-unfollow
-{
-	background-color: var(--warning);
 }
 
 #themeToggle,

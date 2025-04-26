@@ -221,8 +221,8 @@ SELECT
 	u.avatar,
 	u.joined_at
 FROM
-	memes m
-	JOIN users u ON u.user_id = m.user_id
+	memes AS m
+	JOIN users AS u ON u.user_id = m.user_id
 WHERE
 	m.meme_id = ?
 	AND m.status = "published"
@@ -243,8 +243,8 @@ SELECT
 	t.tag_id,
 	t.name
 FROM
-	meme_tags mt
-	JOIN tags t ON t.tag_id = mt.tag_id
+	meme_tags AS mt
+	JOIN tags AS t ON t.tag_id = mt.tag_id
 WHERE
 	mt.meme_id = ?
 	");
@@ -287,8 +287,8 @@ SELECT
 	u.display_name,
 	u.avatar
 FROM
-	comments c
-	JOIN users u ON u.user_id = c.user_id
+	comments AS c
+	JOIN users AS u ON u.user_id = c.user_id
 WHERE
 	c.meme_id = ?
 ORDER BY
@@ -334,9 +334,9 @@ SELECT
 		END
 	) AS tag_score
 FROM
-	memes m
-	JOIN users u ON u.user_id = m.user_id
-	LEFT JOIN meme_tags mt ON mt.meme_id = m.meme_id
+	memes AS m
+	JOIN users AS u ON u.user_id = m.user_id
+	LEFT JOIN meme_tags AS mt ON mt.meme_id = m.meme_id
 WHERE
 	m.meme_id <> ?
 	AND m.status = 'published'
@@ -378,8 +378,8 @@ SELECT
 	m.comment_count,
 	u.handle as creator
 FROM
-	memes m
-	JOIN users u ON u.user_id = m.user_id
+	memes AS m
+	JOIN users AS u ON u.user_id = m.user_id
 WHERE
 	m.meme_id NOT IN ($excludeList)
 	AND m.status = 'published'
@@ -417,8 +417,8 @@ LIMIT
 SELECT
 	t.name
 FROM
-	tags t
-	JOIN meme_tags mt ON t.tag_id = mt.tag_id
+	tags AS t
+	JOIN meme_tags AS mt ON t.tag_id = mt.tag_id
 WHERE
 	mt.meme_id = ?
 			");

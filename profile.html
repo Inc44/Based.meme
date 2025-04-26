@@ -33,8 +33,8 @@
 				</div>
 			</div><?php if (!$isOwner): ?><form action="follow.php" method="POST" class="follow-form">
 				<input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
-				<button type="submit" class="btn <?= $isFollowing ? 'btn-unfollow' : 'btn-follow' ?>"><?= $isFollowing ? 'Unfollow' : 'Follow' ?></button>
-			</form><?php endif; ?><?php if ($isOwner): ?><a class="btn btn-post" href="settings.php">Edit Profile</a><?php endif; ?>
+				<button type="submit" class="btn btn-small <?= $isFollowing ? 'warning-bg' : 'accent-bg' ?>"><?= $isFollowing ? 'Unfollow' : 'Follow' ?></button>
+			</form><?php endif; ?><?php if ($isOwner): ?><a class="btn btn-small accent-bg" href="settings.php">Edit Profile</a><?php endif; ?>
 		</section>
 		<section class="profile-stats">
 			<div class="stat"><span class="stat-num"><?= $stats['followers'] ?></span> stalkers</div>
