@@ -14,14 +14,16 @@ document.addEventListener('DOMContentLoaded', () =>
 		placeholder.style.display = 'none';
 		overlay.style.display = 'none';
 	};
-	memeInput.addEventListener('change', () =>
+	const handleFile = (file) =>
 	{
-		if (!memeInput.files.length) return;
-		const file = memeInput.files[0];
 		const fileReader = new FileReader();
 		fileReader.onload = () => preview(fileReader.result);
 		fileReader.readAsDataURL(file);
 		memeUrlInput.value = '';
+	};
+	memeInput.addEventListener('change', () =>
+	{
+		if (memeInput.files.length) handleFile(memeInput.files[0]);
 	});
 	['dragenter', 'dragover'].forEach((eventName) => memeDrop.addEventListener(eventName, (event) =>
 	{
@@ -35,22 +37,29 @@ document.addEventListener('DOMContentLoaded', () =>
 	}));
 	memeDrop.addEventListener('drop', (event) =>
 	{
-		if (!event.dataTransfer.files.length) return;
-		memeInput.files = event.dataTransfer.files;
-		const fileReader = new FileReader();
-		fileReader.onload = () => preview(fileReader.result);
-		fileReader.readAsDataURL(event.dataTransfer.files[0]);
-		memeUrlInput.value = '';
+		if (event.dataTransfer.files.length)
+		{
+			memeInput.files = event.dataTransfer.files;
+			handleFile(event.dataTransfer.files[0]);
+		}
 	});
 	document.addEventListener('paste', (event) =>
 	{
-		if (event.clipboardData?.files.length)
+		if (event.clipboardData.files.length)
 		{
 			memeInput.files = event.clipboardData.files;
-			const fileReader = new FileReader();
-			fileReader.onload = () => preview(fileReader.result);
-			fileReader.readAsDataURL(event.clipboardData.files[0]);
-			memeUrlInput.value = '';
+			handleFile(event.clipboardData.files[0]);
+		}
+		else
+		{
+			const url = event.clipboardData.getData('text')
+				.trim();
+			if (url)
+			{
+				preview(url);
+				memeInput.value = '';
+				memeUrlInput.value = url;
+			}
 		}
 	});
 	memeUrlInput.addEventListener('input', () =>
