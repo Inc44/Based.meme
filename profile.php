@@ -111,7 +111,7 @@ WHERE
 	$stmt->execute([$handle]);
 	$user = $stmt->fetch();
 	if (!$user) {
-		header("Location: 404.html");
+		header("Location: 404.php");
 		exit();
 	}
 	$viewerId = $_SESSION["user_id"] ?? null;

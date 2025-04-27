@@ -15,7 +15,7 @@ function yid(int $size = 11): string
 }
 $memeId = $_GET["id"] ?? null;
 if (!$memeId) {
-	header("Location: 404.html");
+	header("Location: 404.php");
 	exit();
 }
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -230,7 +230,7 @@ WHERE
 	$stmt->execute([$memeId]);
 	$meme = $stmt->fetch();
 	if (!$meme) {
-		header("Location: 404.html");
+		header("Location: 404.php");
 		exit();
 	}
 	$joinDate = new DateTime($meme["joined_at"] ?? date("Y-m-d H:i:s"));
