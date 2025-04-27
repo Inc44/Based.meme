@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () =>
 	const memeDrop = document.getElementById('dropZone');
 	const memePreview = document.getElementById('preview');
 	const memeUrlInput = document.getElementById('memeUrlInput');
-	const memeMode = document.getElementById('memeMode');
 	const placeholder = memeDrop?.querySelector('.placeholder-image-desc');
 	const overlay = memeDrop?.querySelector('.locked-overlay');
 	const preview = (src) =>
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () =>
 		const fileReader = new FileReader();
 		fileReader.onload = () => preview(fileReader.result);
 		fileReader.readAsDataURL(file);
-		memeMode.value = 'file';
+		memeUrlInput.value = '';
 	});
 	['dragenter', 'dragover'].forEach((eventName) => memeDrop.addEventListener(eventName, (event) =>
 	{
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () =>
 		const fileReader = new FileReader();
 		fileReader.onload = () => preview(fileReader.result);
 		fileReader.readAsDataURL(event.dataTransfer.files[0]);
-		memeMode.value = 'file';
+		memeUrlInput.value = '';
 	});
 	document.addEventListener('paste', (event) =>
 	{
@@ -51,12 +50,16 @@ document.addEventListener('DOMContentLoaded', () =>
 			const fileReader = new FileReader();
 			fileReader.onload = () => preview(fileReader.result);
 			fileReader.readAsDataURL(event.clipboardData.files[0]);
-			memeMode.value = 'file';
+			memeUrlInput.value = '';
 		}
 	});
 	memeUrlInput.addEventListener('input', () =>
 	{
-		memeMode.value = 'url';
-		preview(memeUrlInput.value.trim());
+		const url = memeUrlInput.value.trim();
+		if (url)
+		{
+			preview(url);
+			memeInput.value = '';
+		}
 	});
 });
