@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () =>
 		{
 			const url = event.clipboardData.getData('text')
 				.trim();
-			if (url)
+			if (url && (url.startsWith('http://') || url.startsWith('https://')))
 			{
 				preview(url);
 				memeInput.value = '';
