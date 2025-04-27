@@ -12,14 +12,14 @@
 <body id="top">
 	<header>
 		<div class="logo">
-			<a href="index.html">
+			<a href="index.php">
 				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
 			</a>
 		</div>
 		<nav>
-			<button id="themeToggle">🌙</button>
-			<a href="login.html" class="btn btn-login">Login</a>
-			<a href="signup.html" class="btn btn-signup">Sign Up</a>
+			<button id="themeToggle">🌙</button><?php if (isset($_SESSION["user_id"])): ?><a href="profile.php" class="btn btn-login">Profile</a>
+			<a href="logout.php" class="btn btn-signup">Logout</a><?php else: ?><a href="login.html" class="btn btn-login">Login</a>
+			<a href="signup.html" class="btn btn-signup">Sign Up</a><?php endif; ?>
 		</nav>
 	</header>
 	<main>
@@ -33,32 +33,32 @@
 					<form class="contact-form" action="contact.php" method="POST">
 						<div class="form-group">
 							<label for="name">Your Internet Alias</label>
-							<input type="text" id="name" name="name" placeholder="Cristian">
+							<input type="text" id="name" name="name" required placeholder="Cristian" value="<?=htmlspecialchars($prefillName)?>">
 						</div>
 						<div class="form-group">
 							<label for="email">Email (we promise not to sell it)</label>
-							<input type="email" id="email" name="email" placeholder="not_example@example.com">
+							<input type="email" id="email" name="email" required placeholder="not_example@example.com" value="<?=htmlspecialchars($prefillEmail)?>">
 						</div>
 						<div class="form-group">
 							<label for="category">What's your damage?</label>
-							<select id="category" name="category">
-								<option value="bug">Something's Broken</option>
-								<option value="report">Someone's Being Mean</option>
-								<option value="suggestion">I Have Big Brain Ideas</option>
-								<option value="collab">Let's Make Content Together</option>
-								<option value="other">Other Incoherent Ramblings</option>
+							<select id="category" name="category" required>
+								<option value="bug" <?=$reason==='bug'?'selected':''?>>Something's Broken</option>
+								<option value="report" <?=$reason==='report'?'selected':''?>>Someone's Being Mean</option>
+								<option value="suggestion" <?=$reason==='suggestion'?'selected':''?>>I Have Big Brain Ideas</option>
+								<option value="collab" <?=$reason==='collab'?'selected':''?>>Let's Make Content Together</option>
+								<option value="other" <?=$reason==='other'?'selected':''?>>Other Incoherent Ramblings</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="message">Spill the Tea</label>
-							<textarea id="message" name="message" rows="5" placeholder="Be as verbose as you like. We're not actually going to read this."></textarea>
+							<textarea id="message" name="message" required rows="5" placeholder="Be as verbose as you like. We're not actually going to read this."></textarea>
 						</div>
 						<div class="form-group">
 							<label for="captcha">Prove you're not a normie</label>
 							<div class="captcha-container">
 								<p class="captcha-question">Complete the meme: "Sir, this is a _____ __ ____."</p>
 							</div>
-							<input type="text" id="captcha" name="captcha" placeholder="The answer is obvious">
+							<input type="text" id="captcha" name="captcha" placeholder="The answer is obvious" required>
 						</div>
 						<button type="submit" class="btn btn-cta">Send It</button>
 					</form>
@@ -103,7 +103,7 @@
 				<a href="about.html">About</a>
 				<a href="privacy_policy.html">Privacy Policy</a>
 				<a href="terms_of_service.html">Terms of Service</a>
-				<a href="contact.html">Contact</a>
+				<a href="contact.php">Contact</a>
 			</div>
 			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed.</p>
 			<a href="#top" id="scrollToTop">⬆️</a>
