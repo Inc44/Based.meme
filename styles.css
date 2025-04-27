@@ -2065,6 +2065,70 @@ body.light-theme .category-pill.active
 	display: inline;
 }
 
+.error-section
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 70vh;
+	text-align: center;
+}
+
+.error-container
+{
+	background-color: var(--card-bg);
+	border-radius: 0.5rem;
+	padding: 3rem;
+	width: 40rem;
+	box-shadow: var(--card-shadow);
+	position: relative;
+}
+
+.error-monkey
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('monkey/monkey_svgo.svg') no-repeat center center;
+	background-size: contain;
+	opacity: 0.42;
+}
+
+.error-code
+{
+	font-family: "VT323", monospace;
+	font-size: 8rem;
+	color: var(--accent);
+	text-shadow: 0.25rem 0.25rem 0 var(--secondary);
+	position: relative;
+}
+
+.error-message
+{
+	font-family: "Permanent Marker", cursive;
+	font-size: 2rem;
+	color: var(--secondary);
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+.error-subtitle
+{
+	color: var(--text-secondary);
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+.error-actions
+{
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	position: relative;
+}
+
 select option
 {
 	background-color: var(--dark);
