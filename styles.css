@@ -2142,6 +2142,158 @@ body.light-theme select option
 	color: var(--text-primary);
 }
 
+.main-aby
+{
+	align-items: center;
+	text-align: center;
+	background: var(--body-bg);
+	background-color: var(--darker);
+	align-items: center;
+}
+
+.sec-aby
+{
+	background-color: var(--card-bg);
+	border-radius: 0.5rem;
+	padding: 2rem;
+	box-shadow: var(--card-shadow);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	align-items: center;
+}
+
+.btn-aby
+{
+	display: inline-block;
+	padding: 0.6rem 1.2rem;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	font-weight: bold;
+	transition: var(--transition-standard);
+	border: 0.125rem solid transparent;
+	align-items: center;
+	width: 31.25rem;
+}
+
+.inpu-cta
+{
+	background-color: var(--dark);
+	color: white;
+	padding: 0.8rem 2rem;
+	font-size: 1.1rem;
+	align-items: center;
+}
+
+.inpu-cta:hover
+{
+	background-color: #d400d4;
+	transform: translateY(-0.125rem);
+	box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 255, 0.4);
+}
+
+.formulaire-aby
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-column: 1 / -1;
+}
+
+.formabyss h1
+{
+	width: 18.75rem;
+	color: var(--light);
+}
+
+.formabyss
+{
+	width: 100%;
+	max-width: 31.25rem;
+	text-align: center;
+	color: blue;
+	/* ça agit sur les balises type h1, p, span... */
+}
+
+.result-grid
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	/* Deux colonnes de taille égale */
+	gap: 1.25rem;
+	/* Espacement entre les colonnes */
+	margin-top: 1.25rem;
+	color: var(--light);
+	background-color: var(--dark);
+}
+
+.result-id,
+.result-tag
+{
+	padding: 1.25rem;
+	border: 0.0625rem solid var(--border-color);
+	border-radius: 0.5rem;
+	gap: 2rem;
+	max-width: 75rem;
+	margin: 0 auto;
+}
+
+.result-id h2,
+.result-tag h2
+{
+	text-align: center;
+}
+
+.result-id img,
+.result-tag img
+{
+	max-width: 100%;
+	height: auto;
+}
+
+.affichage-titre
+{
+	font-size: 1.5rem;
+	margin-bottom: 0.3125rem;
+}
+
+.affichage-id
+{
+	font-size: 1.5rem;
+	margin-bottom: 0.3125rem;
+}
+
+.meme-grid-aby
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 2rem;
+	max-width: 75rem;
+	margin: 0 auto;
+}
+
+.meme-info-id
+{
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 1rem;
+	font-size: 1.875rem;
+}
+
+.meme-stats-id
+{
+	display: flex;
+	justify-content: space-between;
+	color: var(--text-muted);
+	font-size: 1.6rem;
+}
+
+.meme-tag-container p
+{
+	display: block;
+	margin-bottom: 0.5rem;
+	color: var(--text-secondary);
+}
+
 @keyframes gradient
 {
 
