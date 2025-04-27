@@ -316,31 +316,31 @@ VALUES
 UPDATE
 	usage_count = usage_count + 1;
 INSERT INTO
-	`users` (
-		`user_id`,
-		`handle`,
-		`email`,
-		`password_hash`,
-		`display_name`,
-		`bio`,
-		`avatar`,
-		`birthday`,
-		`sex`,
-		`orientation`,
-		`pronouns`,
-		`touch_grass`,
-		`meme_knowledge`,
-		`secret_question`,
-		`secret_answer_hash`,
-		`location`,
-		`joined_at`,
-		`updated_at`,
-		`last_login`,
-		`is_verified`,
-		`is_private`,
-		`is_admin`,
-		`is_banned`,
-		`is_active`
+	users (
+		user_id,
+		handle,
+		email,
+		password_hash,
+		display_name,
+		bio,
+		avatar,
+		birthday,
+		sex,
+		orientation,
+		pronouns,
+		touch_grass,
+		meme_knowledge,
+		secret_question,
+		secret_answer_hash,
+		location,
+		joined_at,
+		updated_at,
+		last_login,
+		is_verified,
+		is_private,
+		is_admin,
+		is_banned,
+		is_active
 	)
 VALUES
 	(
@@ -479,3 +479,14 @@ ADD
 	COLUMN spicyness DECIMAL(3, 2) UNSIGNED NOT NULL DEFAULT 0.00
 AFTER
 	visibility;
+ALTER TABLE
+	reports CHANGE reason reason ENUM(
+		'minor',
+		'misinformation',
+		'spam',
+		'bug',
+		'report',
+		'suggestion',
+		'collab',
+		'other'
+	) NOT NULL;
