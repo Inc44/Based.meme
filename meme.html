@@ -58,7 +58,7 @@
 						<a href="login.html" class="pill">💾 Steal (<?= $meme['saved_count'] ?>)</a>
 					</div><?php endif; ?><div class="extra-actions">
 						<button class="pill secondary-bg" onclick="copyLink()">📋 Copy link</button>
-						<a class="pill warning-bg" href="contact.html">🚩 Report</a><?php if ($isOwner): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete this meme forever?');">
+						<a class="pill warning-bg" href="contact.php">🚩 Report</a><?php if ($isOwner): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete this meme forever?');">
 							<input type="hidden" name="action" value="delete_meme">
 							<button type="submit" class="pill accent-bg">🗑️ Delete</button>
 						</form><?php endif; ?>
@@ -118,7 +118,7 @@
 				<a href="about.html">About</a>
 				<a href="privacy_policy.html">Privacy Policy</a>
 				<a href="terms_of_service.html">Terms of Service</a>
-				<a href="contact.html">Contact</a>
+				<a href="contact.php">Contact</a>
 			</div>
 			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed</p>
 			<a href="#top" id="scrollToTop">⬆️</a>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $phrases = [
 	"ERROR 404 : This meme has been deleted by the council.",
 	"You ventured too deep. Turn back, traveler.",
@@ -11,7 +12,11 @@ $phrases = [
 	"Nothing here but pain and broken links.",
 	"Congrats, you found our secret hideout. Just kidding. It's broken.",
 ];
-
-$errorMessage = $phrases[array_rand($phrases)];
+if (isset($_SESSION["404_message"]) && !empty($_SESSION["404_message"])) {
+	$errorMessage = htmlspecialchars($_SESSION["404_message"]);
+	unset($_SESSION["404_message"]);
+} else {
+	$errorMessage = $phrases[array_rand($phrases)];
+}
 include "404.html";
 ?>
