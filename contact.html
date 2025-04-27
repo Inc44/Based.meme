@@ -33,20 +33,20 @@
 					<form class="contact-form" action="contact.php" method="POST">
 						<div class="form-group">
 							<label for="name">Your Internet Alias</label>
-							<input type="text" id="name" name="name" required placeholder="Cristian" value="<?=htmlspecialchars($prefillName)?>">
+							<input type="text" id="name" name="name" required placeholder="Cristian" value="<?=htmlspecialchars($name)?>">
 						</div>
 						<div class="form-group">
 							<label for="email">Email (we promise not to sell it)</label>
-							<input type="email" id="email" name="email" required placeholder="not_example@example.com" value="<?=htmlspecialchars($prefillEmail)?>">
+							<input type="email" id="email" name="email" required placeholder="not_example@example.com" value="<?=htmlspecialchars($email)?>">
 						</div>
 						<div class="form-group">
 							<label for="category">What's your damage?</label>
 							<select id="category" name="category" required>
-								<option value="bug" <?=$reason==='bug'?'selected':''?>>Something's Broken</option>
-								<option value="report" <?=$reason==='report'?'selected':''?>>Someone's Being Mean</option>
-								<option value="suggestion" <?=$reason==='suggestion'?'selected':''?>>I Have Big Brain Ideas</option>
-								<option value="collab" <?=$reason==='collab'?'selected':''?>>Let's Make Content Together</option>
-								<option value="other" <?=$reason==='other'?'selected':''?>>Other Incoherent Ramblings</option>
+								<option value="bug">Something's Broken</option>
+								<option value="report">Someone's Being Mean</option>
+								<option value="suggestion">>I Have Big Brain Ideas</option>
+								<option value="collab">Let's Make Content Together</option>
+								<option value="other">Other Incoherent Ramblings</option>
 							</select>
 						</div>
 						<div class="form-group">
