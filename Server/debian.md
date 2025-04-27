@@ -8,6 +8,7 @@ sed -i 's/^ServerTokens OS/ServerTokens Prod/' /etc/apache2/conf-available/secur
 sed -i 's/^ServerSignature On/ServerSignature Off/' /etc/apache2/conf-available/security.conf
 rm -rf /var/www/html
 git clone https://github.com/Inc44/Based.meme.git /var/www/html
+chown -R www-data:www-data /var/www/html
 apt clean
 rm -rf /var/lib/apt/lists/*
 
