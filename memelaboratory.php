@@ -26,14 +26,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$spicy = (float) max($postSpicy, $cappedSpicy);
 	$tagIds = array_map("intval", $_POST["tags"] ?? []);
 	$file = $_FILES["image"] ?? null;
+	$memeUrl = trim($_POST["meme_url"] ?? "");
 	$errors = [];
 	if ($title === "") {
 		$errors[] = "Title is required.";
 	}
+	$useUrl = false;
 	if (!$file || $file["error"]) {
-		$errors[] = "Image is required.";
+		if (empty($memeUrl)) {
+			$errors[] = "Either an image file or URL is required.";
+		} else {
+			$useUrl = true;
+		}
 	}
-	if (!$errors) {
+	if (!$useUrl && !$errors) {
 		$allow = [
 			"image/avif",
 			"image/bmp",
@@ -58,13 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		exit();
 	}
 	$memeId = yid();
-	$uploadId = yid();
-	$ext = pathinfo($file["name"], PATHINFO_EXTENSION);
-	$path = "uploads/$uploadId.$ext";
-	if (!is_dir("uploads")) {
-		mkdir("uploads");
+	$path = "";
+	if ($useUrl) {
+		$path = $memeUrl;
+	} else {
+		$uploadId = yid();
+		$ext = pathinfo($file["name"], PATHINFO_EXTENSION);
+		$path = "uploads/$uploadId.$ext";
+		if (!is_dir("uploads")) {
+			mkdir("uploads");
+		}
+		move_uploaded_file($file["tmp_name"], $path);
 	}
-	move_uploaded_file($file["tmp_name"], $path);
 	$pdo = getDbConnection();
 	$pdo->beginTransaction();
 	try {
@@ -98,7 +109,8 @@ VALUES
 			$path,
 			$spicy,
 		]);
-		$stmt = "
+		if (!$useUrl) {
+			$stmt = "
 INSERT INTO
 	uploads (
 		upload_id,
@@ -113,16 +125,17 @@ INSERT INTO
 	)
 VALUES
 	(?, ?, ?, ?, ?, ?, ?, NULL, NULL)
-		";
-		$pdo->prepare($stmt)->execute([
-			$uploadId,
-			$userId,
-			$file["name"],
-			$path,
-			$mime,
-			$file["size"],
-			$memeId,
-		]);
+			";
+			$pdo->prepare($stmt)->execute([
+				$uploadId,
+				$userId,
+				$file["name"],
+				$path,
+				$mime,
+				$file["size"],
+				$memeId,
+			]);
+		}
 		if ($tagIds) {
 			$stmt = $pdo->prepare("
 INSERT INTO
