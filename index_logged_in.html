@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="user-actions">
-				<a href="create.php" class="btn btn-small accent-bg">Post Meme</a>
+				<a href="memelaboratory.php" class="btn btn-small accent-bg">Post Meme</a>
 			</div>
 		</div>
 		<form method="get" action="index.php" class="categories"><?php foreach($categories as $category):?><button type="submit" name="category" value="<?php echo htmlspecialchars($category['slug']);?>" class="category-pill <?php echo $category['isActive']?'active':'';?>"><?php echo $category['icon'];?> <?php echo htmlspecialchars($category['name']);?></button><?php endforeach;?></form>
@@ -86,7 +86,7 @@
 			<div class="cta-content">
 				<h3>Think you're funny?</h3>
 				<p>Show the world your questionable sense of humor.</p>
-				<a href="create.php" class="btn btn-cta">Post a Meme</a>
+				<a href="memelaboratory.php" class="btn btn-cta">Post a Meme</a>
 				<p class="fine-print">Warning: Your future self will cringe at what you're about to post.</p>
 			</div>
 		</section>
