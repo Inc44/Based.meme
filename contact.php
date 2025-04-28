@@ -14,63 +14,35 @@ function yid(int $size = 11): string
 	);
 }
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-	$name = trim($_POST["name"] ?? "");
-	if (empty($name)) {
-		$_SESSION["404_code"] = "You failed";
-		$_SESSION["404_message"] = "Your Internet Alias is required.";
-		header("Location: 404.php");
-		exit();
-	}
-	$email = trim($_POST["email"] ?? "");
-	if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$_SESSION["404_code"] = "You failed";
-		$_SESSION["404_message"] = "A valid Email is required.";
-		header("Location: 404.php");
-		exit();
-	}
-	$reason = $_POST["category"] ?? "other";
-	if (empty($reason)) {
-		$_SESSION["404_code"] = "You failed";
-		$_SESSION["404_message"] =
-			"Please select a category (What's your damage?).";
-		header("Location: 404.php");
-		exit();
-	}
-	$message = trim($_POST["message"] ?? "");
-	if (empty($message)) {
-		$_SESSION["404_code"] = "You failed";
-		$_SESSION["404_message"] =
-			"The message (Spill the Tea) cannot be empty.";
-		header("Location: 404.php");
-		exit();
-	}
-	$captcha = trim(strtolower($_POST["captcha"] ?? ""));
-	if (
-		!preg_match(
+	$errors = [
+		"name" => empty(trim($_POST["name"]))
+			? "Your Internet Alias is required."
+			: null,
+		"email" => !filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)
+			? "A valid email is required."
+			: null,
+		"category" => empty(trim($_POST["category"]))
+			? "Please select a category (What's your damage?)."
+			: null,
+		"message" => empty(trim($_POST["message"]))
+			? "The message (Spill the Tea) cannot be empty."
+			: null,
+		"captcha" => !preg_match(
 			'/^(?:piece of shit|[A-Za-z]{5}\s[A-Za-z]{2}\s[A-Za-z]{4})$/',
-			$captcha
+			trim(strtolower($_POST["captcha"]))
 		)
-	) {
-		$_SESSION["404_code"] = "You failed";
-		$_SESSION["404_message"] = "Incorrect captcha. Are you a normie?";
-		header("Location: 404.php");
-		exit();
-	}
-	$report_id = yid();
-	$reporter_id = $_SESSION["user_id"] ?? 0;
-	$content_type = $_POST["content_type"] ?? "user";
-	$content_id = $_POST["content_id"] ?? yid();
-	$details = "Submitted via contact form by: $name ($email)\n\n$message";
+			? "Incorrect captcha. Are you a normie?"
+			: null,
+	];
+	$message = trim($_POST["message"]);
 	if (stripos($message, "my problem") !== false) {
-		$_SESSION["404_code"] = "We don't care";
-		$_SESSION["404_message"] =
+		$errors["my_problem"] =
 			"Make sure that this is our problem; if it is your problem, fuck you.";
-		header("Location: 404.php");
-		exit();
 	}
-	try {
-		$pdo = getDbConnection();
-		if ($reporter_id) {
+	$reporter_id = $_SESSION["user_id"] ?? 0;
+	if ($reporter_id && !array_filter($errors)) {
+		try {
+			$pdo = getDbConnection();
 			$stmt = $pdo->prepare("
 SELECT
 	is_admin
@@ -82,15 +54,36 @@ LIMIT
 	1
 			");
 			$stmt->execute([$reporter_id]);
-			$is_admin = (bool) $stmt->fetchColumn();
-			if ($is_admin) {
-				$_SESSION["404_code"] = "Bro WTF?";
-				$_SESSION["404_message"] =
-					"Why are you contacting yourself, admin?";
-				header("Location: 404.php");
-				exit();
+			if ($stmt->fetchColumn()) {
+				$errors["admin"] = "Why are you contacting yourself, admin?";
 			}
+		} catch (\PDOException $e) {
+			throw $e;
+		} catch (\Exception $e) {
+			throw $e;
 		}
+	}
+	if ($error = array_filter($errors)) {
+		$error_key = array_key_first($error);
+		$_SESSION["404_code"] =
+			$error_key === "admin"
+				? "Bro WTF?"
+				: ($error_key === "my_problem"
+					? "We don't care"
+					: "You failed");
+		$_SESSION["404_message"] = reset($error);
+		header("Location: 404.php");
+		exit();
+	}
+	$name = trim($_POST["name"]);
+	$email = trim($_POST["email"]);
+	$reason = trim($_POST["category"]);
+	$report_id = yid();
+	$content_type = $_POST["content_type"] ?? "user";
+	$content_id = $_POST["content_id"] ?? yid();
+	$details = "Submitted via contact form by: $name ($email)\n\n$message";
+	try {
+		$pdo = getDbConnection();
 		$stmt = $pdo->prepare("
 INSERT INTO
 	reports (
@@ -138,8 +131,7 @@ WHERE
 	user_id = ?
 		");
 		$stmt->execute([$_SESSION["user_id"]]);
-		$user = $stmt->fetch();
-		if ($user) {
+		if ($user = $stmt->fetch()) {
 			$name = htmlspecialchars($user["handle"]);
 			$email = htmlspecialchars($user["email"]);
 		}
