@@ -43,10 +43,13 @@
 							<label for="category">What's your damage?</label>
 							<select id="category" name="category" required>
 								<option value="bug">Something's Broken</option>
-								<option value="report">Someone's Being Mean</option>
-								<option value="suggestion">I Have Big Brain Ideas</option>
-								<option value="collab">Let's Make Content Together</option>
-								<option value="other">Other Incoherent Ramblings</option>
+								<option value="report" <?=($category === 'report') ? 'selected' : ''?>>Someone's Being Mean</option>
+								<option value="suggestion" <?=($category === 'suggestion') ? 'selected' : ''?>>I Have Big Brain Ideas</option>
+								<option value="collab" <?=($category === 'collab') ? 'selected' : ''?>>Let's Make Content Together</option>
+								<option value="minor" <?=($category === 'minor') ? 'selected' : ''?>>Somebody Must Go to Jail</option>
+								<option value="misinformation" <?=($category === 'misinformation') ? 'selected' : ''?>>Fake News</option>
+								<option value="spam" <?=($category === 'spam') ? 'selected' : ''?>>So Much Spam That I Drown</option>
+								<option value="other" <?=($category === 'other') ? 'selected' : ''?>>Other Incoherent Ramblings</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -90,7 +93,7 @@
 		</section>
 		<section class="cta">
 			<div class="cta-content">
-				<h3>Don't be a stranger.</h3>
+				<h3>Don't Be a Stranger.</h3>
 				<p>Unless you're actually strange, in which case, please continue.</p>
 				<a href="signup.php" class="btn btn-cta">Join Us</a>
 				<p class="fine-print">Warning: We may respond with memes instead of actual help.</p>
