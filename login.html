@@ -5,8 +5,9 @@
 	<meta charset="UTF-8">
 	<link rel="icon" href="neuille/neuille_svgo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="styles.css">
-	<title>Login - Based.meme</title>
+	<title>Return to the Void - Based.meme</title>
 	<script src="theme.js"></script>
+	<script src="login.js"></script>
 </head>
 
 <body id="top">
@@ -30,7 +31,7 @@
 				<div class="auth-card">
 					<h3>Access Your Digital Existence</h3>
 					<div class="error-banner" id="login-error">404 Brain Not Found</div>
-					<form class="auth-form" action="login.php" method="POST">
+					<form class="auth-form" id="loginForm" action="login.php" method="POST">
 						<div class="form-group">
 							<label for="username">Username or Email</label>
 							<input type="text" id="username" name="username" required placeholder="Your digital alias">
@@ -43,7 +44,7 @@
 							<input type="checkbox" id="remember" name="remember">
 							<label for="remember">Remember me on this device</label>
 						</div>
-						<button type="submit" class="btn btn-cta login-btn">Enter The Void</button>
+						<button type="button" id="loginButton" class="btn btn-cta login-btn">Enter The Void</button>
 					</form>
 					<div class="auth-alt">
 						<p><a href="recovery.html" class="forgot-password">Forgot password? Skill issue.</a></p>

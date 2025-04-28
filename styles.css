@@ -2135,6 +2135,22 @@ body.light-theme .category-pill.active
 	position: relative;
 }
 
+.ball
+{
+	position: absolute;
+	background-color: var(--secondary);
+	height: 8px;
+	width: 8px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ball.cue-ball-moving
+{
+	transition: transform 0.5s ease-in;
+}
+
 select option
 {
 	background-color: var(--dark);
