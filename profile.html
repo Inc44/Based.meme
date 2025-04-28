@@ -31,10 +31,13 @@
 					<h2><?= htmlspecialchars($user['display_name'] ?: $user['handle']) ?></h2>
 					<p class="handle">@<?= htmlspecialchars($user['handle']) ?></p><?php if ($fullBio): ?><p class="bio-text" data-full="<?= htmlspecialchars($fullBio) ?>"><?= htmlspecialchars($shortBio) ?></p><?php if ($needsToggle): ?><button class="bio-toggle btn-small">Show more</button><?php endif; ?><?php endif; ?>
 				</div>
-			</div><?php if (!$isOwner): ?><form action="follow.php" method="POST" class="follow-form">
-				<input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
-				<button type="submit" class="btn btn-small <?= $isFollowing ? 'warning-bg' : 'accent-bg' ?>"><?= $isFollowing ? 'Unfollow' : 'Follow' ?></button>
-			</form><?php endif; ?><?php if ($isOwner): ?><a class="btn btn-small accent-bg" href="settings.php">Edit Profile</a><?php endif; ?>
+			</div>
+			<div><?php if (!$isOwner): ?><form action="follow.php" method="POST" class="follow-form inline-form">
+					<input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
+					<button type="submit" class="btn btn-small <?= $isFollowing ? 'warning-bg' : 'accent-bg' ?>"><?= $isFollowing ? 'Unfollow' : 'Follow' ?></button>
+				</form>
+				<a href="contact.php?category=report&content_type=user&content_id=<?= $user['user_id'] ?>" class="btn btn-small warning-bg" title="Report this user">🚩 Report</a><?php endif; ?><?php if ($isOwner): ?><a class="btn btn-small accent-bg" href="settings.php">Edit Profile</a><?php endif; ?>
+			</div>
 		</section>
 		<section class="profile-stats">
 			<div class="stat" title="(aka Followers)"><span class="stat-num"><?= $stats['followers'] ?></span> stalkers</div>

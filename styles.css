@@ -12,7 +12,9 @@
 	--light: #f0f0f0;
 	--primary-dark: #6a1cb2;
 	--primary: #8a2be2;
+	--secondary-dark: #00cccc;
 	--secondary: #00ffff;
+	--warning-dark: #cc8400;
 	--warning: #ffa500;
 	--card-bg: rgba(25, 25, 35, 0.8);
 	--text-primary: var(--light);
@@ -43,6 +45,7 @@ body.light-theme
 	--light: #121212;
 	--primary-dark: #195ab5;
 	--primary: #2b77e2;
+	--secondary-dark: #19b596;
 	--secondary: #2be2be;
 	--card-bg: rgba(245, 245, 255, 0.9);
 	--text-primary: var(--light);
@@ -63,7 +66,9 @@ body.light-theme
 	background-color: var(--accent) !important;
 }
 
-.accent-bg:hover
+.accent-bg:hover,
+a.accent-bg:hover,
+button.accent-bg:hover
 {
 	background-color: var(--accent-dark) !important;
 }
@@ -73,7 +78,9 @@ body.light-theme
 	background-color: var(--primary) !important;
 }
 
-.primary-bg:hover
+.primary-bg:hover,
+a.primary-bg:hover,
+button.primary-bg:hover
 {
 	background-color: var(--primary-dark) !important;
 }
@@ -83,9 +90,23 @@ body.light-theme
 	background-color: var(--secondary) !important;
 }
 
+.secondary-bg,
+a.secondary-bg,
+button.secondary-bg
+{
+	background-color: var(--secondary-dark) !important;
+}
+
 .warning-bg
 {
 	background-color: var(--warning) !important;
+}
+
+.warning-bg:hover,
+a.warning-bg:hover,
+button.warning-bg:hover
+{
+	background-color: var(--warning-dark) !important;
 }
 
 *
@@ -207,6 +228,7 @@ nav
 .btn-small
 {
 	font-size: 0.9rem;
+	height: 2.5rem;
 	padding: 0.4rem 0.8rem;
 	color: white;
 }
@@ -372,6 +394,12 @@ nav
 	height: 100%;
 	object-fit: contain;
 	background-color: var(--placeholder-bg);
+	transition: transform 0.3s ease;
+}
+
+.meme-grid .meme-image img:hover
+{
+	transform: scale(1.05);
 }
 
 .upload-grid
@@ -1812,7 +1840,7 @@ body.light-theme .category-pill.active
 	border-radius: 1.5rem;
 	border: var(--primary-dark) solid 0.125rem;
 	font-size: 0.9rem;
-	margin-right: 0.5rem;
+	margin: 0 0.5rem 0.5rem 0;
 	padding: 0.5rem 1rem;
 }
 

@@ -511,7 +511,12 @@ WHERE
 			];
 			break;
 	}
-	if ($stats["based_count"] >= 42 && $stats["cringe_count"] >= 42) {
+	$total = $stats["based_count"] + $stats["cringe_count"];
+	if (
+		$total > 84 &&
+		$stats["based_count"] / $total > 0.42 &&
+		$stats["cringe_count"] / $total > 0.42
+	) {
 		$badges[] = [
 			"icon" => "🔥",
 			"label" => "Controversial Creator",
