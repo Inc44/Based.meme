@@ -2083,6 +2083,7 @@ body.light-theme .category-pill.active
 {
 	background-color: var(--card-bg);
 	border-radius: 0.5rem;
+	height: 35rem;
 	padding: 3rem;
 	width: 40rem;
 	box-shadow: var(--card-shadow);
@@ -2104,7 +2105,7 @@ body.light-theme .category-pill.active
 .error-code
 {
 	font-family: "VT323", monospace;
-	font-size: 8rem;
+	font-size: 6rem;
 	color: var(--accent);
 	text-shadow: 0.25rem 0.25rem 0 var(--secondary);
 	position: relative;

@@ -12,6 +12,12 @@ $phrases = [
 	"Nothing here but pain and broken links.",
 	"Congrats, you found our secret hideout. Just kidding. It's broken.",
 ];
+if (isset($_SESSION["404_code"]) && !empty($_SESSION["404_code"])) {
+	$errorCode = htmlspecialchars($_SESSION["404_code"]);
+	unset($_SESSION["404_code"]);
+} else {
+	$errorCode = 404;
+}
 if (isset($_SESSION["404_message"]) && !empty($_SESSION["404_message"])) {
 	$errorMessage = htmlspecialchars($_SESSION["404_message"]);
 	unset($_SESSION["404_message"]);
