@@ -57,8 +57,7 @@
 						<a href="login.html" class="pill" title="(upvote)">👍 Based (<?= $meme['upvote_count'] ?>)</a>
 						<a href="login.html" class="pill" title="(save)">💾 Steal (<?= $meme['saved_count'] ?>)</a>
 					</div><?php endif; ?><div class="extra-actions">
-						<button class="pill secondary-bg" onclick="copyLink()" title="Propagate the propaganda">📋 Copy link</button>
-						<a class="pill warning-bg" href="contact.php" title="Report for being too normie">🚩 Report</a><?php if ($isOwner): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete this meme forever?');">
+						<button class="pill secondary-bg" onclick="copyLink()" title="Propagate the propaganda">📋 Copy link</button><?php if(isset($_SESSION["user_id"])&&!$isOwner):?><a class="pill warning-bg" href="contact.php?category=report&content_type=meme&content_id=<?=$meme['meme_id']?>" title="Report this meme">🚩 Report</a><?php endif;?><?php if($isOwner):?><form method="post" class="inline-form" onsubmit="return confirm('Delete this meme forever?');">
 							<input type="hidden" name="action" value="delete_meme">
 							<button type="submit" class="pill accent-bg">🗑️ Delete</button>
 						</form><?php endif; ?>
@@ -79,7 +78,7 @@
 						<span class="time"><?= date('Y.m.d H:i:s', strtotime($comment['created_at'])) ?></span>
 					</div>
 					<p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
-					<div class="small-actions"><?php if (isset($_SESSION['user_id'])): ?><button type="button" class="btn btn-small primary-bg" onclick="toggleReply('reply-<?= $comment['comment_id'] ?>')">↩️ Reply</button><?php if ((int)$_SESSION['user_id'] === (int)$comment['user_id']): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete comment?');">
+					<div class="small-actions"><?php if (isset($_SESSION['user_id'])): ?><button type="button" class="btn btn-small primary-bg" onclick="toggleReply('reply-<?= $comment['comment_id'] ?>')">↩️ Reply</button><?php if((int)$_SESSION['user_id']!==(int)$comment['user_id']):?><a class="btn btn-small warning-bg" href="contact.php?category=report&content_type=comment&content_id=<?= $comment['comment_id']?>" title="Report this comment">🚩 Report</a><?php endif; ?><?php if ((int)$_SESSION['user_id'] === (int)$comment['user_id']): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete comment?');">
 							<input type="hidden" name="action" value="delete_comment">
 							<input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
 							<button type="submit" class="btn btn-small accent-bg">🗑️ Delete</button>
@@ -106,7 +105,7 @@
 							<div class="meme-stats">
 								<span>❤️ <?= number_format($similarMeme["like_count"] ?? 0) ?></span>
 								<span>💬 <?= number_format($similarMeme["comment_count"] ?? 0) ?></span>
-								<span>🌶️ <?= number_format($similarMeme['spicyness']) * 100 ?></span>
+								<span>🌶️ <?= number_format($similarMeme['spicyness'] ?? 0) * 100 ?></span>
 							</div>
 						</div>
 					</div>
