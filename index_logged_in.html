@@ -25,62 +25,62 @@
 	<main>
 		<div class="user-bar">
 			<div class="user-greeting">
-				<div class="user-avatar"><?php if(!empty($user["avatar"])):?><img src="<?php echo htmlspecialchars($user["avatar"]);?>" alt="<?php echo htmlspecialchars($displayName);?>"><?php else:?><?php echo htmlspecialchars(substr($displayName,0,1));?><?php endif;?></div>
+				<div class="user-avatar"><?php if (!empty($user["avatar"])): ?><img src="<?php echo htmlspecialchars($user["avatar"]); ?>" alt="<?php echo htmlspecialchars($displayName); ?>"><?php else: ?><?php echo htmlspecialchars(substr($displayName, 0, 1)); ?><?php endif; ?></div>
 				<div class="user-welcome">
-					<h3>Sup, <?php echo htmlspecialchars($displayName);?>?</h3>
-					<p>Member since <?php echo htmlspecialchars($joinDateFormatted);?> • Level: Basic Degenerate</p>
+					<h3>Sup, <?php echo htmlspecialchars($displayName); ?>?</h3>
+					<p>Member since <?php echo htmlspecialchars($joinDateFormatted); ?> • Level: Basic Degenerate</p>
 				</div>
 			</div>
 			<div class="user-actions">
 				<a href="memelaboratory.php" class="btn btn-small accent-bg">Post Meme</a>
 			</div>
 		</div>
-		<form method="get" action="index.php" class="categories"><?php foreach($categories as $category):?><button type="submit" name="category" value="<?php echo htmlspecialchars($category['slug']);?>" class="category-pill <?php echo $category['isActive']?'active':'';?>"><?php echo $category['icon'];?> <?php echo htmlspecialchars($category['name']);?></button><?php endforeach;?></form>
+		<form method="get" action="index.php" class="categories"><?php foreach ($categories as $category): ?><button type="submit" name="category" value="<?php echo htmlspecialchars($category['slug']); ?>" class="category-pill <?php echo $category['isActive'] ? 'active' : ''; ?>"><?php echo $category['icon']; ?> <?php echo htmlspecialchars($category['name']); ?></button><?php endforeach; ?></form>
 		<section class="trending">
 			<div class="section-header">
 				<h3>Fresh from the void</h3>
 				<a href="trending.php" class="section-link">See all</a>
 			</div>
-			<div class="meme-grid"> <?php foreach($trendingMemes as $index=>$meme):?><a href="meme.php?id=<?php echo htmlspecialchars($meme['meme_id']);?>" class="meme-card-link">
+			<div class="meme-grid"><?php foreach ($trendingMemes as $index => $meme): ?><a href="meme.php?id=<?php echo htmlspecialchars($meme['meme_id']); ?>" class="meme-card-link">
 					<div class="meme-card">
-						<div class="meme-image"> <?php if(!empty($meme["media_url"])):?><img src="<?php echo htmlspecialchars($meme["media_url"]);?>" alt="<?php echo htmlspecialchars($meme["title"]);?>"><?php else:?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif;?><div class="creator-badge">@<?php echo htmlspecialchars($meme["creator"]); ?></div>
+						<div class="meme-image"><?php if (!empty($meme["media_url"])): ?><img src="<?php echo htmlspecialchars($meme["media_url"]); ?>" alt="<?php echo htmlspecialchars($meme["title"]); ?>"><?php else: ?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif; ?><div class="creator-badge">@<?php echo htmlspecialchars($meme["creator"]); ?></div>
 						</div>
 						<div class="meme-info">
-							<h4><?php echo htmlspecialchars($meme["title"]);?></h4>
-							<div class="tag-list"><?php foreach(array_slice($meme["tags"]??[],0,4) as $tag):?><span class="tag"><?php echo htmlspecialchars($tag);?></span><?php endforeach;?></div>
+							<h4><?php echo htmlspecialchars($meme["title"]); ?></h4>
+							<div class="tag-list"><?php foreach (array_slice($meme["tags"] ?? [], 0, 4) as $tag): ?><span class="tag"><?php echo htmlspecialchars($tag); ?></span><?php endforeach; ?></div>
 							<div class="meme-stats">
-								<span>❤️ <?php echo number_format($meme["like_count"]);?></span>
-								<span>💬 <?php echo number_format($meme["comment_count"]);?></span>
+								<span>❤️ <?php echo number_format($meme["like_count"]); ?></span>
+								<span>💬 <?php echo number_format($meme["comment_count"]); ?></span>
+								<span>🌶️ <?php echo number_format($meme['spicyness'], 2); ?></span>
 							</div>
 						</div>
 					</div>
-				</a><?php endforeach;?></div>
-			</div>
+				</a><?php endforeach; ?></div>
 		</section>
 		<section class="recommended">
 			<div class="section-header">
 				<h3>May cause brain damage</h3>
 				<a href="recommendations.php" class="section-link">Ruin my life</a>
 			</div>
-			<div class="meme-grid"><?php if(!empty($recommendedMemes)):?><?php foreach($recommendedMemes as $meme):?><a href="meme.php?id=<?php echo htmlspecialchars($meme['meme_id']);?>" class="meme-card-link">
+			<div class="meme-grid"><?php if (!empty($recommendedMemes)): ?><?php foreach ($recommendedMemes as $meme): ?><a href="meme.php?id=<?php echo htmlspecialchars($meme['meme_id']); ?>" class="meme-card-link">
 					<div class="meme-card">
-						<div class="meme-image"><?php if(!empty($meme["media_url"])):?><img src="<?php echo htmlspecialchars($meme["media_url"]);?>" alt="<?php echo htmlspecialchars($meme["title"]);?>"><?php else:?><div class="placeholder-image" data-text="Cursed Content"></div><?php endif;?><div class="creator-badge">@<?php echo htmlspecialchars($meme["creator"]); ?></div>
+						<div class="meme-image"><?php if (!empty($meme["media_url"])): ?><img src="<?php echo htmlspecialchars($meme["media_url"]); ?>" alt="<?php echo htmlspecialchars($meme["title"]); ?>"><?php else: ?><div class="placeholder-image" data-text="Cursed Content"></div><?php endif; ?><div class="creator-badge">@<?php echo htmlspecialchars($meme["creator"]); ?></div>
 						</div>
 						<div class="meme-info">
-							<h4><?php echo htmlspecialchars($meme["title"]);?></h4>
-							<div class="tag-list"><?php foreach(array_slice($meme["tags"]??[],0,4) as $tag):?><span class="tag"><?php echo htmlspecialchars($tag);?></span><?php endforeach;?></div>
+							<h4><?php echo htmlspecialchars($meme["title"]); ?></h4>
+							<div class="tag-list"><?php foreach (array_slice($meme["tags"] ?? [], 0, 4) as $tag): ?><span class="tag"><?php echo htmlspecialchars($tag); ?></span><?php endforeach; ?></div>
 							<div class="meme-stats">
-								<span>❤️ <?php echo number_format($meme["like_count"]);?></span>
-								<span>💬 <?php echo number_format($meme["comment_count"]);?></span>
+								<span>❤️ <?php echo number_format($meme["like_count"]); ?></span>
+								<span>💬 <?php echo number_format($meme["comment_count"]); ?></span>
+								<span>🌶️ <?php echo number_format($meme['spicyness'], 2); ?></span>
 							</div>
 						</div>
 					</div>
-				</a><?php endforeach;?><?php else:?><div class="empty-state">
+				</a><?php endforeach; ?><?php else: ?><div class="empty-state">
 					<h3>You've seen everything</h3>
 					<p>Either you've consumed all our content (unlikely), or our recommendation algorithm is broken (likely).</p>
 					<p>Try touching grass instead?</p>
-				</div><?php endif;?></div>
-			</div>
+				</div><?php endif; ?></div>
 		</section>
 		<section class="cta">
 			<div class="cta-content">
