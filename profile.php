@@ -202,33 +202,55 @@ WHERE
 	$badges = [];
 	date("md", strtotime($user["birthday"])) === date("md") &&
 		($badges[] = ["icon" => "🎉", "label" => "Happy Birthday!"]);
+	strtotime($user["birthday"]) < strtotime("1900-01-01") &&
+		($badges[] = [
+			"icon" => "🐦‍🔥",
+			"label" => "Who the hell are you?",
+			"description" => "Probably immortal",
+		]);
+	if ($user["birthday"]) {
+		$age = floor((time() - strtotime($user["birthday"])) / 31_536_000);
+		if ($age > 56) {
+			$badges[] = [
+				"icon" => "卐",
+				"label" => "Who the hell are you?",
+				"description" => "Adolf Hitler, FBI",
+			];
+		} elseif ($age > 42) {
+			$badges[] = [
+				"icon" => "✝️",
+				"label" => "Older than Jesus",
+				"description" => "Jesus Christ it's Jason Bourne",
+			];
+		}
+	}
 	$user["orientation"] === "attack" &&
 		($badges[] = ["icon" => "♊", "label" => "Call 911"]);
 	switch (true) {
 		case $user["pronouns"] == "burger":
 			$badges[] = [
 				"icon" => "🍔",
-				"label" => "Kotleta inside", // Hamburger; I got the burgers in the back
+				"label" => [
+					"Kotleta inside",
+					"Hamburger",
+					"I got the burgers in the back",
+				][array_rand([0, 1, 2])],
+				"description" => "Trailler is attached",
 			];
 			break;
 		case $user["pronouns"] == "sigma":
 			$badges[] = [
 				"icon" => "🐺",
 				"label" => "Auf",
+				"description" =>
+					"The lion and tiger may be more powerful, but the wolf does not perform in the circus",
 			];
 			break;
-
 		case $user["pronouns"] == "cringe":
-			$badges[] = [
-				"icon" => "🤡",
-				"label" => "Clown",
-			];
+			$badges[] = ["icon" => "🤡", "label" => "Clown"];
 			break;
 		case $user["pronouns"] == "who":
-			$badges[] = [
-				"icon" => "🤔",
-				"label" => "Who cares?",
-			];
+			$badges[] = ["icon" => "🤔", "label" => "Who cares?"];
 			break;
 	}
 	switch (true) {
@@ -237,10 +259,7 @@ WHERE
 			["never", "1000", "10000", "minecraft"],
 			true
 		):
-			$badges[] = [
-				"icon" => "🌚",
-				"label" => "Needs Vitamin D",
-			];
+			$badges[] = ["icon" => "🌚", "label" => "Needs Vitamin D"];
 			break;
 		case in_array(
 			$user["touch_grass"],
@@ -275,15 +294,27 @@ WHERE
 	$user["is_banned"] && ($badges[] = ["icon" => "🚫", "label" => "Banned"]);
 	switch (true) {
 		case date("md", strtotime($user["joined_at"])) === date("md"):
+			$badges[] = ["icon" => "🎂", "label" => "Today is special"];
+			break;
+		case $user["years_registered"] > 2:
 			$badges[] = [
-				"icon" => "🎂",
-				"label" => "Today is special",
+				"icon" => "🎖️",
+				"label" => $user["years_registered"] . "y Veteran",
+				"description" => "Veteran memer",
 			];
 			break;
 		case $user["years_registered"] > 1:
 			$badges[] = [
-				"icon" => "🎖️",
-				"label" => $user["years_registered"] . "y Veteran",
+				"icon" => "🗿",
+				"label" => "Ancient af",
+				"description" => "Experienced memer",
+			];
+			break;
+		case $user["days_registered"] >= 180:
+			$badges[] = [
+				"icon" => "☢️",
+				"label" => "Getting rusty",
+				"description" => "Seasoned memer",
 			];
 			break;
 		case $user["days_registered"] >= 90:
@@ -293,14 +324,35 @@ WHERE
 				"description" => "Remembers memes from 3 whole months ago",
 			];
 			break;
-		case $user["days_registered"] >= 9:
-			$badges[] = ["icon" => "📅", "label" => "As time goes by"];
-			break;
 		case $user["hours_registered"] >= 1000:
 			$badges[] = [
 				"icon" => "⏱️",
 				"label" => "1000h Wasted",
 				"description" => "Spent way too much time scrolling dank memes",
+			];
+			break;
+		case $user["days_registered"] >= 30:
+			$badges[] = [
+				"icon" => "👴",
+				"label" => "Oldie but Goldie",
+				"description" => "Developing memer",
+			];
+			break;
+		case $user["days_registered"] >= 9:
+			$badges[] = ["icon" => "📅", "label" => "As time goes by"];
+			break;
+		case $user["days_registered"] >= 7:
+			$badges[] = [
+				"icon" => "🐤",
+				"label" => "First steps",
+				"description" => "Baby memer",
+			];
+			break;
+		case $user["days_registered"] >= 1:
+			$badges[] = [
+				"icon" => "🆕",
+				"label" => "Newbie",
+				"description" => "Fresh meat",
 			];
 			break;
 	}
@@ -331,10 +383,7 @@ WHERE
 			$badges[] = ["icon" => "🐐", "label" => "Legend"];
 			break;
 		case $stats["meme_count"] >= 5000:
-			$badges[] = [
-				"icon" => "💡",
-				"label" => "Enlightened",
-			];
+			$badges[] = ["icon" => "💡", "label" => "Enlightened"];
 			break;
 		case $stats["meme_count"] >= 3500:
 			$badges[] = ["icon" => "💧", "label" => "Blue Blood"];
@@ -349,46 +398,25 @@ WHERE
 			$badges[] = ["icon" => "🍽️", "label" => "Gourmet"];
 			break;
 		case $stats["meme_count"] >= 1234:
-			$badges[] = [
-				"icon" => "🔢",
-				"label" => "One, Two, Three, Four",
-			];
+			$badges[] = ["icon" => "🔢", "label" => "One, Two, Three, Four"];
 			break;
 		case $stats["meme_count"] >= 1000:
-			$badges[] = [
-				"icon" => "🫵",
-				"label" => "Point of No Return",
-			];
+			$badges[] = ["icon" => "🫵", "label" => "Point of No Return"];
 			break;
 		case $stats["meme_count"] >= 888:
-			$badges[] = [
-				"icon" => "♾️",
-				"label" => "Endless Journey",
-			];
+			$badges[] = ["icon" => "♾️", "label" => "Endless Journey"];
 			break;
 		case $stats["meme_count"] >= 750:
-			$badges[] = [
-				"icon" => "🦾",
-				"label" => "Not Even My Final Form",
-			];
+			$badges[] = ["icon" => "🦾", "label" => "Not Even My Final Form"];
 			break;
 		case $stats["meme_count"] >= 666:
-			$badges[] = [
-				"icon" => "😈",
-				"label" => "Satanic Limit?",
-			];
+			$badges[] = ["icon" => "😈", "label" => "Satanic Limit?"];
 			break;
 		case $stats["meme_count"] >= 500:
-			$badges[] = [
-				"icon" => "⏳",
-				"label" => "Lots of Free Time?",
-			];
+			$badges[] = ["icon" => "⏳", "label" => "Lots of Free Time?"];
 			break;
 		case $stats["meme_count"] >= 400:
-			$badges[] = [
-				"icon" => "🎩",
-				"label" => "Something to Brag About",
-			];
+			$badges[] = ["icon" => "🎩", "label" => "Something to Brag About"];
 			break;
 		case $stats["meme_count"] >= 300:
 			$badges[] = ["icon" => "🏎️", "label" => "Speedrunner"];
@@ -397,16 +425,10 @@ WHERE
 			$badges[] = ["icon" => "🚶", "label" => "Easy Stroll"];
 			break;
 		case $stats["meme_count"] >= 150:
-			$badges[] = [
-				"icon" => "😎",
-				"label" => "Carefree Memer",
-			];
+			$badges[] = ["icon" => "😎", "label" => "Carefree Memer"];
 			break;
 		case $stats["meme_count"] >= 100:
-			$badges[] = [
-				"icon" => "🏋",
-				"label" => "My Powers Grow",
-			];
+			$badges[] = ["icon" => "🏋️", "label" => "My Powers Grow"];
 			break;
 		case $stats["meme_count"] >= 50:
 			$badges[] = [
@@ -435,31 +457,19 @@ WHERE
 			$badges[] = ["icon" => "🤑", "label" => "Adorable"];
 			break;
 		case $stats["likes"] >= 5000:
-			$badges[] = [
-				"icon" => "👍",
-				"label" => "Almost Famous",
-			];
+			$badges[] = ["icon" => "👍", "label" => "Almost Famous"];
 			break;
 		case $stats["likes"] >= 1000:
 			$badges[] = ["icon" => "⭐", "label" => "Rising Star"];
 			break;
 		case $stats["likes"] >= 500:
-			$badges[] = [
-				"icon" => "😊",
-				"label" => "Friendly Face",
-			];
+			$badges[] = ["icon" => "😊", "label" => "Friendly Face"];
 			break;
 		case $stats["likes"] >= 100:
-			$badges[] = [
-				"icon" => "📎",
-				"label" => "A Bit Noticed",
-			];
+			$badges[] = ["icon" => "📎", "label" => "A Bit Noticed"];
 			break;
 		case $stats["likes"] >= 50:
-			$badges[] = [
-				"icon" => "😉",
-				"label" => "Barely Buzzing",
-			];
+			$badges[] = ["icon" => "😉", "label" => "Barely Buzzing"];
 			break;
 		case $stats["likes"] >= 10:
 			$badges[] = ["icon" => "👶", "label" => "Just Started"];
@@ -473,10 +483,7 @@ WHERE
 		]);
 	switch (true) {
 		case $stats["based_count"] >= 9000:
-			$badges[] = [
-				"icon" => "🥇",
-				"label" => "It's over 9000",
-			];
+			$badges[] = ["icon" => "🥇", "label" => "It's over 9000"];
 			break;
 		case $stats["based_count"] >= 1337:
 			$badges[] = [
@@ -490,16 +497,18 @@ WHERE
 			$badges[] = [
 				"icon" => "😶‍🌫️",
 				"label" => "Certified Based",
+				"description" => "Looks from above",
 			];
 			break;
 		case $stats["based_count"] >= 100:
-			$badges[] = [
-				"icon" => "💯",
-				"label" => "Century Poster",
-			];
+			$badges[] = ["icon" => "💯", "label" => "Century Poster"];
 			break;
 		default:
-			$badges[] = ["icon" => "🌱", "label" => "Sprout"];
+			$badges[] = [
+				"icon" => "🌱",
+				"label" => "Sprout",
+				"description" => "Just born",
+			];
 			break;
 	}
 	if ($stats["based_count"] >= 42 && $stats["cringe_count"] >= 42) {
@@ -512,10 +521,7 @@ WHERE
 	}
 	switch (true) {
 		case $stats["comments"] >= 50000:
-			$badges[] = [
-				"icon" => "💵",
-				"label" => "You bought them",
-			];
+			$badges[] = ["icon" => "💵", "label" => "You bought them"];
 			break;
 		case $stats["comments"] >= 500:
 			$badges[] = [
