@@ -37,14 +37,14 @@
 			</form><?php endif; ?><?php if ($isOwner): ?><a class="btn btn-small accent-bg" href="settings.php">Edit Profile</a><?php endif; ?>
 		</section>
 		<section class="profile-stats">
-			<div class="stat"><span class="stat-num"><?= $stats['followers'] ?></span> stalkers</div>
-			<div class="stat"><span class="stat-num"><?= $stats['meme_count'] ?></span> memes</div>
-			<div class="stat"><span class="stat-num"><?= $stats['likes'] ?></span> likes</div>
-			<div class="stat"><span class="stat-num"><?= $stats['based_count'] ?></span> popularity</div>
-			<div class="stat"><span class="stat-num"><?= $stats['comments'] ?></span> comments</div>
-			<div class="stat"><span class="stat-num"><?= $stats['cringe_count'] ?></span> cringes 💩</div>
-			<div class="stat"><span class="stat-num"><?= $avgSpiciness * 100 ?></span> avg 🌶️</div>
-		</section><?php if ($badges): ?><section class="profile-badges"><?php foreach ($badges as $badge): ?><span class="pill" title="<?= htmlspecialchars($badge['label']) ?>"><?= $badge['icon'] ?> <?= htmlspecialchars($badge['label']) ?></span><?php endforeach; ?></section><?php endif; ?><?php if (!$isPrivate): ?><section class="profile-info">
+			<div class="stat" title="(aka Followers)"><span class="stat-num"><?= $stats['followers'] ?></span> stalkers</div>
+			<div class="stat" title="Memes Spawned"><span class="stat-num"><?= $stats['meme_count'] ?></span> memes</div>
+			<div class="stat" title="Getting Popular"><span class="stat-num"><?= $stats['likes'] ?></span> likes</div>
+			<div class="stat" title="Based Count"><span class="stat-num"><?= $stats['based_count'] ?></span> popularity</div>
+			<div class="stat" title="Spamming"><span class="stat-num"><?= $stats['comments'] ?></span> comments</div>
+			<div class="stat" title="Cringe Count"><span class="stat-num"><?= $stats['cringe_count'] ?></span> cringes 💩</div>
+			<div class="stat" title="We Are Cooking"><span class="stat-num"><?= $avgSpiciness * 100 ?></span> avg 🌶️</div>
+		</section><?php if ($badges): ?><section class="profile-badges"><?php foreach ($badges as $badge): ?><span class="pill" title="<?= !empty($badge['description']) ? htmlspecialchars($badge['description']) : '' ?>"><?= $badge['icon'] ?> <?= htmlspecialchars($badge['label']) ?></span><?php endforeach; ?></section><?php endif; ?><?php if (!$isPrivate): ?><section class="profile-info">
 			<h3>About</h3>
 			<dl class="info-list">
 				<dd>Joined: <?= prettyDate($user['joined_at']) ?></dd><?php if ($user['birthday']) echo '<dd>Birthday: ' . prettyDate($user['birthday']) . '</dd>'; ?><?php if ($sexLabel) echo '<dd>Sex: ' . htmlspecialchars($sexLabel) . '</dd>'; ?><?php if ($orientationLabel) echo '<dd>Orientation: ' . htmlspecialchars($orientationLabel) . '</dd>'; ?><?php if ($pronounsLabel) echo '<dd>Pronouns: ' . htmlspecialchars($pronounsLabel) . '</dd>'; ?><?php if ($grassLabel) echo '<dd>Last touched grass: ' . htmlspecialchars($grassLabel) . '</dd>'; ?><?php if ($user['location']) echo '<dd>Location: ' . htmlspecialchars($user['location']) . '</dd>'; ?><dd>Last login: <?= lastLogin($user['last_login']) ?></dd>
