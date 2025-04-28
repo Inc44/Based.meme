@@ -2137,6 +2137,7 @@ body.light-theme .category-pill.active
 	font-size: 6rem;
 	color: var(--accent);
 	text-shadow: 0.25rem 0.25rem 0 var(--secondary);
+	line-height: 1;
 	position: relative;
 }
 
