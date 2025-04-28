@@ -6,9 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$password = $_POST["password"] ?? "";
 	$remember = isset($_POST["remember"]);
 	if (empty($username) || empty($password)) {
-		$_SESSION["login_error"] =
+		$_SESSION["404_message"] =
 			"Fields can't be empty. Imagine forgetting that.";
-		header("Location: login.html");
+		header("Location: 404.php");
 		exit();
 	}
 	try {
@@ -74,18 +74,18 @@ VALUES
 			header("Location: index.php");
 			exit();
 		} else {
-			$_SESSION["login_error"] = "404 Brain Not Found";
-			header("Location: login.html");
+			$_SESSION["404_message"] = "Brain Not Found";
+			header("Location: 404.php");
 			exit();
 		}
 	} catch (\PDOException $e) {
-		$_SESSION["login_error"] = "Login system broke. Blame the intern.";
 		throw $e;
 		header("Location: status.php");
 		exit();
 	} catch (\Exception $e) {
+		$_SESSION["404_message"] = "Login system broke. Blame the intern.";
 		throw $e;
-		header("Location: login.html");
+		header("Location: 404.php");
 		exit();
 	}
 } else {
