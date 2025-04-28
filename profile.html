@@ -43,7 +43,7 @@
 			<div class="stat"><span class="stat-num"><?= $stats['based_count'] ?></span> popularity</div>
 			<div class="stat"><span class="stat-num"><?= $stats['comments'] ?></span> comments</div>
 			<div class="stat"><span class="stat-num"><?= $stats['cringe_count'] ?></span> cringes 💩</div>
-			<div class="stat"><span class="stat-num"><?= $avgSpiciness ?></span> avg 🌶️</div>
+			<div class="stat"><span class="stat-num"><?= $avgSpiciness * 100 ?></span> avg 🌶️</div>
 		</section><?php if ($badges): ?><section class="profile-badges"><?php foreach ($badges as $badge): ?><span class="pill" title="<?= htmlspecialchars($badge['label']) ?>"><?= $badge['icon'] ?> <?= htmlspecialchars($badge['label']) ?></span><?php endforeach; ?></section><?php endif; ?><?php if (!$isPrivate): ?><section class="profile-info">
 			<h3>About</h3>
 			<dl class="info-list">
@@ -61,7 +61,7 @@
 							<div class="meme-stats">
 								<span>❤️ <?= number_format($meme['like_count']) ?></span>
 								<span>💬 <?= number_format($meme['comment_count']) ?></span>
-								<span>🌶️ <?= number_format($meme['spicyness'], 2) ?></span>
+								<span>🌶️ <?= number_format($meme['spicyness']) * 100 ?></span>
 							</div>
 						</div>
 					</div>

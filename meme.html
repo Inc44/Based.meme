@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<link rel="icon" href="neuille/neuille_svgo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="styles.css">
-	<title>Meme - Based.meme</title>
+	<title>Meme Autopsy - Based.meme</title>
 	<script src="theme.js"></script>
 	<script src="meme.js"></script>
 </head>
@@ -31,8 +31,8 @@
 				<div class="user-greeting">
 					<div class="user-avatar"><?php if (!empty($meme["avatar"])): ?><img src="<?= htmlspecialchars($meme["avatar"]) ?>" alt="<?= htmlspecialchars($meme["display_name"] ?: $meme["handle"]) ?>"><?php else: ?><?= htmlspecialchars(substr($meme["handle"], 0, 1)) ?><?php endif; ?></div>
 					<div class="user-welcome">
-						<h3><a href="profile.php?handle=<?= urlencode($meme['handle']) ?>">@<?= htmlspecialchars($meme['handle']) ?></a></h3>
-						<p>Member since <?= htmlspecialchars($joinDateFormatted) ?> • Level: Basic Degenerate</p>
+						<h3><a href="profile.php?handle=<?= urlencode($meme['handle']) ?>" title="Meme Load">@<?= htmlspecialchars($meme['handle']) ?></a></h3>
+						<p title="Based Score">Member since <?= htmlspecialchars($joinDateFormatted) ?> • Level: Basic Degenerate</p>
 					</div>
 				</div><?php if (!empty($tags)): ?><ul class="tag-list"><?php foreach ($tags as $tag): ?><li class="tag"><?= htmlspecialchars($tag['name']) ?></li><?php endforeach; ?></ul><?php endif; ?><div class="interaction-container"><?php if (isset($_SESSION["user_id"])): ?><div class="action-bar">
 						<form method="post" style="display:inline;">
@@ -41,24 +41,24 @@
 						</form>
 						<form method="post" style="display: inline;">
 							<input type="hidden" name="action" value="cringe">
-							<button type="submit" class="pill <?= $flags['cringe'] ? 'active' : '' ?>">👎 Cringe (<?= $meme['dislike_count'] ?>)</button>
+							<button type="submit" class="pill <?= $flags['cringe'] ? 'active' : '' ?>" title="(downvote)">👎 Cringe (<?= $meme['dislike_count'] ?>)</button>
 						</form>
 						<form method="post" style="display: inline;">
 							<input type="hidden" name="action" value="based">
-							<button type="submit" class="pill <?= $flags['based'] ? 'active' : '' ?>">👍 Based (<?= $meme['upvote_count'] ?>)</button>
+							<button type="submit" class="pill <?= $flags['based'] ? 'active' : '' ?>" title="(upvote)">👍 Based (<?= $meme['upvote_count'] ?>)</button>
 						</form>
 						<form method="post" style="display: inline;">
 							<input type="hidden" name="action" value="steal">
-							<button type="submit" class="pill <?= $flags['steal'] ? 'active' : '' ?>">💾 Steal (<?= $meme['saved_count'] ?>)</button>
+							<button type="submit" class="pill <?= $flags['steal'] ? 'active' : '' ?>" title="(save)">💾 Steal (<?= $meme['saved_count'] ?>)</button>
 						</form>
 					</div><?php else: ?><div class="action-bar">
 						<a href="login.html" class="pill">❤️ Like (<?= $meme['like_count'] ?>)</a>
-						<a href="login.html" class="pill">👎 Cringe (<?= $meme['dislike_count'] ?>)</a>
-						<a href="login.html" class="pill">👍 Based (<?= $meme['upvote_count'] ?>)</a>
-						<a href="login.html" class="pill">💾 Steal (<?= $meme['saved_count'] ?>)</a>
+						<a href="login.html" class="pill" title="(downvote)">👎 Cringe (<?= $meme['dislike_count'] ?>)</a>
+						<a href="login.html" class="pill" title="(upvote)">👍 Based (<?= $meme['upvote_count'] ?>)</a>
+						<a href="login.html" class="pill" title="(save)">💾 Steal (<?= $meme['saved_count'] ?>)</a>
 					</div><?php endif; ?><div class="extra-actions">
-						<button class="pill secondary-bg" onclick="copyLink()">📋 Copy link</button>
-						<a class="pill warning-bg" href="contact.php">🚩 Report</a><?php if ($isOwner): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete this meme forever?');">
+						<button class="pill secondary-bg" onclick="copyLink()" title="Propagate the propaganda">📋 Copy link</button>
+						<a class="pill warning-bg" href="contact.php" title="Report for being too normie">🚩 Report</a><?php if ($isOwner): ?><form method="post" class="inline-form" onsubmit="return confirm('Delete this meme forever?');">
 							<input type="hidden" name="action" value="delete_meme">
 							<button type="submit" class="pill accent-bg">🗑️ Delete</button>
 						</form><?php endif; ?>
@@ -104,8 +104,9 @@
 							<h4><?= htmlspecialchars($similarMeme["title"]) ?></h4>
 							<div class="tag-list"><?php foreach (array_slice($similarMeme["tags"] ?? [], 0, 4) as $tag): ?><span class="tag"><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
 							<div class="meme-stats">
-								<span>❤️<?= number_format($similarMeme["like_count"] ?? 0) ?></span>
-								<span>💬<?= number_format($similarMeme["comment_count"] ?? 0) ?></span>
+								<span>❤️ <?= number_format($similarMeme["like_count"] ?? 0) ?></span>
+								<span>💬 <?= number_format($similarMeme["comment_count"] ?? 0) ?></span>
+								<span>🌶️ <?= number_format($similarMeme['spicyness']) * 100 ?></span>
 							</div>
 						</div>
 					</div>

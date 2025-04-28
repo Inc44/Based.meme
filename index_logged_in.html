@@ -51,7 +51,7 @@
 							<div class="meme-stats">
 								<span>❤️ <?php echo number_format($meme["like_count"]); ?></span>
 								<span>💬 <?php echo number_format($meme["comment_count"]); ?></span>
-								<span>🌶️ <?php echo number_format($meme['spicyness'], 2); ?></span>
+								<span>🌶️ <?php echo number_format($meme['spicyness']) * 100; ?></span>
 							</div>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 							<div class="meme-stats">
 								<span>❤️ <?php echo number_format($meme["like_count"]); ?></span>
 								<span>💬 <?php echo number_format($meme["comment_count"]); ?></span>
-								<span>🌶️ <?php echo number_format($meme['spicyness'], 2); ?></span>
+								<span>🌶️ <?php echo number_format($meme['spicyness']) * 100; ?></span>
 							</div>
 						</div>
 					</div>

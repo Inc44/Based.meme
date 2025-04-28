@@ -86,7 +86,7 @@
 								<h4><?= htmlspecialchars($meme["title"]) ?><br></h4> ID : <?= htmlspecialchars($meme["meme_id"]) ?><br> <?= htmlspecialchars($meme["content"]) ?><br> POSTED BY : <?= htmlspecialchars($meme["user_id"]) ?> <div class="meme-stats-id">
 									<span>❤️ <?= htmlspecialchars($meme["like_count"]) ?></span>
 									<span>💬 <?= htmlspecialchars($meme["comment_count"]) ?></span>
-									<span>🌶️ <?= number_format($meme['spicyness'], 2) ?></span>
+									<span>🌶️ <?= number_format($meme['spicyness']) * 100 ?></span>
 								</div>
 							</div>
 						</div> <?php endforeach; ?> </ul>
@@ -107,7 +107,7 @@
 						) ?><br> <?= htmlspecialchars($meme["content"]) ?> <div class="meme-stats">
 								<span>❤️ <?= htmlspecialchars($meme["like_count"]) ?></span>
 								<span>💬 <?= htmlspecialchars($meme["comment_count"]) ?></span>
-								<span>🌶️ <?= number_format($meme['spicyness'], 2) ?></span>
+								<span>🌶️ <?= number_format($meme['spicyness']) * 100 ?></span>
 							</div>
 						</div>
 					</div> <?php endforeach; ?>
