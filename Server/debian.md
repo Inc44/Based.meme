@@ -9,6 +9,7 @@ sed -i 's/^ServerSignature On/ServerSignature Off/' /etc/apache2/conf-available/
 rm -rf /var/www/html
 git clone https://github.com/Inc44/Based.meme.git /var/www/html
 chown -R www-data:www-data /var/www/html
+git config --global --add safe.directory /var/www/html
 apt clean
 rm -rf /var/lib/apt/lists/*
 
