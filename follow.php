@@ -56,7 +56,7 @@ WHERE
 	exit();
 } catch (\PDOException $e) {
 	throw $e;
-	header("Location: index.php");
+	header("Location: status.php");
 	exit();
 } catch (\Exception $e) {
 	throw $e;

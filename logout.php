@@ -15,6 +15,8 @@ WHERE
 		$stmt->execute([$_COOKIE["remember_token"]]);
 	} catch (\PDOException $e) {
 		throw $e;
+		header("Location: status.php");
+		exit();
 	} catch (\Exception $e) {
 		throw $e;
 	}

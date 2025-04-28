@@ -206,7 +206,11 @@ WHERE
 				break;
 		}
 	} catch (\PDOException $e) {
+		throw $e;
+		header("Location: status.php");
+		exit();
 	} catch (\Exception $e) {
+		throw $e;
 	}
 	header("Location: " . $_SERVER["REQUEST_URI"]);
 	exit();
@@ -430,6 +434,8 @@ WHERE
 	}
 } catch (\PDOException $e) {
 	throw $e;
+	header("Location: status.php");
+	exit();
 } catch (\Exception $e) {
 	throw $e;
 }

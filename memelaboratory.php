@@ -162,6 +162,8 @@ WHERE
 		exit();
 	} catch (\PDOException $e) {
 		throw $e;
+		header("Location: status.php");
+		exit();
 	} catch (\Exception $e) {
 		throw $e;
 	}

@@ -79,9 +79,9 @@ VALUES
 			exit();
 		}
 	} catch (\PDOException $e) {
-		throw $e;
 		$_SESSION["login_error"] = "Login system broke. Blame the intern.";
-		header("Location: login.html");
+		throw $e;
+		header("Location: status.php");
 		exit();
 	} catch (\Exception $e) {
 		throw $e;

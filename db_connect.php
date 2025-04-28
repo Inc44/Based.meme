@@ -20,6 +20,8 @@ function getDbConnection(): ?PDO
 			$pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 		} catch (\PDOException $e) {
 			throw $e;
+			header("Location: status.php");
+			exit();
 		} catch (\Exception $e) {
 			throw $e;
 		}

@@ -59,6 +59,8 @@ LIMIT
 			}
 		} catch (\PDOException $e) {
 			throw $e;
+			header("Location: status.php");
+			exit();
 		} catch (\Exception $e) {
 			throw $e;
 		}
@@ -109,6 +111,8 @@ VALUES
 			"Report submitted successfully. We'll look into it (maybe).";
 	} catch (\PDOException $e) {
 		throw $e;
+		header("Location: status.php");
+		exit();
 	} catch (\Exception $e) {
 		throw $e;
 	}
@@ -137,6 +141,8 @@ WHERE
 		}
 	} catch (\PDOException $e) {
 		throw $e;
+		header("Location: status.php");
+		exit();
 	} catch (\Exception $e) {
 		throw $e;
 	}

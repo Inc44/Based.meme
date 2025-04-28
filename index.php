@@ -38,7 +38,7 @@ WHERE
 			}
 		} catch (\PDOException $e) {
 			throw $e;
-			header("Location: index.html");
+			header("Location: status.php");
 			exit();
 		} catch (\Exception $e) {
 			throw $e;
@@ -148,6 +148,8 @@ WHERE
 	}
 } catch (\PDOException $e) {
 	throw $e;
+	header("Location: status.php");
+	exit();
 } catch (\Exception $e) {
 	throw $e;
 }

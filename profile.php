@@ -537,6 +537,7 @@ WHERE
 	$grassLabel = resolveLabel($user["touch_grass"], $grassOptions);
 } catch (\PDOException $e) {
 	throw $e;
+	header("Location: status.php");
 	exit();
 } catch (\Exception $e) {
 	throw $e;

@@ -90,6 +90,9 @@ WHERE
 			}
 		} catch (\PDOException $e) {
 			$errors["db"] = "Validation broke. Blame the server. Try again.";
+			throw $e;
+			header("Location: status.php");
+			exit();
 		} catch (\Exception $e) {
 		}
 	}
@@ -146,7 +149,8 @@ VALUES
 		} catch (\PDOException $e) {
 			$_SESSION["signup_error"] =
 				"Registration failed. Server's drunk. Retry.";
-			header("Location: signup.html");
+			throw $e;
+			header("Location: status.php");
 			exit();
 		} catch (\Exception $e) {
 			header("Location: signup.html");
