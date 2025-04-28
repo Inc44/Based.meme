@@ -14,6 +14,36 @@ function yid(int $size = 11): string
 	);
 }
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	$name = trim($_POST["name"] ?? "");
+	if (empty($name)) {
+		$_SESSION["404_code"] = "You failed";
+		$_SESSION["404_message"] = "Your Internet Alias is required.";
+		header("Location: 404.php");
+		exit();
+	}
+	$email = trim($_POST["email"] ?? "");
+	if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$_SESSION["404_code"] = "You failed";
+		$_SESSION["404_message"] = "A valid Email is required.";
+		header("Location: 404.php");
+		exit();
+	}
+	$reason = $_POST["category"] ?? "other";
+	if (empty($reason)) {
+		$_SESSION["404_code"] = "You failed";
+		$_SESSION["404_message"] =
+			"Please select a category (What's your damage?).";
+		header("Location: 404.php");
+		exit();
+	}
+	$message = trim($_POST["message"] ?? "");
+	if (empty($message)) {
+		$_SESSION["404_code"] = "You failed";
+		$_SESSION["404_message"] =
+			"The message (Spill the Tea) cannot be empty.";
+		header("Location: 404.php");
+		exit();
+	}
 	$captcha = trim(strtolower($_POST["captcha"] ?? ""));
 	if (
 		!preg_match(
@@ -21,15 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$captcha
 		)
 	) {
-		$_SESSION["404_message"] = "You failed";
+		$_SESSION["404_code"] = "You failed";
 		$_SESSION["404_message"] = "Incorrect captcha. Are you a normie?";
 		header("Location: 404.php");
 		exit();
 	}
-	$name = trim($_POST["name"] ?? "");
-	$email = trim($_POST["email"] ?? "");
-	$reason = $_POST["category"] ?? "other";
-	$message = trim($_POST["message"] ?? "");
 	$report_id = yid();
 	$reporter_id = $_SESSION["user_id"] ?? 0;
 	$content_type = $_POST["content_type"] ?? "user";
