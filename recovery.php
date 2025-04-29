@@ -45,7 +45,7 @@ WHERE
 	email = ?
 LIMIT
 	1
-            ");
+			");
 		} else {
 			$stmt = $pdo->prepare("
 SELECT
@@ -59,7 +59,7 @@ WHERE
 	handle = ?
 LIMIT
 	1
-            ");
+			");
 		}
 		$stmt->execute([$name_or_email]);
 		$user = $stmt->fetch(PDO::FETCH_ASSOC);

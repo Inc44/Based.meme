@@ -76,7 +76,7 @@ SELECT
 	m.view_count,
 	m.like_count,
 	m.comment_count,
-	u.handle as creator
+	u.handle AS creator
 FROM
 	memes AS m
 	JOIN users u ON m.user_id = u.user_id
@@ -115,7 +115,7 @@ SELECT
 	m.view_count,
 	m.like_count,
 	m.comment_count,
-	u.handle as creator
+	u.handle AS creator
 FROM
 	memes AS m
 	JOIN users AS u ON m.user_id = u.user_id

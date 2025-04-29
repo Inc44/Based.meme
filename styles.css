@@ -578,6 +578,11 @@ nav
 	transition: 0.6s;
 }
 
+body.light-theme .tag-container label
+{
+	color: var(--accent);
+}
+
 /* État sélectionné (checkbox cochée) */
 .tag-container input[type="checkbox"]:checked+label
 {
@@ -585,11 +590,23 @@ nav
 	color: var(--accent);
 }
 
+body.light-theme .tag-container input[type="checkbox"]:checked+label
+{
+	background-color: var(--accent);
+	color: var(--darker);
+}
+
 .tag-container label:hover
 {
 	background-color: rgba(158, 62, 146, 0.785);
 	transform: translateY(-0.125rem);
 	box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 255, 0.4);
+}
+
+body.light-theme .tag-container label:hover
+{
+	background-color: var(--accent-dark);
+	color: var(--darker);
 }
 
 .placeholder-image-desc
@@ -2197,10 +2214,15 @@ body.light-theme select option
 .main-aby
 {
 	align-items: center;
-	text-align: center;
 	background: var(--body-bg);
 	background-color: var(--darker);
 	align-items: center;
+}
+
+.main-aby h2,
+.main-aby p
+{
+	text-align: center;
 }
 
 .sec-aby
@@ -2261,7 +2283,7 @@ body.light-theme select option
 	width: 100%;
 	max-width: 31.25rem;
 	text-align: center;
-	color: blue;
+	color: var(--text-secondary);
 	/* ça agit sur les balises type h1, p, span... */
 }
 

@@ -331,7 +331,7 @@ SELECT
 	m.spicyness,
 	m.like_count,
 	m.comment_count,
-	u.handle as creator,
+	u.handle AS creator,
 	SUM(
 		CASE
 			WHEN mt.tag_id IN ($tagIdsIn) THEN 1
@@ -382,7 +382,7 @@ SELECT
 	m.spicyness,
 	m.like_count,
 	m.comment_count,
-	u.handle as creator
+	u.handle AS creator
 FROM
 	memes AS m
 	JOIN users AS u ON u.user_id = m.user_id

@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<link rel="icon" href="neuille/neuille_svgo.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="styles.css">
-	<title>Based.meme - Into the Abyss</title>
+	<title>Into the Abyss - Based.meme</title>
 	<script src="theme.js"></script>
 </head>
 
-<body>
+<body id="top">
 	<header>
 		<div class="logo">
 			<a href="index.php">
 				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
 			</a>
 		</div>
+		<form class="search" action="search.php" method="GET">
+			<input type="search" name="query" value="<?= htmlspecialchars($query) ?>">
+			<button type="submit">🔍</button>
+		</form>
 		<nav>
 			<button id="themeToggle">🌙</button>
-			<a href="login.html" class="btn btn-login">Login</a>
-			<a href="signup.html" class="btn btn-signup">Sign Up</a>
+			<a href="profile.php" class="btn btn-login">Profile</a>
+			<a href="logout.php" class="btn btn-signup">Logout</a>
 		</nav>
 	</header>
 	<main class="main-aby">
@@ -29,40 +33,19 @@
 				<p class="subtitle">Into the Abyss allows you to search for memes</p>
 			</div>
 			<div class="formulaire-aby">
-				<br>
 				<form class="formabyss" action="search.php" method="GET">
 					<div class="user-insert">
 						<div class="auth-form">
 							<br>
-							<label for="meme_id">MEME ID</label>
-							<input type="text" id="meme_id" name="meme_id" value="<?= htmlspecialchars(
-					$meme_id
-				) ?>"><br><br>
+							<label for="query">MEME</label>
+							<input type="text" id="query" name="query" value="<?= htmlspecialchars($query) ?>">
+							<br>
+							<br>
 						</div>
 						<div class="meme-tag-container">
-							<p>TAGS
-							<p>
-							<div class="tag-container">
-								<input type="checkbox" name="tags[]" value="dank" id="tag-dank"><label for="tag-dank">dank</label>
-								<input type="checkbox" name="tags[]" value="cursed" id="tag-cursed"><label for="tag-cursed">cursed</label>
-								<input type="checkbox" name="tags[]" value="pov" id="tag-pov"><label for="tag-pov">pov</label>
-								<input type="checkbox" name="tags[]" value="nocap" id="tag-nocap"><label for="tag-nocap">no cap fr fr</label>
-								<input type="checkbox" name="tags[]" value="rizz" id="tag-rizz"><label for="tag-rizz">rizz</label>
-								<input type="checkbox" name="tags[]" value="sigma" id="tag-sigma"><label for="tag-sigma">sigma</label>
-								<input type="checkbox" name="tags[]" value="goofy-ahh" id="tag-goofy-ahh"><label for="tag-goofy-ahh">goofy-ahh</label>
-								<input type="checkbox" name="tags[]" value="touchgrass" id="tag-touchgrass"><label for="tag-touchgrass">touch grass</label>
-								<input type="checkbox" name="tags[]" value="gyatt" id="tag-gyatt"><label for="tag-gyatt">gyatt</label>
-								<input type="checkbox" name="tags[]" value="sus" id="tag-sus"><label for="tag-sus">sus</label>
-								<input type="checkbox" name="tags[]" value="mid" id="tag-mid"><label for="tag-mid">mid</label>
-								<input type="checkbox" name="tags[]" value="relatable" id="tag-relatable"><label for="tag-relatable">relatable</label>
-								<input type="checkbox" name="tags[]" value="cringe" id="tag-cringe"><label for="tag-cringe">cringe</label>
-								<input type="checkbox" name="tags[]" value="shitpost" id="tag-shitpost"><label for="tag-shitpost">shitpost</label>
-								<input type="checkbox" name="tags[]" value="edgy" id="tag-edgy"><label for="tag-edgy">edgy</label>
-								<input type="checkbox" name="tags[]" value="deep-fried" id="tag-deep-fried"><label for="tag-deep-fried">deep-fried</label>
-								<input type="checkbox" name="tags[]" value="npc" id="tag-npc"><label for="tag-npc">npc</label>
-								<input type="checkbox" name="tags[]" value="dead" id="tag-dead"><label for="tag-dead">💀</label>
-								<input type="checkbox" name="tags[]" value="skibidi" id="tag-skibidi"><label for="tag-skibidi">skibidi</label>
-								<input type="checkbox" name="tags[]" value="toilet" id="tag-toilet"><label for="tag-toilet">toilet</label>
+							<label>TAGS</label>
+							<div class="tag-container"><?php if (!empty($tags)): ?><?php foreach ($tags as $tag): ?><input type="checkbox" name="tags[]" value="<?= htmlspecialchars($tag['slug']) ?>" id="tag-<?= htmlspecialchars($tag['slug']) ?>" <?= in_array($tag['slug'], $selected_tags) ? 'checked' : '' ?>>
+								<label for="tag-<?= htmlspecialchars($tag['slug']) ?>"><?= htmlspecialchars($tag['name']) ?></label><?php endforeach; ?><?php endif; ?>
 							</div>
 						</div>
 					</div>
@@ -70,52 +53,39 @@
 				</form>
 			</div>
 		</section>
-		<div class="result-grid">
-			<div class="result-id"> <?php if (!empty($_GET)): ?> <?php if (!empty($memes_by_id)): ?> <section class="results">
-					<h2>📄 Résultats pour Meme ID: <?= htmlspecialchars(
-					$meme_id
-				) ?></h2>
-					<br>
-					<ul> <?php foreach ($memes_by_id as $meme): ?> <div class="meme-card">
-							<div class="meme-image">
-								<img src="<?= htmlspecialchars(
-								$meme["media_url"]
-							) ?>" alt="Image du meme"><br>
-							</div>
-							<div class="meme-info-id">
-								<h4><?= htmlspecialchars($meme["title"]) ?><br></h4> ID : <?= htmlspecialchars($meme["meme_id"]) ?><br> <?= htmlspecialchars($meme["content"]) ?><br> POSTED BY : <?= htmlspecialchars($meme["user_id"]) ?> <div class="meme-stats-id">
-									<span>❤️ <?= htmlspecialchars($meme["like_count"]) ?></span>
-									<span>💬 <?= htmlspecialchars($meme["comment_count"]) ?></span>
-									<span>🌶️ <?= number_format($meme['spicyness']) * 100 ?></span>
-								</div>
-							</div>
-						</div> <?php endforeach; ?> </ul>
-				</section> <?php else: ?> <p>Aucun meme trouvé pour cet ID.</p> <?php endif; ?> </div>
-			<div class="result-tag"> <?php if (!empty($memes_by_tags)): ?> <h2>📄 Résultats pour les tags : <?= htmlspecialchars(
-				implode(" | ", $tags)
-			) ?></h2>
-				<br>
-				<section class="meme-grid-aby"> <?php foreach ($memes_by_tags as $meme): ?> <div class="meme-card">
-						<div class="meme-image">
-							<img src="<?= htmlspecialchars(
-								$meme["media_url"]
-							) ?>" alt="Image du meme"><br>
+		<section>
+			<br>
+			<h2>📄 Results:</h2>
+			<br><?php if (isset($_SESSION['search_error'])): ?><div class="error-banner"><?= htmlspecialchars($_SESSION['search_error']); ?></div><?php unset($_SESSION['search_error']); ?><?php endif; ?><?php if ($query !== '' || !empty($selected_tags)): ?><?php if (empty($results)): ?><div class="empty-state">
+				<h3>No memes found</h3>
+			</div><?php else: ?><div class="meme-grid"><?php foreach ($results as $meme): ?><a href="meme.php?id=<?= htmlspecialchars($meme['meme_id']) ?>" class="meme-card-link">
+					<div class="meme-card">
+						<div class="meme-image"><img src="<?= htmlspecialchars($meme["media_url"]) ?>" alt="<?= htmlspecialchars($meme["title"]) ?>">
+							<div class="creator-badge">@<?= htmlspecialchars($meme["creator"]) ?></div>
 						</div>
 						<div class="meme-info">
-							<h4><?= htmlspecialchars($meme["title"]) ?><br></h4> ID : <?= htmlspecialchars($meme["meme_id"]) ?><br> POSTED BY : <?= htmlspecialchars(
-							$meme["user_id"]
-						) ?><br> <?= htmlspecialchars($meme["content"]) ?> <div class="meme-stats">
-								<span>❤️ <?= htmlspecialchars($meme["like_count"]) ?></span>
-								<span>💬 <?= htmlspecialchars($meme["comment_count"]) ?></span>
+							<h4><?= htmlspecialchars($meme["title"]) ?></h4><?php if (!empty($meme['tags'])): ?><div class="tag-list"><?php foreach ($meme["tags"] as $tag_name): ?><span class="tag"><?= htmlspecialchars($tag_name) ?></span><?php endforeach; ?></div><?php endif; ?><div class="meme-stats">
+								<span>❤️ <?= number_format($meme["like_count"]) ?></span>
+								<span>💬 <?= number_format($meme["comment_count"]) ?></span>
 								<span>🌶️ <?= number_format($meme['spicyness']) * 100 ?></span>
 							</div>
 						</div>
-					</div> <?php endforeach; ?>
-			</div>
-			</section> <?php else: ?> <p>Aucun meme trouvé pour ces tags.</p> <?php endif; ?> <?php endif; ?>
-		</div>
-		</div>
+					</div>
+				</a><?php endforeach; ?></div><?php endif; ?><?php else: ?><p>Enter a query or select tags to start searching.</p><?php endif; ?>
+		</section>
 	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="about.html">About</a>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="terms_of_service.html">Terms of Service</a>
+				<a href="contact.php">Contact</a>
+			</div>
+			<p class="copyright">© 2025 Based.meme | All rights reserved | No normies allowed.</p>
+			<a href="#top" id="scrollToTop">⬆️</a>
+		</div>
+	</footer>
 </body>
 
 </html>
