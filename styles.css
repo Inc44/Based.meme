@@ -90,9 +90,9 @@ button.primary-bg:hover
 	background-color: var(--secondary) !important;
 }
 
-.secondary-bg,
-a.secondary-bg,
-button.secondary-bg
+.secondary-bg:hover,
+a.secondary-bg:hover,
+button.secondary-bg:hover
 {
 	background-color: var(--secondary-dark) !important;
 }
@@ -165,7 +165,6 @@ footer
 {
 	background-color: var(--header-bg);
 	padding: 2rem 5%;
-	margin-top: 3rem;
 	border-top: 0.0625rem solid var(--border-color);
 }
 
@@ -2419,6 +2418,207 @@ body.light-theme select option
 	display: block;
 	margin-bottom: 0.5rem;
 	color: var(--text-secondary);
+}
+
+.filter-potions
+{
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	margin: 1rem 0;
+}
+
+.potion-filter input[type="radio"]
+{
+	display: none;
+}
+
+.potion-filter label
+{
+	display: inline-block;
+	font-weight: bold;
+	overflow: hidden;
+	position: relative;
+	border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+	border: 3px solid var(--border-color);
+	min-width: 7rem;
+	padding: 0.7rem 1.2rem 1.8rem 1.2rem;
+	transition: all 0.3s ease;
+}
+
+.potion-filter label::before
+{
+	background-color: var(--primary-dark);
+	bottom: 0;
+	content: '';
+	height: 24%;
+	left: 0;
+	opacity: 0.6;
+	width: 100%;
+	position: absolute;
+	transition: height 0.3s ease;
+}
+
+.potion-filter label:hover::before
+{
+	height: 48%;
+}
+
+.potion-filter input[type="radio"]:checked+label
+{
+	border-color: var(--primary);
+	color: var(--primary);
+	box-shadow: 0 0 0.75rem var(--primary);
+	transform: translateY(-0.3125rem) scale(1.05);
+}
+
+.potion-filter input[type="radio"]:checked+label::before
+{
+	background-color: var(--primary);
+	height: 48%;
+	opacity: 0.84;
+}
+
+.potion-filter input[type="radio"]:checked+label span
+{
+	color: var(--light);
+}
+
+.user-grid
+{
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+.user-card
+{
+	background-color: var(--card-bg);
+	align-items: center;
+	display: flex;
+	text-decoration: none;
+	transition: border-left-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+	border-left: 0.1875rem solid transparent;
+	border-radius: 0.5rem;
+	gap: 1rem;
+	padding: 1rem;
+}
+
+.user-card:hover
+{
+	border-left-color: var(--secondary);
+	box-shadow: var(--card-shadow);
+	transform: translateY(-0.3125rem);
+}
+
+.user-avatar-sm
+{
+	align-items: center;
+	color: white;
+	display: flex;
+	font-weight: bold;
+	justify-content: center;
+	overflow: hidden;
+	background-color: var(--primary);
+	border-radius: 50%;
+	font-size: 1.75rem;
+	height: 4rem;
+	width: 4rem;
+}
+
+.user-avatar-sm img
+{
+	height: 100%;
+	width: 100%;
+}
+
+.user-info h4
+{
+	color: var(--text-primary);
+}
+
+.user-info .handle,
+.user-info .bio-snippet
+{
+	text-align: unset;
+}
+
+.user-info .handle
+{
+	color: var(--text-muted);
+	font-size: 0.9rem;
+	margin: 0.125rem;
+}
+
+.user-info .bio-snippet
+{
+	color: var(--text-secondary);
+	font-size: 0.8rem;
+}
+
+.tag-grid
+{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
+}
+
+.tag-card
+{
+	background-color: var(--card-bg);
+	font-weight: bold;
+	text-decoration: none;
+	color: var(--secondary);
+	border: 1px solid var(--secondary);
+	border-radius: 2rem;
+	padding: 0.75rem 1.5rem;
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.tag-card:hover
+{
+	background-color: var(--secondary-dark);
+	color: white;
+	transform: translateY(-0.1875rem);
+}
+
+.tag-card .usage-count
+{
+	background-color: var(--details-pre-bg);
+	color: var(--text-muted);
+	font-weight: normal;
+	border-radius: 1rem;
+	font-size: 0.8rem;
+	padding: 0.1rem 0.4rem;
+}
+
+.tag-card:hover .usage-count
+{
+	background-color: rgba(255, 255, 255, 0.2);
+	color: var(--light);
+}
+
+.seen-enough-section
+{
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.btn-seen-enough
+{
+	color: var(--darker);
+}
+
+.btn-seen-enough:hover
+{
+	box-shadow: 0 0 10px var(--secondary);
+	color: white;
+}
+
+.formabyss .auth-form
+{
+	margin-bottom: 1rem;
 }
 
 @keyframes gradient

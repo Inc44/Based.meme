@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="styles.css">
 	<title>Into the Abyss - Based.meme</title>
 	<script src="theme.js"></script>
+	<script src="search.js"></script>
 </head>
 
 <body id="top">
@@ -34,17 +35,28 @@
 		<section class="sec-aby">
 			<div class="title-aby">
 				<h2 class="tagline">Into the Abyss</h2>
-				<p class="subtitle">Into the Abyss allows you to search for memes</p>
+				<p class="subtitle">Into the Abyss allows you to search for memes.</p>
 			</div>
 			<div class="formulaire-aby">
 				<form class="formabyss" action="search.php" method="GET">
+					<div class="filter-potions">
+						<div class="potion-filter">
+							<input type="radio" id="filter-memers" name="type" value="memers" <?= ($type === 'memers') ? 'checked' : '' ?>>
+							<label for="filter-memers"><span>Memers</span></label>
+						</div>
+						<div class="potion-filter">
+							<input type="radio" id="filter-memes" name="type" value="memes" <?= ($type === 'memes') ? 'checked' : '' ?>>
+							<label for="filter-memes"><span>Memes</span></label>
+						</div>
+						<div class="potion-filter">
+							<input type="radio" id="filter-tags" name="type" value="tags" <?= ($type === 'tags') ? 'checked' : '' ?>>
+							<label for="filter-tags"><span>Tags</span></label>
+						</div>
+					</div>
 					<div class="user-insert">
 						<div class="auth-form">
-							<br>
-							<label for="query">MEME</label>
+							<label for="query">MEME/USER/TAG</label>
 							<input type="text" id="query" name="query" value="<?= htmlspecialchars($query) ?>">
-							<br>
-							<br>
 						</div>
 						<div class="meme-tag-container">
 							<label>TAGS</label>
@@ -60,22 +72,41 @@
 		<section>
 			<br>
 			<h2>📄 Results:</h2>
-			<br><?php if (isset($_SESSION['search_error'])): ?><div class="error-banner"><?= htmlspecialchars($_SESSION['search_error']); ?></div><?php unset($_SESSION['search_error']); ?><?php endif; ?><?php if ($query !== '' || !empty($selected_tags)): ?><?php if (empty($results)): ?><div class="empty-state">
+			<br><?php if ($perform_search): ?><?php if ($type === 'memes'): ?><?php if (empty($meme_results)): ?><div class="empty-state">
 				<h3>No memes found</h3>
-			</div><?php else: ?><div class="meme-grid"><?php foreach ($results as $meme): ?><a href="meme.php?id=<?= htmlspecialchars($meme['meme_id']) ?>" class="meme-card-link">
+				<p>The void stares back. Or maybe your search term was just bad.</p>
+			</div><?php else: ?><div class="meme-grid"><?php foreach ($meme_results as $meme): ?><a href="meme.php?id=<?= htmlspecialchars($meme['meme_id']) ?>" class="meme-card-link">
 					<div class="meme-card">
-						<div class="meme-image"><img src="<?= htmlspecialchars($meme["media_url"]) ?>" alt="<?= htmlspecialchars($meme["title"]) ?>">
+						<div class="meme-image">
+							<img src="<?= htmlspecialchars($meme["media_url"]) ?>" alt="<?= htmlspecialchars($meme["title"]) ?>">
 							<div class="creator-badge">@<?= htmlspecialchars($meme["creator"]) ?></div>
 						</div>
 						<div class="meme-info">
 							<h4><?= htmlspecialchars($meme["title"]) ?></h4><?php if (!empty($meme['tags'])): ?><div class="tag-list"><?php foreach ($meme["tags"] as $tag_name): ?><span class="tag"><?= htmlspecialchars($tag_name) ?></span><?php endforeach; ?></div><?php endif; ?><div class="meme-stats">
 								<span>❤️ <?= number_format($meme["like_count"]) ?></span>
 								<span>💬 <?= number_format($meme["comment_count"]) ?></span>
-								<span>🌶️ <?= number_format($meme['spicyness']) * 100 ?></span>
+								<span>🌶️ <?= number_format($meme['spicyness'] * 100) ?></span>
 							</div>
 						</div>
 					</div>
-				</a><?php endforeach; ?></div><?php endif; ?><?php else: ?><p>Enter a query or select tags to start searching.</p><?php endif; ?>
+				</a><?php endforeach; ?></div><?php endif; ?><?php elseif ($type === 'memers'): ?><?php if (empty($user_results)): ?><div class="empty-state">
+				<h3>No memers found</h3>
+				<p>Are they all hiding? Or maybe they just don't exist.</p>
+			</div><?php else: ?><div class="user-grid"><?php foreach ($user_results as $user): ?><a href="profile.php?handle=<?= urlencode($user['handle']) ?>" class="user-card">
+					<div class="user-avatar-sm"><?php if (!empty($user["avatar"])): ?><img src="<?= htmlspecialchars($user["avatar"]); ?>" alt="<?= htmlspecialchars($user['display_name'] ?: $user['handle']); ?>"><?php else: ?><?= htmlspecialchars(strtoupper(substr($user["handle"], 0, 1))); ?><?php endif; ?></div>
+					<div class="user-info">
+						<h4><?= htmlspecialchars($user['display_name'] ?: $user['handle']) ?></h4>
+						<p class="handle">@<?= htmlspecialchars($user['handle']) ?></p><?php if (!empty($user['bio_snippet'])): ?><p class="bio-snippet"><?= htmlspecialchars($user['bio_snippet']) ?>...</p><?php endif; ?>
+					</div>
+				</a><?php endforeach; ?></div><?php endif; ?><?php elseif ($type === 'tags'): ?><?php if (empty($tag_results)): ?><div class="empty-state">
+				<h3>No tags found</h3>
+				<p>Maybe make some up? Be the change you want to see.</p>
+			</div><?php else: ?><div class="tag-grid"><?php foreach ($tag_results as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag-card" title="Search memes with this tag">
+					<span>#<?= htmlspecialchars($tag['name']) ?></span>
+					<span class="usage-count"><?= number_format($tag['usage_count']) ?></span>
+				</a><?php endforeach; ?></div><?php endif; ?><?php endif; ?><div class="seen-enough-section">
+				<a href="index.php" class="btn btn-seen-enough secondary-bg">I've seen enough</a>
+			</div><?php else: ?><p>Enter a query or select tags to start searching.</p><?php endif; ?>
 		</section>
 	</main>
 	<footer>
