@@ -12,16 +12,24 @@
 
 <body id="top">
 	<header>
-		<div class="logo">
-			<a href="index.php">
-				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
-			</a>
+		<div class="left">
+			<div class="logo">
+				<a href="index.php">
+					<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+				</a>
+			</div>
 		</div>
-		<nav>
-			<button id="themeToggle">🌙</button>
-			<a href="profile.php" class="btn btn-login">Profile</a>
-			<a href="logout.php" class="btn btn-signup">Logout</a>
-		</nav>
+		<form class="search" action="search.php" method="GET">
+			<input type="search" name="query">
+			<button type="submit">🔍</button>
+		</form>
+		<div class="right">
+			<nav>
+				<button id="themeToggle">🌙</button>
+				<a href="profile.php" class="btn btn-login">Profile</a>
+				<a href="logout.php" class="btn btn-signup">Logout</a>
+			</nav>
+		</div>
 	</header>
 	<main>
 		<section class="hero">

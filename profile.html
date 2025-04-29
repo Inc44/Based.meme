@@ -12,16 +12,24 @@
 
 <body id="top">
 	<header>
-		<div class="logo">
-			<a href="index.php">
-				<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
-			</a>
+		<div class="left">
+			<div class="logo">
+				<a href="index.php">
+					<h1 class="glitch" data-text="Based.meme">Based.meme</h1>
+				</a>
+			</div>
 		</div>
-		<nav>
-			<button id="themeToggle">🌙</button><?php if (isset($_SESSION["user_id"])): ?><a href="profile.php" class="btn btn-login">Profile</a>
-			<a href="logout.php" class="btn btn-signup">Logout</a><?php else: ?><a href="login.html" class="btn btn-login">Login</a>
-			<a href="signup.html" class="btn btn-signup">Sign Up</a><?php endif; ?>
-		</nav>
+		<form class="search" action="search.php" method="GET">
+			<input type="search" name="query">
+			<button type="submit">🔍</button>
+		</form>
+		<div class="right">
+			<nav>
+				<button id="themeToggle">🌙</button><?php if (isset($_SESSION["user_id"])): ?><a href="profile.php" class="btn btn-login">Profile</a>
+				<a href="logout.php" class="btn btn-signup">Logout</a><?php else: ?><a href="login.html" class="btn btn-login">Login</a>
+				<a href="signup.html" class="btn btn-signup">Sign Up</a><?php endif; ?>
+			</nav>
+		</div>
 	</header>
 	<main class="profile-page">
 		<section class="profile-header">
