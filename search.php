@@ -35,11 +35,20 @@ $query = trim($_GET["query"] ?? "");
 $selected_tags = array_filter(
 	array_map("strval", (array) ($_GET["tags"] ?? []))
 );
+$scope = $_GET["scope"] ?? "all";
+$sort = $_GET["sort"] ?? "default";
 $type = $_GET["type"] ?? "memes";
+$userId = $_SESSION["user_id"];
 $meme_results = [];
 $user_results = [];
 $tag_results = [];
-$perform_search = $query !== "" || !empty($selected_tags) || $type !== "memes";
+$suggestion = null;
+$perform_search =
+	$query !== "" ||
+	!empty($selected_tags) ||
+	$scope !== "all" ||
+	$sort !== "default" ||
+	$type !== "memes";
 if ($perform_search) {
 	try {
 		$parameters = [];
@@ -134,6 +143,38 @@ FROM
 	memes AS m
 	JOIN users AS u ON m.user_id = u.user_id
 				";
+				if ($scope === "recommendations") {
+					$stmt = $pdo->prepare("
+SELECT
+	following_id
+FROM
+	follows
+WHERE
+	follower_id = ?
+					");
+					$stmt->execute([$userId]);
+					$followed_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
+					if (!empty($followed_ids)) {
+						$placeholders = implode(
+							",",
+							array_fill(0, count($followed_ids), "?")
+						);
+						$available[] = "
+m.user_id IN ($placeholders)
+						";
+						$parameters = array_merge($parameters, $followed_ids);
+						$orderBy = "
+m.published_at DESC
+						";
+					} else {
+						$available[] = "
+1=0
+						";
+						$orderBy = "
+m.published_at DESC
+						";
+					}
+				}
 				if (!empty($selected_tags)) {
 					$sql .= "
 JOIN meme_tags AS mt ON m.meme_id = mt.meme_id
@@ -158,13 +199,29 @@ t.slug IN ($placeholders)
 					$parameters[] = "%$query%";
 					$parameters[] = "%$query%";
 				}
+				if ($scope === "recommendations" && isset($orderBy)) {
+				} elseif ($sort === "trending") {
+					$orderBy = "
+(
+	m.like_count + m.upvote_count * 2 + m.comment_count
+) / (TIMESTAMPDIFF(HOUR, m.published_at, NOW()) + 1) DESC,
+m.published_at DESC
+					";
+				} else {
+					$orderBy = "
+m.published_at DESC
+					";
+				}
 				$sql .=
 					"
 WHERE
 				" . implode(" AND ", $available);
-				$sql .= "
+				$sql .=
+					"
 ORDER BY
-	m.published_at DESC
+				" .
+					$orderBy .
+					"
 LIMIT
 	42
 				";
