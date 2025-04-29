@@ -24,7 +24,7 @@ ORDER BY
 } catch (\Exception $e) {
 	throw $e;
 }
-$query = trim($_GET["query"]);
+$query = trim($_GET["query"] ?? "");
 $selected_tags = array_filter(
 	array_map("strval", (array) ($_GET["tags"] ?? []))
 );

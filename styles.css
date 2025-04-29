@@ -605,7 +605,7 @@ body.light-theme .tag-container input[type="checkbox"]:checked+label
 
 body.light-theme .tag-container label:hover
 {
-	background-color: var(--accent-dark);
+	background-color: var(--accent);
 	color: var(--darker);
 }
 
@@ -1347,7 +1347,8 @@ body.light-theme .captcha-container
 
 .auth-form input:focus,
 .auth-form textarea:focus,
-.auth-form select:focus
+.auth-form select:focus,
+.search:focus-within
 {
 	outline: none;
 	border-color: var(--accent);
@@ -2196,6 +2197,58 @@ body.light-theme .category-pill.active
 .ball.cue-ball-moving
 {
 	transition: transform 0.5s ease-in;
+}
+
+.left,
+.right
+{
+	display: flex;
+	flex-basis: 20%;
+}
+
+.search
+{
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 2rem;
+	border: 1px solid var(--border-color);
+	display: flex;
+	flex-grow: 1;
+	margin: 0 2rem;
+	max-width: 32rem;
+	position: relative;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search input[type="search"]
+{
+	background: transparent;
+	border: none;
+	color: var(--text-primary);
+	font-family: inherit;
+	outline: none;
+	flex-grow: 1;
+	padding: 0.6rem 1rem 0.6rem 3rem;
+}
+
+.search button[type="submit"]
+{
+	align-items: center;
+	background: transparent;
+	border: none;
+	color: var(--text-muted);
+	display: flex;
+	position: absolute;
+	font-size: 1rem;
+	height: 100%;
+	left: 0;
+	padding: 0 1rem;
+	top: 0;
+	transition: color 0.3s ease;
+}
+
+.search button:hover
+{
+	color: var(--text-primary);
 }
 
 select option
