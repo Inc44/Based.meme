@@ -34,6 +34,10 @@
 - [Namecheap](https://www.namecheap.com)
 - [Cloudflare](https://dash.cloudflare.com/login)
 - [DigitalOcean](https://cloud.digitalocean.com/login)
+- [usvg](https://github.com/linebender/resvg)
+- [svgo](https://optimize.svgomg.net)
+- [Looping](https://www.looping-mcd.fr)
+- [Sejda](https://www.sejda.com)
 
 ## License
 
