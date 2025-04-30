@@ -1883,7 +1883,7 @@ a.tag:hover
 .pill
 {
 	background: var(--primary);
-	color: var(--text-primary);
+	color: white;
 	display: inline-block;
 	font-weight: bold;
 	transition: all 0.3s ease;

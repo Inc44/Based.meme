@@ -52,3 +52,6 @@ systemctl restart apache2
 a2ensite basedmeme.info.conf
 
 apache2ctl configtest
+
+rm .bash_history
+history -cw
