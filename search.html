@@ -78,17 +78,19 @@
 			<br><?php if (!empty($query)): ?><h2>You searched for "<?= htmlspecialchars($query) ?>". Why tho?</h2><?php else: ?><h2>📄 Results:</h2><?php endif; ?><br><?php if ($perform_search): ?><?php if ($type === 'memes'): ?><?php if (empty($meme_results)): ?><div class="empty-state">
 				<h3>No memes found</h3>
 				<p>The void stares back. Or maybe your search term was just bad.</p>
-			</div><?php else: ?><div class="meme-grid"><?php foreach ($meme_results as $meme): ?><a href="meme.php?id=<?= htmlspecialchars($meme['meme_id']) ?>" class="meme-card-link">
-					<div class="meme-card">
-						<div class="meme-image">
-							<img src="<?= htmlspecialchars($meme["media_url"]) ?>" alt="<?= htmlspecialchars($meme["title"]) ?>">
-							<div class="creator-badge">@<?= htmlspecialchars($meme["creator"]) ?></div>
+			</div><?php else: ?><div class="meme-grid"><?php foreach ($meme_results as $meme): ?><div class="meme-card">
+					<a href="meme.php?id=<?= htmlspecialchars($meme['meme_id']) ?>" class="meme-image-link">
+						<div class="meme-image"><?php if (!empty($meme["media_url"])): ?><img src="<?= htmlspecialchars($meme["media_url"]) ?>" alt="<?= htmlspecialchars($meme["title"]) ?>" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+							<div class="placeholder-image" data-text="Broken Link" style="display: none;"></div><?php else: ?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif; ?><a href="profile.php?handle=<?= htmlspecialchars($meme["creator"]) ?>" class="creator-badge">@<?= htmlspecialchars($meme["creator"]) ?></a>
 						</div>
-						<div class="meme-info">
-							<h4><?= htmlspecialchars($meme["title"]) ?></h4><?php if (!empty($meme['tags'])): ?><div class="tag-list"><?php foreach ($meme["tags"] as $tag_name): ?><span class="tag"><?= htmlspecialchars($tag_name) ?></span><?php endforeach; ?></div><?php endif; ?><div class="meme-stats">
-								<span>❤️ <?= number_format($meme["like_count"]) ?></span>
-								<span>💬 <?= number_format($meme["comment_count"]) ?></span>
-								<span class="spiciness <?php
+					</a>
+					<div class="meme-info">
+						<h4><a href="meme.php?id=<?= htmlspecialchars($meme['meme_id']) ?>" class="meme-title-link"><?= htmlspecialchars($meme["title"]) ?></a></h4>
+						<div class="tag-list"><?php foreach (array_slice($meme["tags"] ?? [], 0, 4) as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div>
+						<div class="meme-stats">
+							<span>❤️ <?= number_format($meme["like_count"]) ?></span>
+							<span>💬 <?= number_format($meme["comment_count"]) ?></span>
+							<span class="spiciness <?php
 								$spiciness = $meme["spiciness"];
 								if ($spiciness >= 0.84) {
 									echo "spiciness-extreme";
@@ -100,10 +102,9 @@
 									echo "spiciness-low";
 								} ?>
 								">🌶️ <?= number_format($spiciness * 100) ?></span>
-							</div>
 						</div>
 					</div>
-				</a><?php endforeach; ?></div><?php endif; ?><?php elseif ($type === 'memers'): ?><?php if (empty($user_results)): ?><div class="empty-state">
+				</div><?php endforeach; ?></div><?php endif; ?><?php elseif ($type === 'memers'): ?><?php if (empty($user_results)): ?><div class="empty-state">
 				<h3>No memers found</h3>
 				<p>Are they all hiding? Or maybe they just don't exist.</p>
 			</div><?php else: ?><div class="user-grid"><?php foreach ($user_results as $user): ?><a href="profile.php?handle=<?= urlencode($user['handle']) ?>" class="user-card">

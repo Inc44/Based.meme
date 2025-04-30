@@ -249,7 +249,10 @@ WHERE
 					$stmt->execute($meme_ids);
 					$meme_tags = [];
 					while ($row = $stmt->fetch()) {
-						$meme_tags[$row["meme_id"]][] = $row["name"];
+						$meme_tags[$row["meme_id"]][] = [
+							"name" => $row["name"],
+							"slug" => $row["slug"],
+						];
 					}
 					foreach ($meme_results as $key => $meme) {
 						$meme_results[$key]["tags"] =

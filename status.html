@@ -33,10 +33,10 @@
 	</header>
 	<main>
 		<section class="db-section">
-			<h2 class="tagline"><?php echo $taglineIcon; ?> <?php echo htmlspecialchars($taglineText); ?></h2>
-			<p class="subtitle"><?php echo htmlspecialchars($subtitleText); ?></p>
+			<h2 class="tagline"><?= $taglineIcon ?> <?= htmlspecialchars($taglineText) ?></h2>
+			<p class="subtitle"><?= htmlspecialchars($subtitleText) ?></p>
 			<div class="db-container status-container">
-				<div class="<?php echo $cardClass; ?>"><?php echo $detailsHtml; // This content comes from status.php ?></div>
+				<div class="<?= $cardClass; ?>"><?= $detailsHtml ?></div>
 			</div>
 		</section>
 	</main>
