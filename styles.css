@@ -34,6 +34,10 @@
 	--success-tint: rgba(0, 255, 255, 0.1);
 	--error-tint: rgba(255, 0, 255, 0.1);
 	--warning-tint: rgba(255, 165, 0, 0.1);
+	--spiciness-low: #00ff00;
+	--spiciness-medium: #ffff00;
+	--spiciness-high: #ffa500;
+	--spiciness-extreme: #ff0000;
 }
 
 body.light-theme
@@ -59,6 +63,10 @@ body.light-theme
 	--placeholder-text: #555555;
 	--details-bg: rgba(255, 255, 255, 0.8);
 	--details-pre-bg: rgba(0, 0, 0, 0.05);
+	--spiciness-low: #00aa00;
+	--spiciness-medium: #dda500;
+	--spiciness-high: #ffa500;
+	--spiciness-extreme: #dd0000;
 }
 
 .accent-bg
@@ -1731,22 +1739,22 @@ a.tag:hover
 
 .spiciness-low
 {
-	color: #00ff00;
+	color: var(--spiciness-low);
 }
 
 .spiciness-medium
 {
-	color: yellow;
+	color: var(--spiciness-medium);
 }
 
 .spiciness-high
 {
-	color: orange;
+	color: var(--spiciness-high);
 }
 
 .spiciness-extreme
 {
-	color: red;
+	color: var(--spiciness-extreme);
 }
 
 .avatar-section
