@@ -52,15 +52,15 @@
 							<input type="hidden" name="action" value="liked">
 							<button type="submit" class="pill <?= $flags['liked'] ? 'active' : '' ?>">❤️ Like (<?= $meme['like_count'] ?>)</button>
 						</form>
-						<form method="post" style="display: inline;">
+						<form method="post" style="display:inline;">
 							<input type="hidden" name="action" value="cringe">
 							<button type="submit" class="pill <?= $flags['cringe'] ? 'active' : '' ?>" title="(downvote)">👎 Cringe (<?= $meme['dislike_count'] ?>)</button>
 						</form>
-						<form method="post" style="display: inline;">
+						<form method="post" style="display:inline;">
 							<input type="hidden" name="action" value="based">
 							<button type="submit" class="pill <?= $flags['based'] ? 'active' : '' ?>" title="(upvote)">👍 Based (<?= $meme['upvote_count'] ?>)</button>
 						</form>
-						<form method="post" style="display: inline;">
+						<form method="post" style="display:inline;">
 							<input type="hidden" name="action" value="steal">
 							<button type="submit" class="pill <?= $flags['steal'] ? 'active' : '' ?>" title="(save)">💾 Steal (<?= $meme['saved_count'] ?>)</button>
 						</form>
@@ -129,7 +129,7 @@
 								} else {
 									echo "spiciness-low";
 								} ?>
-								">🌶️ <?= number_format($spiciness * 100) ?>
+								">🌶️ <?= number_format($spiciness * 100) ?></span>
 							</div>
 						</div>
 					</div>

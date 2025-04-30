@@ -60,16 +60,16 @@
 			<div class="stat" title="Spamming"><span class="stat-num"><?= $stats['comments'] ?></span> comments</div>
 			<div class="stat" title="Cringe Count"><span class="stat-num"><?= $stats['cringe_count'] ?></span> cringes 💩</div>
 			<div class="stat" title="We Are Cooking"><span class="spiciness <?php
-								if ($avgspiciness >= 0.84) {
+								if ($avgSpiciness >= 0.84) {
 									echo "spiciness-extreme";
-								} elseif ($avgspiciness >= 0.69) {
+								} elseif ($avgSpiciness >= 0.69) {
 									echo "spiciness-high";
-								} elseif ($avgspiciness >= 0.42) {
+								} elseif ($avgSpiciness >= 0.42) {
 									echo "spiciness-medium";
 								} else {
 									echo "spiciness-low";
 								} ?>
-								"><?= $avgspiciness * 100 ?></span> avg 🌶️</div>
+								"><?= $avgSpiciness * 100 ?></span> avg 🌶️</div>
 		</section><?php if ($badges): ?><section class="profile-badges"><?php foreach ($badges as $badge): ?><span class="pill" title="<?= !empty($badge['description']) ? htmlspecialchars($badge['description']) : '' ?>"><?= $badge['icon'] ?> <?= htmlspecialchars($badge['label']) ?></span><?php endforeach; ?></section><?php endif; ?><?php if (!$isPrivate): ?><section class="profile-info">
 			<h3>About</h3>
 			<dl class="info-list">
@@ -98,7 +98,7 @@
 								} else {
 									echo "spiciness-low";
 								} ?>
-								">🌶️ <?= number_format($spiciness * 100) ?>
+								">🌶️ <?= number_format($spiciness * 100) ?></span>
 							</div>
 						</div>
 					</div>

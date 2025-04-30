@@ -109,6 +109,11 @@ button.warning-bg:hover
 	background-color: var(--warning-dark) !important;
 }
 
+a
+{
+	text-decoration: none;
+}
+
 *
 {
 	margin: 0;
@@ -186,7 +191,6 @@ nav
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
 	border-radius: 0.5rem;
-	text-decoration: none;
 	font-weight: bold;
 	transition: var(--transition-standard);
 	border: 0.125rem solid transparent;
@@ -246,7 +250,6 @@ nav
 	height: 2.5rem;
 	border-radius: 50%;
 	transition: background-color 0.3s ease;
-	text-decoration: none;
 }
 
 #themeToggle:hover,
@@ -260,11 +263,6 @@ nav
 	position: fixed;
 	bottom: 1rem;
 	right: 1rem;
-}
-
-.logo a
-{
-	text-decoration: none;
 }
 
 .logo h1
@@ -373,7 +371,6 @@ nav
 {
 	color: inherit;
 	display: block;
-	text-decoration: none;
 }
 
 .meme-image
@@ -827,7 +824,6 @@ body.light-theme .tag-container label:hover
 .footer-links a
 {
 	color: var(--text-muted);
-	text-decoration: none;
 	transition: color 0.3s ease;
 }
 
@@ -1446,7 +1442,6 @@ body.light-theme .captcha-container
 .auth-alt a
 {
 	color: var(--accent);
-	text-decoration: none;
 	transition: color 0.3s ease;
 }
 
@@ -1627,7 +1622,6 @@ body.light-theme .captcha-container
 .section-link
 {
 	color: var(--accent);
-	text-decoration: none;
 	font-size: 0.9rem;
 	transition: color 0.3s ease;
 }
@@ -1874,7 +1868,6 @@ body.light-theme .category-pill.active
 {
 	background: var(--primary);
 	color: var(--text-primary);
-	text-decoration: none;
 	display: inline-block;
 	font-weight: bold;
 	transition: all 0.3s ease;
@@ -1960,7 +1953,6 @@ body.light-theme .category-pill.active
 .user-welcome h3 a
 {
 	color: var(--secondary);
-	text-decoration: none;
 	transition: color 0.3s ease;
 }
 
@@ -2020,7 +2012,6 @@ body.light-theme .category-pill.active
 .comment-login a
 {
 	color: var(--accent);
-	text-decoration: none;
 }
 
 .comment-form
@@ -2085,7 +2076,6 @@ body.light-theme .category-pill.active
 .comment-author strong a
 {
 	color: var(--secondary);
-	text-decoration: none;
 	transition: color 0.3s ease;
 }
 
@@ -2317,7 +2307,6 @@ body.light-theme select option
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
 	border-radius: 0.5rem;
-	text-decoration: none;
 	font-weight: bold;
 	transition: var(--transition-standard);
 	border: 0.125rem solid transparent;
@@ -2521,7 +2510,6 @@ body.light-theme select option
 	background-color: var(--card-bg);
 	align-items: center;
 	display: flex;
-	text-decoration: none;
 	transition: border-left-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 	border-left: 0.1875rem solid transparent;
 	border-radius: 0.5rem;
@@ -2593,7 +2581,6 @@ body.light-theme select option
 {
 	background-color: var(--card-bg);
 	font-weight: bold;
-	text-decoration: none;
 	color: var(--secondary);
 	border: 1px solid var(--secondary);
 	border-radius: 2rem;

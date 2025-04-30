@@ -93,7 +93,8 @@ LIMIT
 	foreach ($trendingMemes as $key => $meme) {
 		$tagStmt = $pdo->prepare("
 SELECT
-	t.name
+	t.name,
+	t.slug
 FROM
 	tags AS t
 	JOIN meme_tags mt ON t.tag_id = mt.tag_id
@@ -101,7 +102,7 @@ WHERE
 	mt.meme_id = ?
 		");
 		$tagStmt->execute([$meme["meme_id"]]);
-		$tags = $tagStmt->fetchAll(PDO::FETCH_COLUMN);
+		$tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 		$trendingMemes[$key]["tags"] = $tags;
 	}
 	$stmt = $pdo->prepare("
@@ -135,7 +136,8 @@ LIMIT
 	foreach ($recommendedMemes as $key => $meme) {
 		$tagStmt = $pdo->prepare("
 SELECT
-	t.name
+	t.name,
+	t.slug
 FROM
 	tags t
 	JOIN meme_tags mt ON t.tag_id = mt.tag_id
@@ -143,7 +145,7 @@ WHERE
 	mt.meme_id = ?
 		");
 		$tagStmt->execute([$meme["meme_id"]]);
-		$tags = $tagStmt->fetchAll(PDO::FETCH_COLUMN);
+		$tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
 		$recommendedMemes[$key]["tags"] = $tags;
 	}
 } catch (\PDOException $e) {
@@ -166,6 +168,7 @@ if (empty($trendingMemes)) {
 			"creator" => "CringeCoder",
 			"like_count" => 4200,
 			"comment_count" => 69,
+			"spiciness" => 0.0,
 			"media_url" => null,
 			"tags" => [],
 		],
@@ -175,6 +178,7 @@ if (empty($trendingMemes)) {
 			"creator" => "BoomerTranslator",
 			"like_count" => 2800,
 			"comment_count" => 42,
+			"spiciness" => 0.0,
 			"media_url" => null,
 			"tags" => [],
 		],
@@ -184,6 +188,7 @@ if (empty($trendingMemes)) {
 			"creator" => "InsomniaGuru",
 			"like_count" => 6900,
 			"comment_count" => 420,
+			"spiciness" => 0.0,
 			"media_url" => null,
 			"tags" => [],
 		],
