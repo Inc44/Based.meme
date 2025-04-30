@@ -328,7 +328,7 @@ SELECT
 	m.title,
 	m.media_url,
 	m.slug,
-	m.spicyness,
+	m.spiciness,
 	m.like_count,
 	m.comment_count,
 	u.handle AS creator,
@@ -379,7 +379,7 @@ SELECT
 	m.title,
 	m.media_url,
 	m.slug,
-	m.spicyness,
+	m.spiciness,
 	m.like_count,
 	m.comment_count,
 	u.handle AS creator

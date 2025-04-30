@@ -134,7 +134,7 @@ SELECT
 	m.slug,
 	m.media_url,
 	m.content,
-	m.spicyness,
+	m.spiciness,
 	m.view_count,
 	m.like_count,
 	m.comment_count,

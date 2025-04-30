@@ -90,7 +90,7 @@ INSERT INTO
 		media_url,
 		status,
 		visibility,
-		spicyness,
+		spiciness,
 		published_at
 	)
 VALUES

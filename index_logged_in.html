@@ -64,7 +64,18 @@
 							<div class="meme-stats">
 								<span>❤️ <?= number_format($meme["like_count"]); ?></span>
 								<span>💬 <?= number_format($meme["comment_count"]); ?></span>
-								<span>🌶️ <?= number_format($meme['spicyness'] * 100) ?></span>
+								<span class="spiciness <?php
+								$spiciness = $meme["spiciness"];
+								if ($spiciness >= 0.84) {
+									echo "spiciness-extreme";
+								} elseif ($spiciness >= 0.69) {
+									echo "spiciness-high";
+								} elseif ($spiciness >= 0.42) {
+									echo "spiciness-medium";
+								} else {
+									echo "spiciness-low";
+								} ?>
+								">🌶️ <?= number_format($spiciness * 100) ?>
 							</div>
 						</div>
 					</div>
@@ -85,7 +96,18 @@
 							<div class="meme-stats">
 								<span>❤️ <?= number_format($meme["like_count"]); ?></span>
 								<span>💬 <?= number_format($meme["comment_count"]); ?></span>
-								<span>🌶️ <?= number_format($meme['spicyness'] * 100) ?></span>
+								<span class="spiciness <?php
+								$spiciness = $meme["spiciness"];
+								if ($spiciness >= 0.84) {
+									echo "spiciness-extreme";
+								} elseif ($spiciness >= 0.69) {
+									echo "spiciness-high";
+								} elseif ($spiciness >= 0.42) {
+									echo "spiciness-medium";
+								} else {
+									echo "spiciness-low";
+								} ?>
+								">🌶️ <?= number_format($spiciness * 100) ?>
 							</div>
 						</div>
 					</div>

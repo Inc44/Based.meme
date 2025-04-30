@@ -158,7 +158,7 @@ WHERE
 	$visibilityFilter = $isOwner ? "" : " AND visibility='public'";
 	$stmt = $pdo->prepare("
 SELECT
-	AVG(spicyness)
+	AVG(spiciness)
 FROM
 	memes
 WHERE
@@ -175,7 +175,7 @@ SELECT
 	media_url,
 	like_count,
 	comment_count,
-	spicyness
+	spiciness
 FROM
 	memes
 WHERE

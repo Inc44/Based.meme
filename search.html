@@ -88,7 +88,18 @@
 							<h4><?= htmlspecialchars($meme["title"]) ?></h4><?php if (!empty($meme['tags'])): ?><div class="tag-list"><?php foreach ($meme["tags"] as $tag_name): ?><span class="tag"><?= htmlspecialchars($tag_name) ?></span><?php endforeach; ?></div><?php endif; ?><div class="meme-stats">
 								<span>❤️ <?= number_format($meme["like_count"]) ?></span>
 								<span>💬 <?= number_format($meme["comment_count"]) ?></span>
-								<span>🌶️ <?= number_format($meme['spicyness'] * 100) ?></span>
+								<span class="spiciness <?php
+								$spiciness = $meme["spiciness"];
+								if ($spiciness >= 0.84) {
+									echo "spiciness-extreme";
+								} elseif ($spiciness >= 0.69) {
+									echo "spiciness-high";
+								} elseif ($spiciness >= 0.42) {
+									echo "spiciness-medium";
+								} else {
+									echo "spiciness-low";
+								} ?>
+								">🌶️ <?= number_format($spiciness * 100) ?>
 							</div>
 						</div>
 					</div>

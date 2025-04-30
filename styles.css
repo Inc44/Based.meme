@@ -1714,6 +1714,31 @@ body.light-theme .category-pill.active
 	display: inline-block;
 }
 
+.spiciness
+{
+	font-weight: bold;
+}
+
+.spiciness-low
+{
+	color: #00ff00;
+}
+
+.spiciness-medium
+{
+	color: yellow;
+}
+
+.spiciness-high
+{
+	color: orange;
+}
+
+.spiciness-extreme
+{
+	color: red;
+}
+
 .avatar-section
 {
 	display: flex;
