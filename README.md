@@ -37,10 +37,16 @@
 
 ## License
 
+[![MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-This work is licensed under a
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
+This project is dual-licensed to address the needs of both developers and creative content users.
+
+- **Source Code**
+  All source code files (PHP, JavaScript, SQL, etc.) contained in this repository are licensed under the **MIT License**. See the [LICENSE-MIT](LICENSE-MIT) file for details.
+
+- **Creative Content**
+  All creative elements and non-code content (HTML, CSS, design concepts, images, and layouts) are licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**. See the [LICENSE-CC](LICENSE-CC) file for details.
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
