@@ -245,7 +245,8 @@ WHERE
 	$stmt = $pdo->prepare("
 SELECT
 	t.tag_id,
-	t.name
+	t.name,
+	t.slug
 FROM
 	meme_tags AS mt
 	JOIN tags AS t ON t.tag_id = mt.tag_id

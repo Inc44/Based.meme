@@ -38,7 +38,7 @@
 	</header>
 	<main class="meme-page">
 		<article class="meme-full">
-			<div class="meme-full-image"><?php if (!empty($meme["media_url"])): ?><img src="<?= htmlspecialchars($meme['media_url']) ?>" alt="<?= htmlspecialchars($meme['title']) ?>" loading="lazy"><?php else: ?><div class="placeholder-image" data-text="Meme Not Found"></div><?php endif; ?></div>
+			<div class="meme-full-image"><?php if (!empty($meme["media_url"])): ?><img src="<?= htmlspecialchars($meme['media_url']) ?>" alt="<?= htmlspecialchars($meme['title']) ?>" loading="lazy" onerror="this.style.display='none';"><?php else: ?><div class=" placeholder-image" data-text="Meme Not Found"></div><?php endif; ?></div>
 			<section class="meme-meta">
 				<h2><?= htmlspecialchars($meme['title']) ?></h2>
 				<div class="user-greeting">
@@ -47,7 +47,7 @@
 						<h3><a href="profile.php?handle=<?= urlencode($meme['handle']) ?>" title="Meme Load">@<?= htmlspecialchars($meme['handle']) ?></a></h3>
 						<p title="Based Score">Member since <?= htmlspecialchars($joinDateFormatted) ?> • Level: Basic Degenerate</p>
 					</div>
-				</div><?php if (!empty($tags)): ?><ul class="tag-list"><?php foreach ($tags as $tag): ?><li class="tag"><?= htmlspecialchars($tag['name']) ?></li><?php endforeach; ?></ul><?php endif; ?><div class="interaction-container"><?php if (isset($_SESSION["user_id"])): ?><div class="action-bar">
+				</div><?php if (!empty($tags)): ?><div class="tag-list"><?php foreach ($tags as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div><?php endif; ?><div class="interaction-container"><?php if (isset($_SESSION["user_id"])): ?><div class="action-bar">
 						<form method="post" style="display:inline;">
 							<input type="hidden" name="action" value="liked">
 							<button type="submit" class="pill <?= $flags['liked'] ? 'active' : '' ?>">❤️ Like (<?= $meme['like_count'] ?>)</button>
