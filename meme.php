@@ -18,6 +18,60 @@ if (!$memeId) {
 	header("Location: 404.php");
 	exit();
 }
+if (isset($_SESSION["user_id"])) {
+	$userId = (int) $_SESSION["user_id"];
+	try {
+		$pdo = getDbConnection();
+		$stmt = $pdo->prepare('
+SELECT
+	1
+FROM
+	user_interactions
+WHERE
+	user_id = ?
+	AND interaction_type = "view"
+	AND content_type = "meme"
+	AND content_id = ?
+	AND DATE(created_at) = CURRENT_DATE()
+LIMIT
+	1
+        ');
+		$stmt->execute([$userId, $memeId]);
+		if (!$stmt->fetch()) {
+			$pdo->beginTransaction();
+			$pdo->prepare(
+				'
+INSERT INTO
+	user_interactions (
+		user_id,
+		interaction_type,
+		content_type,
+		content_id
+	)
+VALUES
+	(?, "view", "meme", ?)
+            '
+			)->execute([$userId, $memeId]);
+			$pdo->prepare(
+				"
+UPDATE
+	memes
+SET
+	view_count = view_count + 1
+WHERE
+	meme_id = ?
+            "
+			)->execute([$memeId]);
+			$pdo->commit();
+		}
+	} catch (\PDOException $e) {
+		throw $e;
+		header("Location: status.php");
+		exit();
+	} catch (\Exception $e) {
+		throw $e;
+	}
+}
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (!isset($_SESSION["user_id"])) {
 		$_SESSION["login_redirect"] = $_SERVER["REQUEST_URI"] ?? "index.php";

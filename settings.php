@@ -6,7 +6,7 @@ if (!isset($_SESSION["user_id"])) {
 	exit();
 }
 $pdo = getDbConnection();
-$user_id = $_SESSION["user_id"];
+$userId = $_SESSION["user_id"];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$avatarMode = $_POST["avatar_mode"] ?? "keep";
 	$avatarData = null;
@@ -85,7 +85,7 @@ WHERE
 	handle =?
 	AND user_id <>?
 		");
-		$stmt->execute([$username, $user_id]);
+		$stmt->execute([$username, $userId]);
 		if ($stmt->fetch()) {
 			$errors["username"] = "Username taken. Be more original.";
 		}
@@ -98,7 +98,7 @@ WHERE
 	email =?
 	AND user_id <>?
 		");
-		$stmt->execute([$email, $user_id]);
+		$stmt->execute([$email, $userId]);
 		if ($stmt->fetch()) {
 			$errors["email"] = "Email already in use. Nice try.";
 		}
@@ -126,7 +126,7 @@ WHERE
 			$set .= ", password_hash=?";
 			$parameters[] = password_hash($password, PASSWORD_BCRYPT);
 		}
-		$parameters[] = $user_id;
+		$parameters[] = $userId;
 		$stmt = $pdo->prepare("
 UPDATE
 	users
@@ -153,7 +153,7 @@ FROM
 WHERE
 	user_id =?
 ");
-$stmt->execute([$user_id]);
+$stmt->execute([$userId]);
 $user = $stmt->fetch();
 $sexOptions = [
 	"male" => "Male",

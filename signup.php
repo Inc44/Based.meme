@@ -159,7 +159,7 @@ VALUES
 				$secret_question,
 				$hashed_secret_answer,
 			]);
-			$user_id = $pdo->lastInsertId();
+			$userId = $pdo->lastInsertId();
 			$ip = $_SERVER["REMOTE_ADDR"] ?? "";
 			$agent = $_SERVER["HTTP_USER_AGENT"] ?? "";
 			$stmt = $pdo->prepare("
@@ -183,7 +183,7 @@ VALUES
 				"third_party",
 			];
 			foreach ($consentTypes as $type) {
-				$stmt->execute([yid(), $user_id, $type, $ip, $agent]);
+				$stmt->execute([yid(), $userId, $type, $ip, $agent]);
 			}
 			header("Location: login.html?signup=success");
 			exit();
