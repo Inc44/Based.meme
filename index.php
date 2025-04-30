@@ -79,19 +79,22 @@ SELECT
 	u.handle AS creator
 FROM
 	memes AS m
-	JOIN users u ON m.user_id = u.user_id
+	JOIN users AS u ON m.user_id = u.user_id
 WHERE
 	m.status = 'published'
 	AND m.visibility = 'public'
 ORDER BY
-	RAND()
+	(
+		m.like_count + m.upvote_count * 2 + m.comment_count * 3
+	) / (TIMESTAMPDIFF(HOUR, m.published_at, NOW()) + 1) DESC,
+	m.published_at DESC
 LIMIT
 	3
 	");
 	$stmt->execute();
 	$trendingMemes = $stmt->fetchAll();
 	foreach ($trendingMemes as $key => $meme) {
-		$tagStmt = $pdo->prepare("
+		$stmt = $pdo->prepare("
 SELECT
 	t.name,
 	t.slug
@@ -101,8 +104,8 @@ FROM
 WHERE
 	mt.meme_id = ?
 		");
-		$tagStmt->execute([$meme["meme_id"]]);
-		$tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
+		$stmt->execute([$meme["meme_id"]]);
+		$tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$trendingMemes[$key]["tags"] = $tags;
 	}
 	$stmt = $pdo->prepare("
@@ -134,7 +137,7 @@ LIMIT
 	$stmt->execute([$idsToExclude]);
 	$recommendedMemes = $stmt->fetchAll();
 	foreach ($recommendedMemes as $key => $meme) {
-		$tagStmt = $pdo->prepare("
+		$stmt = $pdo->prepare("
 SELECT
 	t.name,
 	t.slug
@@ -144,8 +147,8 @@ FROM
 WHERE
 	mt.meme_id = ?
 		");
-		$tagStmt->execute([$meme["meme_id"]]);
-		$tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
+		$stmt->execute([$meme["meme_id"]]);
+		$tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$recommendedMemes[$key]["tags"] = $tags;
 	}
 } catch (\PDOException $e) {
