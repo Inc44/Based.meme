@@ -421,7 +421,8 @@ LIMIT
 		) {
 			$stmt = $pdo->prepare("
 SELECT
-	t.name
+	t.name,
+	t.slug
 FROM
 	tags AS t
 	JOIN meme_tags AS mt ON t.tag_id = mt.tag_id
@@ -429,7 +430,7 @@ WHERE
 	mt.meme_id = ?
 			");
 			$stmt->execute([$similar["meme_id"]]);
-			$similarMemes[$key]["tags"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
+			$similarMemes[$key]["tags"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		} else {
 			$similarMemes[$key]["tags"] = [];
 		}

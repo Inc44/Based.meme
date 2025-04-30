@@ -38,11 +38,11 @@
 	</header>
 	<main class="meme-page">
 		<article class="meme-full">
-			<div class="meme-full-image"><?php if (!empty($meme["media_url"])): ?><img src="<?= htmlspecialchars($meme['media_url']) ?>" alt="<?= htmlspecialchars($meme['title']) ?>"><?php else: ?><div class="placeholder-image" data-text="Meme Not Found"></div><?php endif; ?></div>
+			<div class="meme-full-image"><?php if (!empty($meme["media_url"])): ?><img src="<?= htmlspecialchars($meme['media_url']) ?>" alt="<?= htmlspecialchars($meme['title']) ?>" loading="lazy"><?php else: ?><div class="placeholder-image" data-text="Meme Not Found"></div><?php endif; ?></div>
 			<section class="meme-meta">
 				<h2><?= htmlspecialchars($meme['title']) ?></h2>
 				<div class="user-greeting">
-					<div class="user-avatar"><?php if (!empty($meme["avatar"])): ?><img src="<?= htmlspecialchars($meme["avatar"]) ?>" alt="<?= htmlspecialchars($meme["display_name"] ?: $meme["handle"]) ?>"><?php else: ?><?= htmlspecialchars(substr($meme["handle"], 0, 1)) ?><?php endif; ?></div>
+					<div class="user-avatar"><?php if (!empty($meme["avatar"])): ?><img src="<?= htmlspecialchars($meme["avatar"]) ?>" alt="<?= htmlspecialchars($meme["display_name"] ?: $meme["handle"]) ?>" loading="lazy"><?php else: ?><?= htmlspecialchars(substr($meme["handle"], 0, 1)) ?><?php endif; ?></div>
 					<div class="user-welcome">
 						<h3><a href="profile.php?handle=<?= urlencode($meme['handle']) ?>" title="Meme Load">@<?= htmlspecialchars($meme['handle']) ?></a></h3>
 						<p title="Based Score">Member since <?= htmlspecialchars($joinDateFormatted) ?> • Level: Basic Degenerate</p>
@@ -108,18 +108,20 @@
 				<h3>Similar Brainrot</h3>
 				<a href="trending.php" class="section-link">See more</a>
 			</div>
-			<div class="meme-grid"><?php foreach ($similarMemes as $similarMeme): ?><a href="meme.php?id=<?= htmlspecialchars($similarMeme['meme_id']) ?>" class="meme-card-link">
-					<div class="meme-card">
-						<div class="meme-image"><?php if (!empty($similarMeme["media_url"])): ?><img src="<?= htmlspecialchars($similarMeme["media_url"]) ?>" alt="<?= htmlspecialchars($similarMeme["title"]) ?>"><?php else: ?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif; ?><div class="creator-badge">@<?= htmlspecialchars($similarMeme["creator"]) ?></div>
+			<div class="meme-grid"><?php foreach ($similarMemes as $similarMeme): ?><div class="meme-card">
+					<a href="meme.php?id=<?= htmlspecialchars($similarMeme['meme_id']) ?>" class="meme-image-link">
+						<div class="meme-image"><?php if (!empty($similarMeme["media_url"])): ?><img src="<?= htmlspecialchars($similarMeme["media_url"]) ?>" alt="<?= htmlspecialchars($similarMeme["title"]) ?>" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+							<div class="placeholder-image" data-text="Broken Link" style="display: none;"></div><?php else: ?><div class="placeholder-image" data-text="Quality Meme"></div><?php endif; ?><a href="profile.php?handle=<?= htmlspecialchars($similarMeme["creator"]) ?>" class="creator-badge">@<?= htmlspecialchars($similarMeme["creator"]) ?></a>
 						</div>
-						<div class="meme-info">
-							<h4><?= htmlspecialchars($similarMeme["title"]) ?></h4>
-							<div class="tag-list"><?php foreach (array_slice($similarMeme["tags"] ?? [], 0, 4) as $tag): ?><span class="tag"><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-							<div class="meme-stats">
-								<span>❤️ <?= number_format($similarMeme["like_count"] ?? 0) ?></span>
-								<span>💬 <?= number_format($similarMeme["comment_count"] ?? 0) ?></span>
-								<span class="spiciness <?php
-								$spiciness = $meme["spiciness"];
+					</a>
+					<div class="meme-info">
+						<h4><a href="meme.php?id=<?= htmlspecialchars($similarMeme['meme_id']) ?>" class="meme-title-link"><?= htmlspecialchars($similarMeme["title"]) ?></a></h4>
+						<div class="tag-list"><?php foreach (array_slice($similarMeme["tags"] ?? [], 0, 4) as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div>
+						<div class="meme-stats">
+							<span>❤️ <?= number_format($similarMeme["like_count"]) ?></span>
+							<span>💬 <?= number_format($similarMeme["comment_count"]) ?></span>
+							<span class="spiciness <?php
+								$spiciness = $similarMeme["spiciness"];
 								if ($spiciness >= 0.84) {
 									echo "spiciness-extreme";
 								} elseif ($spiciness >= 0.69) {
@@ -130,10 +132,9 @@
 									echo "spiciness-low";
 								} ?>
 								">🌶️ <?= number_format($spiciness * 100) ?></span>
-							</div>
 						</div>
 					</div>
-				</a><?php endforeach; ?></div>
+				</div><?php endforeach; ?></div>
 		</section>
 	</main>
 	<footer>

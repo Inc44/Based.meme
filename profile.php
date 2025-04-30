@@ -188,7 +188,8 @@ ORDER BY
 	$memes = $stmt->fetchAll();
 	$stmt = $pdo->prepare("
 SELECT
-	t.name
+	t.name,
+	t.slug
 FROM
 	tags AS t
 	JOIN meme_tags AS mt ON mt.tag_id = t.tag_id
@@ -197,7 +198,7 @@ WHERE
 	");
 	foreach ($memes as $i => $meme) {
 		$stmt->execute([$meme["meme_id"]]);
-		$memes[$i]["tags"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
+		$memes[$i]["tags"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	$badges = [];
 	date("md", strtotime($user["birthday"])) === date("md") &&
