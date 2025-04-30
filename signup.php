@@ -1,6 +1,18 @@
 <?php
 require_once "db_connect.php";
 session_start();
+function yid(int $size = 11): string
+{
+	return implode(
+		"",
+		array_map(
+			fn() => "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"[
+				random_int(0, 63)
+			],
+			range(1, $size)
+		)
+	);
+}
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$username = trim($_POST["username"] ?? "");
 	$email = trim($_POST["email"] ?? "");
@@ -45,6 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$errors["password"] = "Really? Is that the best you can do?";
 	} elseif (strlen($password) < 8) {
 		$errors["password"] = "8 characters minimum. Don't be lazy.";
+	} elseif (!preg_match('/^[\x20-\x7E]+$/', $password)) {
+		$errors["password"] =
+			"Password must contain only typable ASCII characters.";
 	}
 	if ($password !== $confirm_password) {
 		$errors["confirm-password"] = "Passwords don't match. Try harder.";
@@ -144,6 +159,32 @@ VALUES
 				$secret_question,
 				$hashed_secret_answer,
 			]);
+			$user_id = $pdo->lastInsertId();
+			$ip = $_SERVER["REMOTE_ADDR"] ?? "";
+			$agent = $_SERVER["HTTP_USER_AGENT"] ?? "";
+			$stmt = $pdo->prepare("
+INSERT INTO
+	privacy_consents (
+		consent_id,
+		user_id,
+		consent_type,
+		is_granted,
+		ip_address,
+		user_agent
+	)
+VALUES
+	(?, ?, ?, TRUE, ?, ?)
+			");
+			$consentTypes = [
+				"terms",
+				"privacy",
+				"cookies",
+				"marketing",
+				"third_party",
+			];
+			foreach ($consentTypes as $type) {
+				$stmt->execute([yid(), $user_id, $type, $ip, $agent]);
+			}
 			header("Location: login.html?signup=success");
 			exit();
 		} catch (\PDOException $e) {

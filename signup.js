@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () =>
 		{
 			message = "No uppercase? Are you even trying?";
 		}
+		else if (password.length > 0 && !/^[\x20-\x7E]+$/.test(password))
+		{
+			message = "Password must contain only typable ASCII characters.";
+		}
 		else if (password.length >= 8)
 		{
 			message = "Meh, I guess that'll do.";
