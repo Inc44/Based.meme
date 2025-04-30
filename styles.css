@@ -818,7 +818,7 @@ a.creator-badge:hover
 
 .btn-cta:hover
 {
-	background-color: #d400d4;
+	background-color: var(--accent-dark);
 	transform: translateY(-0.125rem);
 	box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 255, 0.4);
 }
@@ -2349,7 +2349,7 @@ body.light-theme select option
 
 .inpu-cta:hover
 {
-	background-color: #d400d4;
+	background-color: var(--accent-dark);
 	transform: translateY(-0.125rem);
 	box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 255, 0.4);
 }
