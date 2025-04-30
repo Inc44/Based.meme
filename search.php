@@ -203,7 +203,7 @@ t.slug IN ($placeholders)
 				} elseif ($sort === "trending") {
 					$orderBy = "
 (
-	m.like_count + m.upvote_count * 2 + m.comment_count
+	m.like_count + m.upvote_count * 2 + m.comment_count * 3
 ) / (TIMESTAMPDIFF(HOUR, m.published_at, NOW()) + 1) DESC,
 m.published_at DESC
 					";

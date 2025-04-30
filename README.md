@@ -19,6 +19,7 @@
 ## Dependencies
 
 - [Google Fonts](https://fonts.google.com)
+- [Lorem Picsum](https://picsum.photos)
 
 ## Inspiration
 
