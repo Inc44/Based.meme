@@ -715,7 +715,8 @@ body.light-theme .tag-container label:hover
 	padding: 1rem;
 }
 
-.meme-info h4
+.meme-info h4,
+.meme-info h4 a
 {
 	color: var(--text-primary);
 	font-size: 1rem;
@@ -740,6 +741,11 @@ body.light-theme .tag-container label:hover
 	font-size: 0.8rem;
 	background-color: var(--card-bg);
 	color: var(--accent);
+}
+
+a.creator-badge:hover
+{
+	color: var(--secondary);
 }
 
 .cta
@@ -1706,6 +1712,11 @@ body.light-theme .category-pill.active
 	color: white;
 	border-radius: 2rem;
 	display: inline-block;
+}
+
+a.tag:hover
+{
+	background-color: var(--primary-dark);
 }
 
 .spiciness
