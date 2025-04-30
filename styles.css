@@ -721,6 +721,7 @@ body.light-theme .tag-container label:hover
 	color: var(--text-primary);
 	font-size: 1rem;
 	margin-bottom: 0;
+	overflow: hidden;
 }
 
 .meme-stats
@@ -1702,6 +1703,7 @@ body.light-theme .category-pill.active
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.25rem;
+	height: 1.5em;
 }
 
 .tag
