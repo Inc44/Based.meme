@@ -85,7 +85,7 @@
 					</a>
 					<div class="meme-info">
 						<h4><a href="meme.php?id=<?= htmlspecialchars($meme['meme_id']) ?>" class="meme-title-link"><?= htmlspecialchars($meme["title"]) ?></a></h4>
-						<div class="tag-list"><?php foreach (array_slice($meme["tags"] ?? [], 0, 4) as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div>
+						<div class="tag-list"><?php foreach (array_slice($meme["tags"] ?? [], 0, 4) as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag primary-bg"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div>
 						<div class="meme-stats">
 							<span>❤️ <?= number_format($meme["like_count"]) ?></span>
 							<span>💬 <?= number_format($meme["comment_count"]) ?></span>

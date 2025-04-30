@@ -64,6 +64,7 @@ body.light-theme
 .accent-bg
 {
 	background-color: var(--accent) !important;
+	transition: background-color 0.3s ease;
 }
 
 .accent-bg:hover,
@@ -76,6 +77,7 @@ button.accent-bg:hover
 .primary-bg
 {
 	background-color: var(--primary) !important;
+	transition: background-color 0.3s ease;
 }
 
 .primary-bg:hover,
@@ -88,6 +90,7 @@ button.primary-bg:hover
 .secondary-bg
 {
 	background-color: var(--secondary) !important;
+	transition: background-color 0.3s ease;
 }
 
 .secondary-bg:hover,
@@ -100,6 +103,7 @@ button.secondary-bg:hover
 .warning-bg
 {
 	background-color: var(--warning) !important;
+	transition: background-color 0.3s ease;
 }
 
 .warning-bg:hover,
@@ -540,7 +544,6 @@ nav
 	border-radius: 50%;
 	border: 0.4375rem solid var(--light);
 	cursor: pointer;
-	transition: background-color 0.3s ease;
 }
 
 .upload-spiciness label

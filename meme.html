@@ -47,7 +47,7 @@
 						<h3><a href="profile.php?handle=<?= urlencode($meme['handle']) ?>" title="Meme Load">@<?= htmlspecialchars($meme['handle']) ?></a></h3>
 						<p title="Based Score">Member since <?= htmlspecialchars($joinDateFormatted) ?> • Level: Basic Degenerate</p>
 					</div>
-				</div><?php if (!empty($tags)): ?><div class="tag-list"><?php foreach ($tags as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div><?php endif; ?><div class="interaction-container"><?php if (isset($_SESSION["user_id"])): ?><div class="action-bar">
+				</div><?php if (!empty($tags)): ?><div class="tag-list"><?php foreach ($tags as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag primary-bg"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div><?php endif; ?><div class="interaction-container"><?php if (isset($_SESSION["user_id"])): ?><div class="action-bar">
 						<form method="post" style="display:inline;">
 							<input type="hidden" name="action" value="liked">
 							<button type="submit" class="pill <?= $flags['liked'] ? 'active' : '' ?>">❤️ Like (<?= $meme['like_count'] ?>)</button>
@@ -116,7 +116,7 @@
 					</a>
 					<div class="meme-info">
 						<h4><a href="meme.php?id=<?= htmlspecialchars($similarMeme['meme_id']) ?>" class="meme-title-link"><?= htmlspecialchars($similarMeme["title"]) ?></a></h4>
-						<div class="tag-list"><?php foreach (array_slice($similarMeme["tags"] ?? [], 0, 4) as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div>
+						<div class="tag-list"><?php foreach (array_slice($similarMeme["tags"] ?? [], 0, 4) as $tag): ?><a href="search.php?type=memes&tags[]=<?= urlencode($tag['slug']) ?>" class="tag primary-bg"><?= htmlspecialchars($tag['name']) ?></a><?php endforeach; ?></div>
 						<div class="meme-stats">
 							<span>❤️ <?= number_format($similarMeme["like_count"]) ?></span>
 							<span>💬 <?= number_format($similarMeme["comment_count"]) ?></span>
