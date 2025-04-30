@@ -108,7 +108,7 @@
 				<h3>No memers found</h3>
 				<p>Are they all hiding? Or maybe they just don't exist.</p>
 			</div><?php else: ?><div class="user-grid"><?php foreach ($user_results as $user): ?><a href="profile.php?handle=<?= urlencode($user['handle']) ?>" class="user-card">
-					<div class="user-avatar-sm"><?php if (!empty($user["avatar"])): ?><img src="<?= htmlspecialchars($user["avatar"]); ?>" alt="<?= htmlspecialchars($user['display_name'] ?: $user['handle']); ?>"><?php else: ?><?= htmlspecialchars(strtoupper(substr($user["handle"], 0, 1))); ?><?php endif; ?></div>
+					<div class="user-avatar-sm"><?php if (!empty($user["avatar"])): ?><img src="<?= htmlspecialchars($user["avatar"]); ?>" alt="<?= htmlspecialchars($user['display_name'] ?: $user['handle']); ?>" loading="lazy"><?php else: ?><?= htmlspecialchars(strtoupper(substr($user["handle"], 0, 1))); ?><?php endif; ?></div>
 					<div class="user-info">
 						<h4><?= htmlspecialchars($user['display_name'] ?: $user['handle']) ?></h4>
 						<p class="handle">@<?= htmlspecialchars($user['handle']) ?></p><?php if (!empty($user['bio_snippet'])): ?><p class="bio-snippet"><?= htmlspecialchars($user['bio_snippet']) ?>...</p><?php endif; ?>

@@ -38,7 +38,7 @@
 	<main>
 		<div class="user-bar">
 			<div class="user-greeting">
-				<div class="user-avatar"><?php if (!empty($user["avatar"])): ?><img src="<?= htmlspecialchars($user["avatar"]) ?>" alt="<?= htmlspecialchars($displayName) ?>"><?php else: ?><?= htmlspecialchars(substr($displayName, 0, 1)) ?><?php endif; ?></div>
+				<div class="user-avatar"><?php if (!empty($user["avatar"])): ?><img src="<?= htmlspecialchars($user["avatar"]) ?>" alt="<?= htmlspecialchars($displayName) ?>" loading="lazy"><?php else: ?><?= htmlspecialchars(substr($displayName, 0, 1)) ?><?php endif; ?></div>
 				<div class="user-welcome">
 					<h3>Sup, <?= htmlspecialchars($displayName) ?>?</h3>
 					<p>Member since <?= htmlspecialchars($joinDateFormatted) ?> • Level: Basic Degenerate</p>

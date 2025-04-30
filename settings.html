@@ -46,7 +46,7 @@
 					<form class="auth-form" action="settings.php" method="POST" enctype="multipart/form-data">
 						<div class="avatar-section">
 							<div class="avatar-drop" id="avatarDrop">
-								<img id="avatarPreview" src="<?=htmlspecialchars($user['avatar']?:'')?>" alt="">
+								<img id="avatarPreview" src="<?=htmlspecialchars($user['avatar']?:'')?>" alt="" loading="lazy">
 								<span class="avatar-drop-text">Drag & Drop</span>
 							</div>
 							<div class="avatar-actions">
